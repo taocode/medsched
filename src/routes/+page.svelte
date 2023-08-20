@@ -1,31 +1,33 @@
 <script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import { docStore, getFirebaseContext, userStore, collectionStore } from 'sveltefire';
+	const { auth, firestore } = getFirebaseContext()
+	const user = userStore(auth)
+	const post = docStore(firestore,'posts/id')
+	const recipients = collectionStore(firestore,'recipients')
+	let addRecipient = false
 </script>
 
 <svelte:head>
 	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<meta name="description" content="Track and Log medication use" />
 </svelte:head>
 
 <section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
 
-		to your new<br />SvelteKit app
-	</h1>
+<h2>Recipient?</h2>
 
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
+{#each $recipients as r}
+<div>{r}</div>
+{:else}
+no recipients added
+{/each}
+<button title="add recipient" on:click={()=>addRecipient = ! addRecipient}>
+	<div class="i-fe-plus"></div>
+</button>
 
-	<Counter />
+{#if addRecipient}
+add form here
+{/if}
 </section>
 
 <style>

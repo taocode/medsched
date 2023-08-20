@@ -2,6 +2,8 @@
 	import { page } from '$app/stores';
 	import logo from '$lib/images/svelte-logo.svg';
 	import github from '$lib/images/github.svg';
+	import SignInOut from '$lib/components/SignInOut.svelte';
+	// export let auth
 </script>
 
 <header>
@@ -30,11 +32,8 @@
 			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
 		</svg>
 	</nav>
-
 	<div class="corner">
-		<a href="https://github.com/sveltejs/kit">
-			<img src={github} alt="GitHub" />
-		</a>
+		<SignInOut />
 	</div>
 </header>
 
@@ -45,7 +44,7 @@
 	}
 
 	.corner {
-		width: 3em;
+		width: auto;
 		height: 3em;
 	}
 

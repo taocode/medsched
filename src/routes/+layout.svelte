@@ -1,19 +1,45 @@
 <script>
-	import Header from './Header.svelte';
+	import Header from '../lib/components/Header.svelte';
 	import './styles.css';
+	
+	import { FirebaseApp } from 'sveltefire';
+	import { initializeApp } from 'firebase/app';
+	import { getFirestore } from 'firebase/firestore';
+	import { getAuth } from 'firebase/auth';
+	import SignInOut from '$lib/components/SignInOut.svelte';
+	import { getStorage } from 'firebase/storage';
+
+	import 'uno.css'
+	
+	// Initialize Firebase
+	const app = initializeApp({
+		apiKey: "AIzaSyC5iP7AMx4IHIv6CcG9nUMdbScwrSM7Qpc",
+		authDomain: "medtimelog.firebaseapp.com",
+		projectId: "medtimelog",
+		storageBucket: "medtimelog.appspot.com",
+		messagingSenderId: "331132141308",
+		appId: "1:331132141308:web:b29777869ff763fd682179"
+	});
+	const firestore = getFirestore(app);
+	const auth = getAuth(app);
+	const storage = getStorage(app)
+	// console.log({auth})
 </script>
 
+
+<FirebaseApp {auth} {firestore} {storage}>
 <div class="app">
 	<Header />
-
-	<main>
-		<slot />
-	</main>
-
-	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-	</footer>
-</div>
+	
+		<main>
+			<slot />
+		</main>
+		
+		<footer>
+			<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+		</footer>
+	</div>
+</FirebaseApp>
 
 <style>
 	.app {
