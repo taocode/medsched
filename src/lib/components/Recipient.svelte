@@ -2,12 +2,11 @@
 	import { Timestamp } from "firebase/firestore"
 	import { docStore, getFirebaseContext, userStore, collectionStore } from 'sveltefire';
 	const { auth, firestore } = getFirebaseContext()
+	// import { db } from "$lib/firebase"
 
 	export let docObj
-const { id, displayName } = docObj
-// let displayName = docObj.displayName
-let medications = docObj.medications
-let timeLog = docObj.timeLog
+const { id, displayName, medications, timeLog } = docObj
+
 const todayTS = new Date()
 todayTS.setHours(0,0,0,0)
 $: todayTimeLog = timeLog.filter(L => L.dispensed?.toDate() > todayTS)
@@ -15,11 +14,12 @@ function formatTimestamp(ts) {
 	const dtm = ts.toDate()
 	return dtm.toLocaleTimeString('en-US')
 }
-function logMed(medicationIndex) {
-	console.log(id, medicationIndex)
+async function logMed(medicationIndex) {
+	// const db = getFirestore()
+	console.log(id, medicationIndex,db)
 	timeLog.push({medicationIndex,delivered: Timestamp.now()})
-	docObj.timeLog = timeLog
-	const ds = docStore(firestore,'/recipients/'+id)
+	docObj.timeLog = timeLog // necessary? unclear
+	// const res = await db.collection('recipients').doc('/recipients/'+id).set(docObj)
 	// ds.
 }
 </script>
@@ -33,9 +33,11 @@ function logMed(medicationIndex) {
 		{/each}
 	</div>
 	<h3>Today:</h3>
-	{#each todayTimeLog as L}
-		{medications[L.medicationIndex].displayName} - {formatTimestamp(L.dispensed)}
-	{/each}
+	<ul>
+		{#each todayTimeLog as L}
+			<li>{medications[L.medicationIndex].displayName} - {formatTimestamp(L.dispensed)}</li>
+		{/each}
+	</ul>
 </div>
 
 
@@ -45,5 +47,12 @@ h2{
 }
 .show-recipient {
 	text-align: center;
+}
+ul {
+	list-style-type: none;
+	padding: 0;
+}
+ul li {
+	margin: 0.2rem auto;
 }
 </style>
