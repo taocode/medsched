@@ -1,9 +1,9 @@
 <script>
 	import Recipient from '$lib/components/Recipient.svelte';
-import { docStore, getFirebaseContext, userStore, collectionStore } from 'sveltefire';
+	import { docStore, getFirebaseContext, userStore, collectionStore } from 'sveltefire';
 	const { auth, firestore } = getFirebaseContext()
-	const user = userStore(auth)
-	const post = docStore(firestore,'posts/id')
+	// const user = userStore(auth)
+	// const post = docStore(firestore,'posts/id')
 	const recipients = collectionStore(firestore,'recipients')
 	let editRecipient = false
 
@@ -27,7 +27,7 @@ import { docStore, getFirebaseContext, userStore, collectionStore } from 'svelte
 <div><button on:click={()=>workOnRecipient(r)}>{r.displayName}</button></div>
 
 {:else}
-no recipients added
+Loading...
 {/each}
 
 {#if editRecipient}
@@ -45,23 +45,4 @@ no recipients added
 		flex: 0.6;
 	}
 
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
 </style>
