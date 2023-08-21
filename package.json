@@ -32,7 +32,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"firebase": "^9.0.0",
+		"firebase-admin": "^9.12.0",
+		"firebase": "^9.23.0",
 		"sveltefire": "^0.4.2"
 	}
 }
