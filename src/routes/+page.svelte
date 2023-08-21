@@ -1,10 +1,17 @@
 <script>
-	import { docStore, getFirebaseContext, userStore, collectionStore } from 'sveltefire';
+	import Recipient from '$lib/components/Recipient.svelte';
+import { docStore, getFirebaseContext, userStore, collectionStore } from 'sveltefire';
 	const { auth, firestore } = getFirebaseContext()
 	const user = userStore(auth)
 	const post = docStore(firestore,'posts/id')
 	const recipients = collectionStore(firestore,'recipients')
-	let addRecipient = false
+	let editRecipient = false
+
+	let editingRecipient = undefined
+	function workOnRecipient(r) {
+		editingRecipient = r
+		editRecipient = true
+	}
 </script>
 
 <svelte:head>
@@ -17,16 +24,15 @@
 <h2>Recipient?</h2>
 
 {#each $recipients as r}
-<div>{r}</div>
+<div><button on:click={()=>workOnRecipient(r)}>{r.displayName}</button></div>
+
 {:else}
 no recipients added
 {/each}
-<button title="add recipient" on:click={()=>addRecipient = ! addRecipient}>
-	<div class="i-fe-plus"></div>
-</button>
 
-{#if addRecipient}
-add form here
+{#if editRecipient}
+<Recipient 
+	docObj={editingRecipient} />
 {/if}
 </section>
 
