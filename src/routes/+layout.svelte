@@ -10,8 +10,11 @@
 	import { getApp, setApp } from '$lib/firebase'
 	import './styles.css'
 	
-
 	import 'uno.css'
+
+  import { SignedIn, SignedOut } from 'sveltefire'
+  import { signInWithPopup, GoogleAuthProvider } from "firebase/auth"
+	const provider = new GoogleAuthProvider()
 	
 	// Initialize Firebase
 	// console.log()
@@ -34,12 +37,23 @@
 <div class="app">
 	<Header />
 	
-		<main>
-			<slot />
-		</main>
+		<SignedOut let:auth>
+			<div class="mustlogin">
+				<h2>Login Required</h2>
+				<p></p>
+				<button on:click={() => signInWithPopup(auth,provider)}><div class="i-fe-login"></div> Login</button>
+			</div>
+``	</SignedOut>
+
+
+<SignedIn let:user let:signOut>
+	<main>
+		<slot />
+	</main>
+</SignedIn>
 		
 		<footer>
-			<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+			<p>A work in progress...</p>
 		</footer>
 	</div>
 </FirebaseApp>
@@ -49,6 +63,9 @@
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
+	}
+	.mustlogin {
+		text-align: center;
 	}
 
 	main {

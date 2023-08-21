@@ -5,12 +5,11 @@
 	// const user = userStore(auth)
 	// const post = docStore(firestore,'posts/id')
 	const recipients = collectionStore(firestore,'recipients')
-	let editRecipient = false
 
 	let editingRecipient = undefined
 	function workOnRecipient(r) {
-		editingRecipient = r
-		editRecipient = true
+		editingRecipient = undefined
+		setTimeout(()=> editingRecipient = r, 1)
 	}
 </script>
 
@@ -23,17 +22,19 @@
 
 <h2>Recipient?</h2>
 
-{#each $recipients as r}
-<div><button on:click={()=>workOnRecipient(r)}>{r.displayName}</button></div>
+<div class="flex flex-wrap justify-center gap-2">
+	{#each $recipients as r}
+	<div><button on:click={() => workOnRecipient(r)}>{r.displayName}</button></div>
+	{:else}
+	Loading...
+	{/each}
+</div>
 
-{:else}
-Loading...
-{/each}
-
-{#if editRecipient}
+{#if editingRecipient}
 <Recipient 
 	docObj={editingRecipient} />
 {/if}
+
 </section>
 
 <style>

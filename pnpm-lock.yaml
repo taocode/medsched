@@ -22,6 +22,9 @@ devDependencies:
   '@iconify-json/fe':
     specifier: ^1.1.7
     version: 1.1.7
+  '@iconify-json/feather':
+    specifier: ^1.1.5
+    version: 1.1.5
   '@neoconfetti/svelte':
     specifier: ^1.0.0
     version: 1.0.0
@@ -1000,6 +1003,12 @@ packages:
 
   /@iconify-json/fe@1.1.7:
     resolution: {integrity: sha512-QE16B8ft3cetZGT2J2bV4Qf6H4tJwWGilZZwFmrE93qQLXfw6l6QFeXRxX8ohse6RAs242ajIkAFJwHcI4bAqw==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-json/feather@1.1.5:
+    resolution: {integrity: sha512-1/VJL5PZcMQDdtJPKMnw02JMiAjYGNdPZb0vaTbn0BqK40z05C1ydEzxVoQifCXvvC223Ms7fQkLt6iAMJUsQA==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true

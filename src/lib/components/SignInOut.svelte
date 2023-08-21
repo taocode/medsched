@@ -6,7 +6,10 @@
 
 <div class="signinout">
 	<SignedIn let:user let:signOut>
-		<img src={user.photoURL} alt={user.displayName}> <button title="Sign Out" class="signout" on:click={signOut}> <div class="i-fe-logout"></div></button>
+		<img src={user.photoURL} alt={user.displayName}>
+		<button title="Sign Out" class="signout" on:click={signOut}> 
+			<div class="i-fe-logout"></div>
+		</button>
 	</SignedIn>
 	
 	<SignedOut let:auth>

@@ -13,6 +13,7 @@
 	"devDependencies": {
 		"@fontsource/fira-mono": "^4.5.10",
 		"@iconify-json/fe": "^1.1.7",
+		"@iconify-json/feather": "^1.1.5",
 		"@neoconfetti/svelte": "^1.0.0",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-static": "^2.0.3",
@@ -32,8 +33,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"firebase-admin": "^9.12.0",
 		"firebase": "^9.23.0",
+		"firebase-admin": "^9.12.0",
 		"sveltefire": "^0.4.2"
 	}
 }
