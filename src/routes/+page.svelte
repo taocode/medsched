@@ -20,7 +20,7 @@
 
 <section>
 
-<h2>Recipient?</h2>
+<h2 class="mt-0">Recipient?</h2>
 
 <div class="flex flex-wrap justify-center gap-2">
 	{#each $recipients as r}

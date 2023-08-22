@@ -35,7 +35,6 @@ async function logMed(medicationIndex) {
 
 <div class="show-recipient">
 	<h2>{displayName}</h2>
-	<div>Tap to log (coming soon)</div>
 	<div class="flex flex-wrap justify-center gap-2 my-3">
 		{#each medications as m,i}
 		<button

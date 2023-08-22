@@ -19,7 +19,7 @@
 
 	.corner {
 		width: auto;
-		height: 3em;
+		/* height: 3em; */
 	}
 
 </style>
