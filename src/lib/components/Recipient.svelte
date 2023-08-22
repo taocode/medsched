@@ -1,6 +1,8 @@
 <script>
 	import { Timestamp } from "firebase/firestore"
 	import { docStore, getFirebaseContext, userStore, collectionStore } from 'sveltefire';
+	import { readableColor } from "color2k"
+	import DayTimeLog from "./DayTimeLog.svelte"
 	const { auth, firestore } = getFirebaseContext()
 	// import { db } from "$lib/firebase"
 
@@ -10,15 +12,14 @@ $: {
 	if (docObj) ({ id, displayName, medications, timeLog } = docObj)
 }
 
-const todayTS = new Date()
-todayTS.setHours(0,0,0,0)
+const today = new Date()
+today.setHours(0,0,0,0)
+const yesterday = new Date()
+yesterday.setHours(-24,0,0,0)
 
-$: todayTimeLog = timeLog.filter(L => L.dispensed?.toDate() > todayTS)
+$: todayTimeLog = timeLog.filter(L => L.dispensed?.toDate() > today)
+$: yesterdayTimeLog = timeLog.filter(L => L.dispensed?.toDate() < today && L.dispensed?.toDate() > yesterday)
 
-function formatTimestamp(ts) {
-	const dtm = ts.toDate()
-	return dtm.toLocaleTimeString('en-US')
-}
 async function logMed(medicationIndex) {
 	// const db = getFirestore()
 	console.log(id, medicationIndex)
@@ -30,12 +31,6 @@ async function logMed(medicationIndex) {
 	// const res = await db.collection('recipients').doc('/recipients/'+id).set(docObj)
 	// ds.
 }
-function findTodaysCount(medIndex,dispTS) {
-	console.log({medIndex,dispTS})
-	return 1 + todayTimeLog
-		.filter(L => L.medicationIndex === medIndex)
-		.findIndex(L => L.dispensed === dispTS)
-}
 </script>
 
 <div class="show-recipient">
@@ -43,19 +38,17 @@ function findTodaysCount(medIndex,dispTS) {
 	<div>Tap to log (coming soon)</div>
 	<div class="flex flex-wrap justify-center gap-2 my-3">
 		{#each medications as m,i}
-		<button class="" on:click={()=>logMed(i)}>{m.displayName}</button>
+		<button
+			style={`--bg: ${m.color}; --color: ${readableColor(m.color)};`} 
+			on:click={()=>logMed(i)}>{m.displayName}</button>
 		{/each}
 	</div>
-	<h3>Today:</h3>
-	<table>
-		{#each todayTimeLog as L}
-			<tr>
-				<td>{findTodaysCount(L.medicationIndex,L.dispensed)} of {medications[L.medicationIndex].schedule.length}</td>
-				<td>{medications[L.medicationIndex].displayName}</td> 
-				<td>{formatTimestamp(L.dispensed)}</td>
-			</tr>
-		{/each}
-	</table>
+	{#if todayTimeLog.length}
+	<DayTimeLog dayTimeLog={todayTimeLog} {medications}/>
+	{/if}
+	{#if yesterdayTimeLog.length}
+	<DayTimeLog dayName="Yesterday" dayTimeLog={yesterdayTimeLog} {medications} />
+	{/if}
 </div>
 
 
@@ -63,21 +56,11 @@ function findTodaysCount(medIndex,dispTS) {
 .show-recipient {
 	text-align: center;
 }
-table {
-	min-width: 30ch;
-	margin: 0 auto;
-}
-td {
-	padding: 0.2em 0.05em;
-}
-td:last-child {
-	text-align: right;
-}
-ul {
-	list-style-type: none;
-	padding: 0;
-}
-ul li {
-	margin: 0.2rem auto;
+button {
+	background-color: var(--bg);
+	color: var(--color);
+	border: 0;
+	padding: 0.2em 0.5em;
+	border-radius: 0.2rem;
 }
 </style>
