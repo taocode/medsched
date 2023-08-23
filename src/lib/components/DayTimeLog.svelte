@@ -1,4 +1,5 @@
 <script>
+	import { randomColor } from '$lib';
 	import { readableColor } from 'color2k'
 	export let dayName = 'Today'
 	export let dayTimeLog = []
@@ -15,11 +16,8 @@
 		.filter(L => L.medicationIndex === medIndex)
 		.findIndex(L => L.dispensed === dispTS)
 	}
-	const rc = () => Math.floor(Math.random()*255)
-	function randomColor() {
-		return `rgb(${rc()},${rc()},${rc()})`
-	}
-	const colors = medications.map( m => m.color ? m.color : randomColor() )
+
+	const colors = medications.map( m => m.color ? m.color : randomColor )
 	$: dailyTotal = medications.reduce((p,c) => p+c.schedule.length,0)
 	$: daysCount = dayTimeLog.length
 </script>

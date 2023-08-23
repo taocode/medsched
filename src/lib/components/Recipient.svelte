@@ -1,21 +1,21 @@
 <script>
 	import { Timestamp } from "firebase/firestore"
-	// import { docStore, getFirebaseContext, userStore, collectionStore } from 'sveltefire';
+	// import { docStore, getFirebaseContext, userStore, collectionStore } from 'sveltefire'
+	import { userStore, getFirebaseContext } from "sveltefire"
 	import { readableColor } from "color2k"
 	import DayTimeLog from "./DayTimeLog.svelte"
+	import { randomColor } from "$lib"
 
-	// const { auth, firestore } = getFirebaseContext()
-	// import { firestore } from "firebase-admin"
-	// import { getAdminApp } from "$lib/firebaseAdmin"
-	// const db = firestore(getAdminApp())
+	const { auth, firestore } = getFirebaseContext()
 
 	export let docObj
-
 	let { id, displayName, medications, timeLog } = docObj
-$: {
-	if (docObj) ({ id, displayName, medications, timeLog } = docObj)
-}
-
+	$: {
+		if (docObj) ({ id, displayName, medications, timeLog } = docObj)
+	}
+	const colors = medications.map( m => m.color ? m.color : randomColor() )
+const user = userStore(auth)
+console.log({user},$user)
 const today = new Date()
 today.setHours(0,0,0,0)
 const yesterday = new Date()
@@ -40,11 +40,15 @@ async function logMed(medicationIndex) {
 <div class="show-recipient">
 	<h2>{displayName}</h2>
 	<div class="flex flex-wrap justify-center gap-2 my-3">
-		{#each medications as m,i}
-		<button
-			style={`--bg: ${m.color}; --color: ${readableColor(m.color)};`} 
-			on:click={()=>logMed(i)}>{m.displayName}</button>
-		{/each}
+		<form method="POST" action="/dispense">
+			<input type="hidden" name="did" value={$user.uid} />
+			<input type="hidden" name="rid" value={id} />
+			{#each medications as m,i}
+			<button name="medicationIndex" value={i}
+			style={`--bg: ${colors[i]}; --color: ${readableColor(colors[i])};`} 
+			>{m.displayName}</button>
+			{/each}
+		</form>
 	</div>
 	{#if todayTimeLog.length}
 	<DayTimeLog dayTimeLog={todayTimeLog} {medications}/>
