@@ -1,10 +1,12 @@
 <script>
 	import { Timestamp } from "firebase/firestore"
+	// import { getFirestore } from "firebase-admin/firestore"
 	import { docStore, getFirebaseContext, userStore, collectionStore } from 'sveltefire';
 	import { readableColor } from "color2k"
 	import DayTimeLog from "./DayTimeLog.svelte"
 	const { auth, firestore } = getFirebaseContext()
-	// import { db } from "$lib/firebase"
+	// import { getAdminApp } from "$lib/firebaseAdmin"
+	// const db = getFirestore(getAdminApp())
 
 	export let docObj
 	let { id, displayName, medications, timeLog } = docObj
@@ -49,7 +51,6 @@ async function logMed(medicationIndex) {
 	<DayTimeLog dayName="Yesterday" dayTimeLog={yesterdayTimeLog} {medications} />
 	{/if}
 </div>
-
 
 <style>
 .show-recipient {

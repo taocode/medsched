@@ -1,37 +1,26 @@
 <script>
-	import { firebaseConfig } from '$lib/firebase'
-	import { initializeApp } from 'firebase/app'
+	// import { initializeApp } from 'firebase/app'
 	import { getFirestore } from 'firebase/firestore'
 	import { getAuth } from 'firebase/auth'
 	import { getStorage } from 'firebase/storage'
 
+	import { getAppRO } from '$lib/firebase'
+
 	import Header from '../lib/components/Header.svelte'
 	import { FirebaseApp } from 'sveltefire'
-	import { getApp, setApp } from '$lib/firebase'
 	import './styles.css'
 	
 	import 'uno.css'
 
   import { SignedIn, SignedOut } from 'sveltefire'
   import { signInWithPopup, GoogleAuthProvider } from "firebase/auth"
-	const provider = new GoogleAuthProvider()
 	
-	// Initialize Firebase
-	// console.log()
-	if (getApp() === undefined) {
-		// app 
-		setApp( initializeApp(firebaseConfig) )
-		console.log('getapp init')
-	} else {
-		console.log('getApp exists')
-	}
-
-	const firestore = getFirestore(getApp())
-	const auth = getAuth(getApp())
-	const storage = getStorage(getApp())
+	const provider = new GoogleAuthProvider()
+	const firestore = getFirestore(getAppRO())
+	const auth = getAuth(getAppRO())
+	const storage = getStorage(getAppRO())
 	// console.log({auth})
 </script>
-
 
 <FirebaseApp {auth} {firestore} {storage}>
 <div class="app">
