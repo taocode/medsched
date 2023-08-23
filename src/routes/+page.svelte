@@ -11,6 +11,8 @@
 		editingRecipient = undefined
 		setTimeout(()=> editingRecipient = r, 1)
 	}
+	export let data
+	// let { db } = data
 </script>
 
 <svelte:head>

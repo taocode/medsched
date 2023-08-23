@@ -1,14 +1,16 @@
 <script>
 	import { Timestamp } from "firebase/firestore"
-	// import { getFirestore } from "firebase-admin/firestore"
-	import { docStore, getFirebaseContext, userStore, collectionStore } from 'sveltefire';
+	// import { docStore, getFirebaseContext, userStore, collectionStore } from 'sveltefire';
 	import { readableColor } from "color2k"
 	import DayTimeLog from "./DayTimeLog.svelte"
-	const { auth, firestore } = getFirebaseContext()
+
+	// const { auth, firestore } = getFirebaseContext()
+	// import { firestore } from "firebase-admin"
 	// import { getAdminApp } from "$lib/firebaseAdmin"
-	// const db = getFirestore(getAdminApp())
+	// const db = firestore(getAdminApp())
 
 	export let docObj
+
 	let { id, displayName, medications, timeLog } = docObj
 $: {
 	if (docObj) ({ id, displayName, medications, timeLog } = docObj)
@@ -30,7 +32,7 @@ async function logMed(medicationIndex) {
 	newDoc.timeLog = timeLog // necessary? unclear
 	docObj = undefined
 	setTimeout(()=>docObj = newDoc,1)
-	// const res = await db.collection('recipients').doc('/recipients/'+id).set(docObj)
+	// const res = await db.doc('/recipients/'+id).set(docObj)
 	// ds.
 }
 </script>
