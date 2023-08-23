@@ -20,8 +20,10 @@
 		return `rgb(${rc()},${rc()},${rc()})`
 	}
 	const colors = medications.map( m => m.color ? m.color : randomColor() )
+	$: dailyTotal = medications.reduce((p,c) => p+c.schedule.length,0)
+	$: daysCount = dayTimeLog.length
 </script>
-<h3>{dayName}:</h3>
+<h3><span class="count">{daysCount}</span><span class="total">{dailyTotal}</span> {dayName}:</h3>
 <table>
 	{#each dayTimeLog as L}
 		<tr style={`--bg: ${colors[L.medicationIndex]};
