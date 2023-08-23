@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-static';
+import adapter from 'svelte-adapter-firebase'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
