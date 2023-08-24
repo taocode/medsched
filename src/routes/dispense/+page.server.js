@@ -1,9 +1,9 @@
 
 import { getAdminApp, getDB } from '$lib/firebaseAdmin'
-import { arrayUnion, collection, doc, getFirestore, updateDoc, Timestamp } from 'firebase/firestore'
+import { getFirestore } from 'firebase-admin/firestore'
+import { arrayUnion, updateDoc, Timestamp } from 'firebase/firestore'
 
 import { redirect } from '@sveltejs/kit'
-import { firestore } from 'firebase-admin'
 
 /** @type {import('./$types').Actions} */
 export const actions = {
@@ -18,10 +18,10 @@ export const actions = {
 			dispenserid,
 			dispensed,
 		}
-    const db = getAdminApp().firestore()
-		console.log(db.collection("recipients"))
+    const db = getFirestore(getAdminApp())
+		// console.log(db.collection("recipients"))
 		const rdoc = await db.collection("recipients").doc(recipientid)
-		console.log({docData,recipientid,rdoc})
+		console.log({docData,recipientid,rdoc},arrayUnion)
 		updateDoc(rdoc, {
 			timeLog: arrayUnion(docData)
 		})
