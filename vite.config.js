@@ -5,7 +5,11 @@ import UnoCSS from 'unocss/vite'
 export default defineConfig({
 	plugins: [
 		UnoCSS(),
-		sveltekit()],
+		sveltekit(),
+	],
+	ssr: {
+		external: ['firebase','firebase-admin'],
+	},
 	// experimental: {
 	// 	esmExternals: false
 	// }

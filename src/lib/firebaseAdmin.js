@@ -1,4 +1,4 @@
-import { initializeApp, apps, app, credential, firestore } from "firebase-admin"
+import { initializeApp, apps, getApps, app, getApp, credential } from "firebase-admin"
 // import admin from "firebase-admin"
 // import { getFirestore } from "firebase/firestore"
 import serviceAccount from './medtimelog-credentials.json' // assert { type: 'json' }
@@ -12,7 +12,7 @@ const adminConfig = {
 // console.log({adminConfig})
 let adminApp = undefined
 export function getAdminApp() {
-  // console.log({apps})
+  console.log({apps,app},getApps,app(APP_ADMIN))
   if (adminApp === undefined) {
     adminApp = apps.some(A => A?.name === APP_ADMIN) ? app(APP_ADMIN) : initializeApp(adminConfig, APP_ADMIN)
     adminApp.firestore()
