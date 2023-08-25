@@ -1,10 +1,11 @@
 <script>
-	import Recipient from '$lib/components/Recipient.svelte';
-	import { docStore, getFirebaseContext, userStore, collectionStore } from 'sveltefire';
-	const { auth, firestore } = getFirebaseContext()
-	// const user = userStore(auth)
-	// const post = docStore(firestore,'posts/id')
-	const recipients = collectionStore(firestore,'recipients')
+	// import { page } from '$app/stores'
+  // import { authState, FirebaseUiAuth, saveUserData, collectionStore } from 'sveltefirets'
+  // import { user } from '$lib/user'
+
+	import Recipient from '$lib/components/Recipient.svelte'
+
+	// const recipients = 
 
 	let editingRecipient = undefined
 	function workOnRecipient(r) {
@@ -12,7 +13,8 @@
 		setTimeout(()=> editingRecipient = r, 1)
 	}
 	export let data
-	// let { db } = data
+	let recipients = []
+	$: recipients = data.recipients
 </script>
 
 <svelte:head>
@@ -25,7 +27,7 @@
 <h2 class="mt-0">Recipient?</h2>
 
 <div class="flex flex-wrap justify-center gap-2">
-	{#each $recipients as r}
+	{#each recipients as r}
 	<div><button on:click={() => workOnRecipient(r)}>{r.displayName}</button></div>
 	{:else}
 	Loading...

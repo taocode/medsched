@@ -13,30 +13,27 @@
 	"devDependencies": {
 		"@fontsource/fira-mono": "^4.5.10",
 		"@iconify-json/fe": "^1.1.7",
-		"@iconify-json/feather": "^1.1.5",
 		"@neoconfetti/svelte": "^1.0.0",
-		"@sveltejs/adapter-auto": "^2.0.0",
-		"@sveltejs/adapter-static": "^2.0.3",
-		"@sveltejs/kit": "^1.1.1",
+		"@sveltejs/kit": "1.1.1",
 		"@types/cookie": "^0.5.1",
 		"@unocss/extractor-svelte": "^0.55.2",
 		"color2k": "^2.0.2",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte": "^2.30.0",
+		"firebase": "^9.21.0",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.10.1",
-		"svelte": "^4.0.0",
+		"svelte": "^3.58.0",
 		"svelte-adapter-firebase": "^0.15.0",
 		"svelte-check": "^3.4.3",
+		"sveltefirets": "^0.0.36",
 		"typescript": "^5.0.0",
 		"unocss": "^0.55.2",
 		"vite": "^4.4.2"
 	},
 	"type": "module",
 	"dependencies": {
-		"firebase": "^9.23.0",
-		"firebase-admin": "^10.0.0",
-		"sveltefire": "^0.4.2"
+		"firebaseui": "^6.1.0"
 	}
 }

@@ -1,12 +1,12 @@
 <script>
 	import { Timestamp } from "firebase/firestore"
 	// import { docStore, getFirebaseContext, userStore, collectionStore } from 'sveltefire'
-	import { userStore, getFirebaseContext } from "sveltefire"
+	// import { userStore, getFirebaseContext } from "sveltefire"
 	import { readableColor } from "color2k"
 	import DayTimeLog from "./DayTimeLog.svelte"
 	import { randomColor } from "$lib"
-
-	const { auth, firestore } = getFirebaseContext()
+	
+	import { user } from '$lib/user'
 
 	export let docObj
 	let { id, displayName, medications, timeLog } = docObj
@@ -14,13 +14,14 @@
 		if (docObj) ({ id, displayName, medications, timeLog } = docObj)
 	}
 	const colors = medications.map( m => m.color ? m.color : randomColor() )
-const user = userStore(auth)
-console.log({user},$user)
+// const user = userStore(auth)
+// console.log({user},$user)
 const today = new Date()
 today.setHours(0,0,0,0)
 const yesterday = new Date()
 yesterday.setHours(-24,0,0,0)
 
+// $: timeLogByDay = timeLog.map(L => )
 $: todayTimeLog = timeLog.filter(L => L.dispensed?.toDate() > today)
 $: yesterdayTimeLog = timeLog.filter(L => L.dispensed?.toDate() < today && L.dispensed?.toDate() > yesterday)
 

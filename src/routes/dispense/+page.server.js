@@ -1,6 +1,5 @@
 
-import { getAdminApp, getDB } from '$lib/firebaseAdmin'
-import { getFirestore } from 'firebase-admin/firestore'
+import { update } from 'sveltefirets'
 import { arrayUnion, updateDoc, Timestamp } from 'firebase/firestore'
 
 import { redirect } from '@sveltejs/kit'
@@ -18,13 +17,14 @@ export const actions = {
 			dispenserid,
 			dispensed,
 		}
-    const db = getFirestore(getAdminApp())
-		// console.log(db.collection("recipients"))
-		const rdoc = await db.collection("recipients").doc(recipientid)
-		console.log({docData,recipientid,rdoc},arrayUnion)
-		updateDoc(rdoc, {
-			timeLog: arrayUnion(docData)
-		})
+		console.log({docData,recipientid},arrayUnion)
+		update(`recipients/${recipientid}`, { timeLog: arrayUnion(docData)})
+    // const db = getFirestore(getAdminApp())
+		// // console.log(db.collection("recipients"))
+		// const rdoc = await db.collection("recipients").doc(recipientid)
+		// updateDoc(rdoc, {
+		// 	timeLog: arrayUnion(docData)
+		// })
 		throw redirect(302,'/')
   }
 }

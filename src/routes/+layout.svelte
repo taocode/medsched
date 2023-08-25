@@ -1,51 +1,45 @@
 <script>
 	// import { initializeApp } from 'firebase/app'
-	import { getFirestore } from 'firebase/firestore'
-	import { getAuth } from 'firebase/auth'
-	import { getStorage } from 'firebase/storage'
+	// import { getFirestore } from 'firebase/firestore'
+	// import { getAuth } from 'firebase/auth'
+	// import { getStorage } from 'firebase/storage'
 
-	import { getAppRO } from '$lib/firebase'
-
-	import Header from '../lib/components/Header.svelte'
-	import { FirebaseApp } from 'sveltefire'
+	import Header from '$lib/components/Header.svelte'
+	import LoginComponent from '$lib/components/LoginComponent.svelte'
 	import './styles.css'
 	
 	import 'uno.css'
 
-  import { SignedIn, SignedOut } from 'sveltefire'
-  import { signInWithPopup, GoogleAuthProvider } from "firebase/auth"
-	
-	const provider = new GoogleAuthProvider()
-	const firestore = getFirestore(getAppRO())
-	const auth = getAuth(getAppRO())
-	const storage = getStorage(getAppRO())
-	// console.log({auth})
+	import { page } from '$app/stores'
+  import { authState } from 'sveltefirets'
+  import { user as userStore } from '$lib/user'
+  $: authNotInited = $authState === undefined
+  $: userDataFromCookie = $page.data?.user
+  $: user = $userStore || (authNotInited && userDataFromCookie) || null
+
 </script>
 
-<FirebaseApp {auth} {firestore} {storage}>
 <div class="app">
 	<Header />
-	
-		<SignedOut let:auth>
-			<div class="mustlogin">
-				<h2>Login Required</h2>
-				<p></p>
-				<button on:click={() => signInWithPopup(auth,provider)}><div class="i-fe-login"></div> Login</button>
-			</div>
-``	</SignedOut>
-
-
-<SignedIn let:user let:signOut>
-	<main>
-		<slot />
-	</main>
-</SignedIn>
-		
-		<footer>
-			<p>A work in progress...</p>
-		</footer>
+{#if $authState === undefined}
+  Loading auth...
+{:else}
+  {#if user}
+		<main>
+			<slot />
+		</main>
+	{:else}
+	<div class="mustlogin">
+		<h2>Login Required</h2>
+		<LoginComponent />
 	</div>
-</FirebaseApp>
+  {/if}
+{/if}
+		
+	<footer>
+		<p>A work in progress...</p>
+	</footer>
+</div>
 
 <style>
 	.app {
