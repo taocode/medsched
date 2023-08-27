@@ -1,11 +1,12 @@
 <script>
 	import { Timestamp } from "firebase/firestore"
+	import { fade } from 'svelte/transition'
 	// import { docStore, getFirebaseContext, userStore, collectionStore } from 'sveltefire'
 	// import { userStore, getFirebaseContext } from "sveltefire"
 	import { readableColor } from "color2k"
 	import DayTimeLog from "./DayTimeLog.svelte"
 	import { formatTimestampShortDate, formatTimestampMedDate, randomColor } from "$lib"
-	
+
 	import { user } from '$lib/user'
 
 	export let recipient
@@ -63,7 +64,7 @@ async function logMed(medicationIndex) {
 			<input type="hidden" name="rid" value={id} />
 			{#each medications as m,i}
 			<button name="medicationIndex" value={i}
-			style={`--bg: ${colors[i]}; --color: ${readableColor(colors[i])};`} 
+			style={`--bg: ${colors[i]}; --color: ${readableColor(colors[i])};`}
 			>{m.displayName}</button>
 			{/each}
 		</form>
@@ -85,7 +86,9 @@ async function logMed(medicationIndex) {
 		{/each}
 	</div>
 	{#if pastTimeLogDetail.length}
-	<DayTimeLog recipientid={id} dayName={'on ' +formatTimestampMedDate(pastTimeLogDetail[0].dispensed)} dayTimeLog={pastTimeLogDetail} {medications} />
+	<div class="pastLogDetail" in:fade>
+		<DayTimeLog recipientid={id} dayName={'on ' +formatTimestampMedDate(pastTimeLogDetail[0].dispensed)} dayTimeLog={pastTimeLogDetail} {medications} />
+	</div>
 	{/if}
 </div>
 
@@ -112,6 +115,10 @@ button {
 	padding: 0.3em 0.4em;
 	color: white;
 	line-height: 1.2;
+	transition: all 200ms ease;
+}
+.day-summary:hover {
+	background-color: var(--color-theme-1,red);
 }
 .day-summary .count {
 	font-size: 1.3em;

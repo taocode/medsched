@@ -43,7 +43,7 @@
 				<td class="count">{findDaysCount(L.medicationIndex,L.dispensed)}</td>
 				<td class="total">{medications[L.medicationIndex].schedule.length}</td>
 				<td>{medications[L.medicationIndex].displayName}</td>
-				<td>{formatTimestampLong(L.dispensed)}
+				<td class="date-col">{formatTimestampLong(L.dispensed)}
 				</td>
 				{#if allowEdit}
 				<td>
@@ -99,6 +99,8 @@
 	td:last-child {
 		border-top-right-radius: var(--br);
 		border-bottom-right-radius: var(--br);
+	}
+	.date-col {
 		text-align: right;
 	}
 	td button {

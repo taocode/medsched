@@ -12,5 +12,5 @@ export function formatTimestampShortDate(ts) {
 }
 export function formatTimestampMedDate(ts) {
 	const dtm = ts.toDate()
-	return dtm.toLocaleDateString('en-US',{day: 'numeric', month: 'long'})
+	return dtm.toLocaleDateString('en-US',{day: 'numeric', month: 'long', year: 'numeric'})
 }
