@@ -6,7 +6,11 @@ export function formatTimestampLong(ts) {
 	const dtm = ts.toDate()
 	return dtm.toLocaleTimeString('en-US')
 }
-export function formatTimestampShort(ts) {
+export function formatTimestampShortDate(ts) {
 	const dtm = ts.toDate()
 	return dtm.toLocaleDateString('en-US',{day: 'numeric', month: 'numeric'})
+}
+export function formatTimestampMedDate(ts) {
+	const dtm = ts.toDate()
+	return dtm.toLocaleDateString('en-US',{day: 'numeric', month: 'long'})
 }

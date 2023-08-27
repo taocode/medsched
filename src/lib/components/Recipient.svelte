@@ -4,7 +4,7 @@
 	// import { userStore, getFirebaseContext } from "sveltefire"
 	import { readableColor } from "color2k"
 	import DayTimeLog from "./DayTimeLog.svelte"
-	import { formatTimestampShort, randomColor } from "$lib"
+	import { formatTimestampShortDate, formatTimestampMedDate, randomColor } from "$lib"
 	
 	import { user } from '$lib/user'
 
@@ -38,6 +38,9 @@ $: timeLogByDay = timeLog.reduce((p,L,i) => {
 },[[]]).reverse()
 $: todayTimeLog = timeLogByDay[0]
 $: yesterdayTimeLog = timeLogByDay[1]
+$: pastTimeLog = timeLogByDay.slice(1)
+
+let pastTimeLogDetail = []
 
 async function logMed(medicationIndex) {
 	// const db = getFirestore()
@@ -68,17 +71,21 @@ async function logMed(medicationIndex) {
 	{#if todayTimeLog.length}
 	<DayTimeLog recipientid={id} dayTimeLog={todayTimeLog} {medications} allowEdit={true}/>
 	{/if}
-	<h3>{timeLogByDay.length} Days:</h3>
+	<h3>Past {pastTimeLog.length} Days:</h3>
 	<div class="days-summary">
-		{#each timeLogByDay as L}
-		<div class="day-summary rounded">
+		{#each pastTimeLog as L,n}
+		<button class="day-summary rounded" on:click={()=>{
+			pastTimeLogDetail=pastTimeLog[n];
+			console.log('ptld',n,pastTimeLogDetail)
+			}
+			}>
 			<div class="count">{L.length}</div>
-			<div class="date">{formatTimestampShort(L[0].dispensed)}</div>
-		</div>
+			<div class="date">{formatTimestampShortDate(L[0].dispensed)}</div>
+		</button>
 		{/each}
 	</div>
-	{#if yesterdayTimeLog.length}
-	<DayTimeLog recipientid={id} dayName="Yesterday" dayTimeLog={yesterdayTimeLog} {medications} />
+	{#if pastTimeLogDetail.length}
+	<DayTimeLog recipientid={id} dayName={'on ' +formatTimestampMedDate(pastTimeLogDetail[0].dispensed)} dayTimeLog={pastTimeLogDetail} {medications} />
 	{/if}
 </div>
 
