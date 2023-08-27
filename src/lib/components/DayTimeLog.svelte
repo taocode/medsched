@@ -1,6 +1,8 @@
 <script>
 	import { formatTimestampLong, randomColor } from '$lib';
 	import { readableColor } from 'color2k'
+
+	import { Modal, Button, ButtonGroup } from 'flowbite-svelte'
 	
 	export let recipientid
 	export let dayName = 'Today'
@@ -34,6 +36,16 @@
 	// let medicationIndex = -1
 	// const ts = new Timestamp(0,0)
 	// ts.nanoseconds
+	let confirmRm = false
+	let rmDetails = ''
+	let rmForm
+	function removeConfirm(event) {
+		rmForm = event.target
+		rmDetails = rmForm.dataset.summary
+		// console.log('remove?')
+		confirmRm = true
+		return false
+	}
 </script>
 <h3><span class="count">{daysCount}</span><span class="total">{dailyTotal}</span> {dayName}:</h3>
 <table>
@@ -47,12 +59,14 @@
 				</td>
 				{#if allowEdit}
 				<td>
-					<form method="POST" action="/recipient?/remove">
+					<form method="POST" action="/recipient?/remove"
+						data-summary={`${medications[L.medicationIndex].displayName} at ${formatTimestampLong(L.dispensed)}`} 
+						on:submit|preventDefault={removeConfirm}>
 						<input type="hidden" name="rid" value={recipientid} />
 						<input type="hidden" name="did" value={L.dispenserid} />
 						<input type="hidden" name="entryTime" value={L.dispensed.toMillis()} />
 						<input type="hidden" name="medicationIndex" value={L.medicationIndex} />
-						<button>
+						<button class="confirm">
 							<div class="i-fe-trash"></div>
 						</button>
 					</form>
@@ -61,7 +75,15 @@
 			</tr>
 		{/each}
 	</table>
-
+	<Modal title="Remove?"
+	autoclose 
+	bind:open={confirmRm}>
+		<span class="strike">{rmDetails}</span>?
+		<svelte:fragment slot="footer">
+			<Button color="red" on:click={()=>{rmForm.submit()}}>Yes, remove</Button>
+			<Button color="alternative">No thanks</Button>
+		</svelte:fragment>
+	</Modal>
 <style>
 	table {
 		min-width: 30ch;
@@ -73,9 +95,6 @@
 	tr {
 		background-color: var(--bg);
 		color: var(--color);
-	}
-	tr:hover {
-		content: 'x';
 	}
 	td {
 		padding: 0.25rem 0.5rem;
