@@ -7,25 +7,31 @@
 </script>
 
 <header>
-	<div class="corner">
-		<HomeLink />
-	</div>
-	<div class="flex-grow"></div>
-	<div class="corner">
-		<UserMenu />
-	</div>
+	<div class="contents">
+	
+		<div class="corner">
+			<HomeLink />
+		</div>
+		<div class="flex-grow"></div>
+		<div class="corner">
+			<UserMenu />
+		</div>
+</div>
 </header>
 
 <style>
 	header {
+		background-color: var(--color-theme-1);
+	}
+	.contents {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		background-color: var(--color-theme-1);
 		color: white;
-		padding: 0.2em;
+		padding: 0.5em 0.2em;
+		max-width: 40ch;
+		margin: 0 auto;
 	}
-
 	.corner {
 		width: auto;
 		/* height: 3em; */

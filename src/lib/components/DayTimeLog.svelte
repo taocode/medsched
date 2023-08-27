@@ -1,16 +1,12 @@
 <script>
-	import { randomColor } from '$lib';
+	import { formatTimestampLong, randomColor } from '$lib';
 	import { readableColor } from 'color2k'
 	
 	export let recipientid
 	export let dayName = 'Today'
 	export let dayTimeLog = []
 	export let medications = []
-
-	function formatTimestamp(ts) {
-		const dtm = ts.toDate()
-		return dtm.toLocaleTimeString('en-US')
-	}
+	export let allowEdit = false
 
 	function findDaysCount(medIndex,dispTS) {
 	// console.log({medIndex,dispTS})
@@ -47,7 +43,10 @@
 				<td class="count">{findDaysCount(L.medicationIndex,L.dispensed)}</td>
 				<td class="total">{medications[L.medicationIndex].schedule.length}</td>
 				<td>{medications[L.medicationIndex].displayName}</td>
-				<td>{formatTimestamp(L.dispensed)}
+				<td>{formatTimestampLong(L.dispensed)}
+				</td>
+				{#if allowEdit}
+				<td>
 					<form method="POST" action="/recipient?/remove">
 						<input type="hidden" name="rid" value={recipientid} />
 						<input type="hidden" name="did" value={L.dispenserid} />
@@ -58,14 +57,12 @@
 						</button>
 					</form>
 				</td>
+				{/if}
 			</tr>
 		{/each}
 	</table>
 
 <style>
-	h3 {
-		margin: 1.5rem 0 0.5rem;
-	}
 	table {
 		min-width: 30ch;
 		margin: 0 auto;

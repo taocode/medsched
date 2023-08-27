@@ -74235,9 +74235,9 @@ var init__ = __esm({
     init_layout_server_ts();
     index = 0;
     component = async () => (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default;
-    file = "_app/immutable/components/pages/_layout.svelte-78a668d0.js";
-    imports = ["_app/immutable/components/pages/_layout.svelte-78a668d0.js", "_app/immutable/chunks/index-6aae304f.js", "_app/immutable/chunks/stores-46cc6eae.js", "_app/immutable/chunks/singletons-8fdde3f2.js", "_app/immutable/chunks/index-3c705b28.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/user-5fcf1ce0.js", "_app/immutable/modules/pages/_layout.ts-007ffdb7.js", "_app/immutable/chunks/_layout-32a0c93b.js"];
-    stylesheets = ["_app/immutable/assets/_layout-3e12836d.css"];
+    file = "_app/immutable/components/pages/_layout.svelte-4fdffe26.js";
+    imports = ["_app/immutable/components/pages/_layout.svelte-4fdffe26.js", "_app/immutable/chunks/index-6aae304f.js", "_app/immutable/chunks/stores-46cc6eae.js", "_app/immutable/chunks/singletons-8fdde3f2.js", "_app/immutable/chunks/index-3c705b28.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/user-5fcf1ce0.js", "_app/immutable/modules/pages/_layout.ts-007ffdb7.js", "_app/immutable/chunks/_layout-32a0c93b.js"];
+    stylesheets = ["_app/immutable/assets/_layout-f9298e6a.css"];
     fonts = ["_app/immutable/assets/fira-mono-cyrillic-ext-400-normal-3df7909e.woff2", "_app/immutable/assets/fira-mono-all-400-normal-1e3b098c.woff", "_app/immutable/assets/fira-mono-cyrillic-400-normal-c7d433fd.woff2", "_app/immutable/assets/fira-mono-greek-ext-400-normal-9e2fe623.woff2", "_app/immutable/assets/fira-mono-greek-400-normal-a8be01ce.woff2", "_app/immutable/assets/fira-mono-latin-ext-400-normal-6bfabd30.woff2", "_app/immutable/assets/fira-mono-latin-400-normal-e43b3538.woff2"];
   }
 });
@@ -74362,9 +74362,9 @@ var init__3 = __esm({
     init_page_ts();
     index3 = 2;
     component3 = async () => (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default;
-    file3 = "_app/immutable/components/pages/_page.svelte-b1d5f33a.js";
-    imports3 = ["_app/immutable/components/pages/_page.svelte-b1d5f33a.js", "_app/immutable/chunks/index-6aae304f.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/user-5fcf1ce0.js", "_app/immutable/chunks/index-3c705b28.js", "_app/immutable/modules/pages/_page.ts-49165f47.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/_page-f67e8c47.js"];
-    stylesheets3 = ["_app/immutable/assets/_page-e6cda968.css", "_app/immutable/assets/Recipient-b1dd465b.css"];
+    file3 = "_app/immutable/components/pages/_page.svelte-574154c5.js";
+    imports3 = ["_app/immutable/components/pages/_page.svelte-574154c5.js", "_app/immutable/chunks/index-6aae304f.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/user-5fcf1ce0.js", "_app/immutable/chunks/index-3c705b28.js", "_app/immutable/modules/pages/_page.ts-49165f47.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/_page-f67e8c47.js"];
+    stylesheets3 = ["_app/immutable/assets/_page-e6cda968.css", "_app/immutable/assets/Recipient-a39c08bb.css"];
     fonts3 = [];
   }
 });
@@ -74663,9 +74663,13 @@ __export(page_svelte_exports3, {
 function randomColor() {
   return `rgb(${rc2()},${rc2()},${rc2()})`;
 }
-function formatTimestamp(ts) {
+function formatTimestampLong(ts) {
   const dtm = ts.toDate();
   return dtm.toLocaleTimeString("en-US");
+}
+function formatTimestampShort(ts) {
+  const dtm = ts.toDate();
+  return dtm.toLocaleDateString("en-US", { day: "numeric", month: "numeric" });
 }
 var rc2, css$12, DayTimeLog, css3, Recipient, Page3;
 var init_page_svelte3 = __esm({
@@ -74677,7 +74681,7 @@ var init_page_svelte3 = __esm({
     init_user();
     rc2 = () => Math.floor(Math.random() * 255);
     css$12 = {
-      code: "h3.svelte-u1ou38.svelte-u1ou38{margin:1.5rem 0 0.5rem}table.svelte-u1ou38.svelte-u1ou38{min-width:30ch;margin:0 auto;border-collapse:separate;border-spacing:0 0.6em;--br:0.5rem}tr.svelte-u1ou38.svelte-u1ou38{background-color:var(--bg);color:var(--color)}tr.svelte-u1ou38.svelte-u1ou38:hover{content:'x'}td.svelte-u1ou38.svelte-u1ou38{padding:0.25rem 0.5rem}td.svelte-u1ou38.svelte-u1ou38:first-child{border-top-left-radius:var(--br);border-bottom-left-radius:var(--br)}.count.svelte-u1ou38.svelte-u1ou38{padding-right:0}.total.svelte-u1ou38.svelte-u1ou38{padding-left:0}.count.svelte-u1ou38.svelte-u1ou38::after{content:'/';font-size:0.75em;display:inline-block;padding:0 0.25em}td.svelte-u1ou38.svelte-u1ou38:last-child{border-top-right-radius:var(--br);border-bottom-right-radius:var(--br);text-align:right}td.svelte-u1ou38 button.svelte-u1ou38{color:transparent;background-color:transparent;padding:0 0.2em}tr.svelte-u1ou38:hover td button.svelte-u1ou38{color:white}",
+      code: "table.svelte-1hdmkyr.svelte-1hdmkyr{min-width:30ch;margin:0 auto;border-collapse:separate;border-spacing:0 0.6em;--br:0.5rem}tr.svelte-1hdmkyr.svelte-1hdmkyr{background-color:var(--bg);color:var(--color)}tr.svelte-1hdmkyr.svelte-1hdmkyr:hover{content:'x'}td.svelte-1hdmkyr.svelte-1hdmkyr{padding:0.25rem 0.5rem}td.svelte-1hdmkyr.svelte-1hdmkyr:first-child{border-top-left-radius:var(--br);border-bottom-left-radius:var(--br)}.count.svelte-1hdmkyr.svelte-1hdmkyr{padding-right:0}.total.svelte-1hdmkyr.svelte-1hdmkyr{padding-left:0}.count.svelte-1hdmkyr.svelte-1hdmkyr::after{content:'/';font-size:0.75em;display:inline-block;padding:0 0.25em}td.svelte-1hdmkyr.svelte-1hdmkyr:last-child{border-top-right-radius:var(--br);border-bottom-right-radius:var(--br);text-align:right}td.svelte-1hdmkyr button.svelte-1hdmkyr{color:transparent;background-color:transparent;padding:0 0.2em}tr.svelte-1hdmkyr:hover td button.svelte-1hdmkyr{color:white}",
       map: null
     };
     DayTimeLog = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -74687,6 +74691,7 @@ var init_page_svelte3 = __esm({
       let { dayName = "Today" } = $$props;
       let { dayTimeLog = [] } = $$props;
       let { medications = [] } = $$props;
+      let { allowEdit = false } = $$props;
       function findDaysCount(medIndex, dispTS) {
         return 1 + dayTimeLog.filter((L) => L.medicationIndex === medIndex).findIndex((L) => L.dispensed === dispTS);
       }
@@ -74699,35 +74704,39 @@ var init_page_svelte3 = __esm({
         $$bindings.dayTimeLog(dayTimeLog);
       if ($$props.medications === void 0 && $$bindings.medications && medications !== void 0)
         $$bindings.medications(medications);
+      if ($$props.allowEdit === void 0 && $$bindings.allowEdit && allowEdit !== void 0)
+        $$bindings.allowEdit(allowEdit);
       $$result.css.add(css$12);
       dailyTotal = medications.reduce((p2, c) => p2 + c.schedule.length, 0);
       daysCount = dayTimeLog.length;
-      return `<h3 class="svelte-u1ou38"><span class="count svelte-u1ou38">${escape(daysCount)}</span><span class="total svelte-u1ou38">${escape(dailyTotal)}</span> ${escape(dayName)}:</h3>
-<table class="svelte-u1ou38">${each(dayTimeLog, (L, i) => {
+      return `<h3><span class="count svelte-1hdmkyr">${escape(daysCount)}</span><span class="total svelte-1hdmkyr">${escape(dailyTotal)}</span> ${escape(dayName)}:</h3>
+<table class="svelte-1hdmkyr">${each(dayTimeLog, (L, i) => {
         return `<tr${add_attribute(
           "style",
           `--bg: ${colors[L.medicationIndex]};
 			--color: ${readableColor(colors[L.medicationIndex])}`,
           0
-        )} class="svelte-u1ou38"><td class="count svelte-u1ou38">${escape(findDaysCount(L.medicationIndex, L.dispensed))}</td>
-				<td class="total svelte-u1ou38">${escape(medications[L.medicationIndex].schedule.length)}</td>
-				<td class="svelte-u1ou38">${escape(medications[L.medicationIndex].displayName)}</td>
-				<td class="svelte-u1ou38">${escape(formatTimestamp(L.dispensed))}
-					<form method="POST" action="/recipient?/remove"><input type="hidden" name="rid"${add_attribute("value", recipientid, 0)}>
+        )} class="svelte-1hdmkyr"><td class="count svelte-1hdmkyr">${escape(findDaysCount(L.medicationIndex, L.dispensed))}</td>
+				<td class="total svelte-1hdmkyr">${escape(medications[L.medicationIndex].schedule.length)}</td>
+				<td class="svelte-1hdmkyr">${escape(medications[L.medicationIndex].displayName)}</td>
+				<td class="svelte-1hdmkyr">${escape(formatTimestampLong(L.dispensed))}</td>
+				${allowEdit ? `<td class="svelte-1hdmkyr"><form method="POST" action="/recipient?/remove"><input type="hidden" name="rid"${add_attribute("value", recipientid, 0)}>
 						<input type="hidden" name="did"${add_attribute("value", L.dispenserid, 0)}>
 						<input type="hidden" name="entryTime"${add_attribute("value", L.dispensed.toMillis(), 0)}>
 						<input type="hidden" name="medicationIndex"${add_attribute("value", L.medicationIndex, 0)}>
-						<button class="svelte-u1ou38"><div class="i-fe-trash"></div></button>
-					</form></td>
+						<button class="svelte-1hdmkyr"><div class="i-fe-trash"></div>
+						</button></form>
+				</td>` : ``}
 			</tr>`;
       })}
 	</table>`;
     });
     css3 = {
-      code: ".show-recipient.svelte-dlao4y{text-align:center}button.svelte-dlao4y{background-color:var(--bg);color:var(--color);border:0;padding:0.2em 0.5em;border-radius:0.2rem}",
+      code: ".show-recipient.svelte-17nhnxz.svelte-17nhnxz{text-align:center}button.svelte-17nhnxz.svelte-17nhnxz{background-color:var(--bg);color:var(--color);border:0;padding:0.2em 0.5em;border-radius:0.2rem}.days-summary.svelte-17nhnxz.svelte-17nhnxz{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:0.5rem}.day-summary.svelte-17nhnxz.svelte-17nhnxz{background-color:#555;padding:0.3em 0.4em;color:white;line-height:1.2}.day-summary.svelte-17nhnxz .count.svelte-17nhnxz{font-size:1.3em}.day-summary.svelte-17nhnxz .date.svelte-17nhnxz{font-size:0.8em}",
       map: null
     };
     Recipient = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let timeLogByDay;
       let todayTimeLog;
       let yesterdayTimeLog;
       let $user, $$unsubscribe_user;
@@ -74748,25 +74757,49 @@ var init_page_svelte3 = __esm({
             ({ id: id2, displayName, medications, timeLog } = recipient);
         }
       }
-      todayTimeLog = timeLog.filter((L) => L.dispensed?.toDate() > today);
-      yesterdayTimeLog = timeLog.filter((L) => L.dispensed?.toDate() < today && L.dispensed?.toDate() > yesterday);
+      timeLogByDay = timeLog.reduce(
+        (p2, L, i) => {
+          const entryDay = L.dispensed?.toDate();
+          entryDay.setHours(0, 0, 0, 0);
+          let lastDay = p2[p2.length - 1];
+          const lastEntry = lastDay.length ? lastDay[lastDay.length - 1] : L;
+          const lastEntryDay = lastEntry.dispensed.toDate();
+          lastEntryDay.setHours(0, 0, 0, 0);
+          if (lastEntryDay.getTime() !== entryDay.getTime()) {
+            lastDay = [];
+            p2.push(lastDay);
+          }
+          lastDay.push(L);
+          return p2;
+        },
+        [[]]
+      ).reverse();
+      todayTimeLog = timeLogByDay[0];
+      yesterdayTimeLog = timeLogByDay[1];
       $$unsubscribe_user();
-      return `<div class="show-recipient svelte-dlao4y"><h2>${escape(displayName)}</h2>
-	<div class="flex flex-wrap justify-center gap-2 my-3"><form method="POST" action="/recipient?/dispense"><input type="hidden" name="did"${add_attribute("value", $user.uid, 0)}>
+      return `<div class="show-recipient svelte-17nhnxz"><h2>${escape(displayName)}</h2>
+	<div class="my-3"><form class="flex flex-wrap justify-center gap-2" method="POST" action="/recipient?/dispense"><input type="hidden" name="did"${add_attribute("value", $user.uid, 0)}>
 			<input type="hidden" name="rid"${add_attribute("value", id2, 0)}>
 			${each(medications, (m, i) => {
-        return `<button name="medicationIndex"${add_attribute("value", i, 0)}${add_attribute("style", `--bg: ${colors[i]}; --color: ${readableColor(colors[i])};`, 0)} class="svelte-dlao4y">${escape(m.displayName)}</button>`;
+        return `<button name="medicationIndex"${add_attribute("value", i, 0)}${add_attribute("style", `--bg: ${colors[i]}; --color: ${readableColor(colors[i])};`, 0)} class="svelte-17nhnxz">${escape(m.displayName)}</button>`;
       })}</form></div>
 	${todayTimeLog.length ? `${validate_component(DayTimeLog, "DayTimeLog").$$render(
         $$result,
         {
           recipientid: id2,
           dayTimeLog: todayTimeLog,
-          medications
+          medications,
+          allowEdit: true
         },
         {},
         {}
       )}` : ``}
+	<h3>${escape(timeLogByDay.length)} Days:</h3>
+	<div class="days-summary svelte-17nhnxz">${each(timeLogByDay, (L) => {
+        return `<div class="day-summary rounded svelte-17nhnxz"><div class="count svelte-17nhnxz">${escape(L.length)}</div>
+			<div class="date svelte-17nhnxz">${escape(formatTimestampShort(L[0].dispensed))}</div>
+		</div>`;
+      })}</div>
 	${yesterdayTimeLog.length ? `${validate_component(DayTimeLog, "DayTimeLog").$$render(
         $$result,
         {
@@ -74816,9 +74849,9 @@ var init__5 = __esm({
     init_page_server_ts();
     index5 = 5;
     component5 = async () => (await Promise.resolve().then(() => (init_page_svelte3(), page_svelte_exports3))).default;
-    file5 = "_app/immutable/components/pages/recipient/_page.svelte-0fbef06c.js";
-    imports5 = ["_app/immutable/components/pages/recipient/_page.svelte-0fbef06c.js", "_app/immutable/chunks/index-6aae304f.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/user-5fcf1ce0.js", "_app/immutable/chunks/index-3c705b28.js", "_app/immutable/modules/pages/recipient/_page.ts-830e560d.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/_page-7b1cd9a0.js"];
-    stylesheets5 = ["_app/immutable/assets/Recipient-b1dd465b.css"];
+    file5 = "_app/immutable/components/pages/recipient/_page.svelte-5bbe4f75.js";
+    imports5 = ["_app/immutable/components/pages/recipient/_page.svelte-5bbe4f75.js", "_app/immutable/chunks/index-6aae304f.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/user-5fcf1ce0.js", "_app/immutable/chunks/index-3c705b28.js", "_app/immutable/modules/pages/recipient/_page.ts-830e560d.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/_page-7b1cd9a0.js"];
+    stylesheets5 = ["_app/immutable/assets/Recipient-a39c08bb.css"];
     fonts5 = [];
   }
 });
@@ -74896,7 +74929,7 @@ ${components[1] ? `${validate_component(components[0] || missing_component, "sve
 ${``}`;
 });
 set_paths({ "base": "", "assets": "" });
-set_version("1693115734308");
+set_version("1693156846108");
 var options = {
   csp: { "mode": "auto", "directives": { "upgrade-insecure-requests": false, "block-all-mixed-content": false }, "reportOnly": { "upgrade-insecure-requests": false, "block-all-mixed-content": false } },
   csrf_check_origin: true,
@@ -78159,10 +78192,10 @@ init_shims();
 var manifest = {
   appDir: "_app",
   appPath: "_app",
-  assets: /* @__PURE__ */ new Set(["favicon.png", "favicon.svg", "robots.txt"]),
+  assets: /* @__PURE__ */ new Set(["favicon.png", "favicon.svg", "old-favicon.png", "old-favicon.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-2704277d.js", "imports": ["_app/immutable/start-2704277d.js", "_app/immutable/chunks/index-6aae304f.js", "_app/immutable/chunks/singletons-8fdde3f2.js", "_app/immutable/chunks/index-3c705b28.js"], "stylesheets": [], "fonts": [] },
+    entry: { "file": "_app/immutable/start-f710c322.js", "imports": ["_app/immutable/start-f710c322.js", "_app/immutable/chunks/index-6aae304f.js", "_app/immutable/chunks/singletons-8fdde3f2.js", "_app/immutable/chunks/index-3c705b28.js"], "stylesheets": [], "fonts": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
