@@ -13,6 +13,7 @@
 	import { page } from '$app/stores'
   import { authState } from 'sveltefirets'
   import { user as userStore } from '$lib/user'
+	import Teaser from '$lib/components/Teaser.svelte';
   $: authNotInited = $authState === undefined
   $: userDataFromCookie = $page.data?.user
   $: user = $userStore || (authNotInited && userDataFromCookie) || null
@@ -27,7 +28,8 @@
 {:else}
   {#if user}
 			<slot />
-			{:else}
+		{:else}
+			<Teaser />
 			<div class="mustlogin">
 				<h2>Login Required</h2>
 				<LoginComponent />
