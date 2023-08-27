@@ -1,4 +1,4 @@
-import { defineConfig, presetUno, presetIcons } from 'unocss'
+import { defineConfig, presetUno, presetIcons, presetWebFonts } from 'unocss'
 import extractorSvelte from '@unocss/extractor-svelte'
 // import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
 
@@ -26,5 +26,21 @@ export default defineConfig({
         // ...
       },
     }),
+    presetWebFonts({
+      provider: 'google',
+      fonts: {
+        // these will extend the default theme
+        // sans: 'Roboto',
+        mono: ['Fira Code', 'Fira Mono:400,700'],
+        sans: [
+          {
+            name: 'Kanit',
+            weights: ['400', '700'],
+            italic: true,
+          },
+        ],
+      },
+      // mono: ['Fira Code', 'Fira Mono:400,700'],
+    })
   ],
 })

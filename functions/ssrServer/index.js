@@ -74163,14 +74163,14 @@ ${`${slots.default ? slots.default({}) : `
 </div>`;
     });
     css$1 = {
-      code: "header.svelte-t4i857{display:flex;justify-content:space-between;align-items:center;background-color:var(--color-theme-1);color:white;padding:0.2em}.corner.svelte-t4i857{width:auto}",
+      code: "header.svelte-tsinkf{background-color:var(--color-theme-1)}.contents.svelte-tsinkf{display:flex;justify-content:space-between;align-items:center;color:white;padding:0.5em 0.2em;max-width:40ch;margin:0 auto}.corner.svelte-tsinkf{width:auto}",
       map: null
     };
     Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       $$result.css.add(css$1);
-      return `<header class="svelte-t4i857"><div class="corner svelte-t4i857">${validate_component(HomeLink, "HomeLink").$$render($$result, {}, {}, {})}</div>
-	<div class="flex-grow"></div>
-	<div class="corner svelte-t4i857">${validate_component(UserMenu, "UserMenu").$$render($$result, {}, {}, {})}</div>
+      return `<header class="svelte-tsinkf"><div class="contents svelte-tsinkf"><div class="corner svelte-tsinkf">${validate_component(HomeLink, "HomeLink").$$render($$result, {}, {}, {})}</div>
+		<div class="flex-grow"></div>
+		<div class="corner svelte-tsinkf">${validate_component(UserMenu, "UserMenu").$$render($$result, {}, {}, {})}</div></div>
 </header>`;
     });
     LoginComponent = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -74235,9 +74235,9 @@ var init__ = __esm({
     init_layout_server_ts();
     index = 0;
     component = async () => (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default;
-    file = "_app/immutable/components/pages/_layout.svelte-4fdffe26.js";
-    imports = ["_app/immutable/components/pages/_layout.svelte-4fdffe26.js", "_app/immutable/chunks/index-6aae304f.js", "_app/immutable/chunks/stores-46cc6eae.js", "_app/immutable/chunks/singletons-8fdde3f2.js", "_app/immutable/chunks/index-3c705b28.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/user-5fcf1ce0.js", "_app/immutable/modules/pages/_layout.ts-007ffdb7.js", "_app/immutable/chunks/_layout-32a0c93b.js"];
-    stylesheets = ["_app/immutable/assets/_layout-f9298e6a.css"];
+    file = "_app/immutable/components/pages/_layout.svelte-e1229f03.js";
+    imports = ["_app/immutable/components/pages/_layout.svelte-e1229f03.js", "_app/immutable/chunks/index-6aae304f.js", "_app/immutable/chunks/stores-46cc6eae.js", "_app/immutable/chunks/singletons-8fdde3f2.js", "_app/immutable/chunks/index-3c705b28.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/user-5fcf1ce0.js", "_app/immutable/modules/pages/_layout.ts-007ffdb7.js", "_app/immutable/chunks/_layout-32a0c93b.js"];
+    stylesheets = ["_app/immutable/assets/_layout-d38d0caa.css"];
     fonts = ["_app/immutable/assets/fira-mono-cyrillic-ext-400-normal-3df7909e.woff2", "_app/immutable/assets/fira-mono-all-400-normal-1e3b098c.woff", "_app/immutable/assets/fira-mono-cyrillic-400-normal-c7d433fd.woff2", "_app/immutable/assets/fira-mono-greek-ext-400-normal-9e2fe623.woff2", "_app/immutable/assets/fira-mono-greek-400-normal-a8be01ce.woff2", "_app/immutable/assets/fira-mono-latin-ext-400-normal-6bfabd30.woff2", "_app/immutable/assets/fira-mono-latin-400-normal-e43b3538.woff2"];
   }
 });
@@ -74929,7 +74929,7 @@ ${components[1] ? `${validate_component(components[0] || missing_component, "sve
 ${``}`;
 });
 set_paths({ "base": "", "assets": "" });
-set_version("1693156846108");
+set_version("1693157944009");
 var options = {
   csp: { "mode": "auto", "directives": { "upgrade-insecure-requests": false, "block-all-mixed-content": false }, "reportOnly": { "upgrade-insecure-requests": false, "block-all-mixed-content": false } },
   csrf_check_origin: true,
@@ -78195,7 +78195,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "favicon.svg", "old-favicon.png", "old-favicon.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-f710c322.js", "imports": ["_app/immutable/start-f710c322.js", "_app/immutable/chunks/index-6aae304f.js", "_app/immutable/chunks/singletons-8fdde3f2.js", "_app/immutable/chunks/index-3c705b28.js"], "stylesheets": [], "fonts": [] },
+    entry: { "file": "_app/immutable/start-7c69f764.js", "imports": ["_app/immutable/start-7c69f764.js", "_app/immutable/chunks/index-6aae304f.js", "_app/immutable/chunks/singletons-8fdde3f2.js", "_app/immutable/chunks/index-3c705b28.js"], "stylesheets": [], "fonts": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
