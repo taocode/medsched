@@ -8,10 +8,10 @@
 	
 	import { user } from '$lib/user'
 
-	export let docObj
-	let { id, displayName, medications, timeLog } = docObj
+	export let recipient
+	let { id, displayName, medications, timeLog } = recipient
 	$: {
-		if (docObj) ({ id, displayName, medications, timeLog } = docObj)
+		if (recipient) ({ id, displayName, medications, timeLog } = recipient)
 	}
 	const colors = medications.map( m => m.color ? m.color : randomColor() )
 // const user = userStore(auth)
@@ -29,11 +29,11 @@ async function logMed(medicationIndex) {
 	// const db = getFirestore()
 	console.log(id, medicationIndex)
 	timeLog.push({medicationIndex,delivered: Timestamp.now()})
-	const newDoc = docObj
+	const newDoc = recipient
 	newDoc.timeLog = timeLog // necessary? unclear
-	docObj = undefined
-	setTimeout(()=>docObj = newDoc,1)
-	// const res = await db.doc('/recipients/'+id).set(docObj)
+	recipient = undefined
+	setTimeout(()=>recipient = newDoc,1)
+	// const res = await db.doc('/recipients/'+id).set(recipient)
 	// ds.
 }
 </script>
@@ -41,7 +41,7 @@ async function logMed(medicationIndex) {
 <div class="show-recipient">
 	<h2>{displayName}</h2>
 	<div class="flex flex-wrap justify-center gap-2 my-3">
-		<form method="POST" action="/dispense">
+		<form method="POST" action="/recipient?/dispense">
 			<input type="hidden" name="did" value={$user.uid} />
 			<input type="hidden" name="rid" value={id} />
 			{#each medications as m,i}
@@ -52,10 +52,10 @@ async function logMed(medicationIndex) {
 		</form>
 	</div>
 	{#if todayTimeLog.length}
-	<DayTimeLog dayTimeLog={todayTimeLog} {medications}/>
+	<DayTimeLog recipientid={id} dayTimeLog={todayTimeLog} {medications}/>
 	{/if}
 	{#if yesterdayTimeLog.length}
-	<DayTimeLog dayName="Yesterday" dayTimeLog={yesterdayTimeLog} {medications} />
+	<DayTimeLog recipientid={id} dayName="Yesterday" dayTimeLog={yesterdayTimeLog} {medications} />
 	{/if}
 </div>
 

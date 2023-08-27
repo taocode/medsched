@@ -6,9 +6,9 @@
 
 	import Header from '$lib/components/Header.svelte'
 	import LoginComponent from '$lib/components/LoginComponent.svelte'
-	import './styles.css'
-	
+	import '@unocss/reset/tailwind-compat.css'
 	import 'uno.css'
+	import './styles.css'
 
 	import { page } from '$app/stores'
   import { authState } from 'sveltefirets'
@@ -21,20 +21,20 @@
 
 <div class="app">
 	<Header />
+	<main>
 {#if $authState === undefined}
-  Loading auth...
+  <div class="text-center">Loading...</div>
 {:else}
   {#if user}
-		<main>
 			<slot />
-		</main>
-	{:else}
-	<div class="mustlogin">
-		<h2>Login Required</h2>
-		<LoginComponent />
-	</div>
-  {/if}
-{/if}
+			{:else}
+			<div class="mustlogin">
+				<h2>Login Required</h2>
+				<LoginComponent />
+			</div>
+		{/if}
+	{/if}
+</main>
 		
 	<footer>
 		<p>A work in progress...</p>

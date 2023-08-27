@@ -24,20 +24,15 @@
 
 <section>
 
-<h2 class="mt-0">Recipient?</h2>
+<h2>Recipient?</h2>
 
 <div class="flex flex-wrap justify-center gap-2">
 	{#each recipients as r}
-	<div><button on:click={() => workOnRecipient(r)}>{r.displayName}</button></div>
+	<div><a class="btn btn-primary" href={`/recipient/?id=${r.id}`}>{r.displayName}</a></div>
 	{:else}
 	Loading...
 	{/each}
 </div>
-
-{#if editingRecipient}
-<Recipient 
-	docObj={editingRecipient} />
-{/if}
 
 </section>
 
