@@ -74202,7 +74202,7 @@ var layout_svelte_exports = {};
 __export(layout_svelte_exports, {
   default: () => Layout
 });
-var css$4, HomeLink, FirebaseUiAuth, css$3, UserMenu, css$2, Header, LoginComponent, css$1, Teaser, css, Layout;
+var css$5, HomeLink, FirebaseUiAuth, css$4, UserMenu, css$3, Header, LoginComponent, css$2, Teaser, css$1, Why, css, Layout;
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/_layout.svelte.js"() {
     init_shims();
@@ -74215,12 +74215,12 @@ var init_layout_svelte = __esm({
     init_dist4();
     init_dist3();
     init_user();
-    css$4 = {
+    css$5 = {
       code: "a.svelte-1o9pr07{color:white;display:flex;align-items:center}img.svelte-1o9pr07{max-height:2em}",
       map: null
     };
     HomeLink = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css$4);
+      $$result.css.add(css$5);
       return `<a title="home" href="/" class="svelte-1o9pr07"><img src="favicon.svg" alt="fav" height="150" width="150" class="svelte-1o9pr07">
 	<div class="ml-1 whitespace-nowrap tracking-tight">Med Time Log</div></a>`;
     });
@@ -74255,7 +74255,7 @@ ${`${slots.default ? slots.default({}) : `
   `}`}
 <div${add_attribute("this", container, 0)}></div>`;
     });
-    css$3 = {
+    css$4 = {
       code: ".usermenu.svelte-ugndw7{max-width:6em;height:2em;display:flex;gap:0.5em}img.svelte-ugndw7{border-radius:100%;max-height:100%}button.svelte-ugndw7{background-color:transparent}",
       map: null
     };
@@ -74269,7 +74269,7 @@ ${`${slots.default ? slots.default({}) : `
       $$unsubscribe_userStore = subscribe(user, (value) => $userStore = value);
       $$unsubscribe_page = subscribe(page, (value) => $page = value);
       $$unsubscribe_authState = subscribe(authState, (value) => $authState = value);
-      $$result.css.add(css$3);
+      $$result.css.add(css$4);
       authNotInited = $authState === void 0;
       userDataFromCookie = $page.data?.user;
       user$1 = $userStore || authNotInited && userDataFromCookie || null;
@@ -74280,12 +74280,12 @@ ${`${slots.default ? slots.default({}) : `
 	${``}` : ``}
 </div>`;
     });
-    css$2 = {
+    css$3 = {
       code: "header.svelte-tsinkf{background-color:var(--color-theme-1)}.contents.svelte-tsinkf{display:flex;justify-content:space-between;align-items:center;color:white;padding:0.5em 0.2em;max-width:40ch;margin:0 auto}.corner.svelte-tsinkf{width:auto}",
       map: null
     };
     Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css$2);
+      $$result.css.add(css$3);
       return `<header class="svelte-tsinkf"><div class="contents svelte-tsinkf"><div class="corner svelte-tsinkf">${validate_component(HomeLink, "HomeLink").$$render($$result, {}, {}, {})}</div>
 		<div class="flex-grow"></div>
 		<div class="corner svelte-tsinkf">${validate_component(UserMenu, "UserMenu").$$render($$result, {}, {}, {})}</div></div>
@@ -74302,17 +74302,26 @@ ${`${slots.default ? slots.default({}) : `
         {}
       )}`;
     });
-    css$1 = {
+    css$2 = {
       code: ".mtl.svelte-yf2939{line-height:4}p.svelte-yf2939{margin:1em 0}",
       map: null
     };
     Teaser = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      $$result.css.add(css$2);
+      return `${$$result.head += `<!-- HEAD_svelte-htaddw_START -->${$$result.title = `<title>MedTimeLog Helps with Timely Medication Tracking</title>`, ""}<meta name="description" content="MedTimeLog helps you track your med usage and the meds of those that you care for."><link rel="canonical" href="https://medtimelog.com/"><!-- HEAD_svelte-htaddw_END -->`, ""}
+
+<div class="mtl text-center my-6 max-w-[62ch] mx-auto svelte-yf2939"><p class="text-[1.1em] svelte-yf2939">MedTimeLog helps you track your med usage and the medication usage of those that you care for; caregivers can easily share realtime medication delivery.</p>
+</div>`;
+    });
+    css$1 = {
+      code: ".mtl.svelte-yf2939{line-height:4}p.svelte-yf2939{margin:1em 0}",
+      map: null
+    };
+    Why = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       $$result.css.add(css$1);
       return `${$$result.head += `<!-- HEAD_svelte-htaddw_START -->${$$result.title = `<title>MedTimeLog Helps with Timely Medication Tracking</title>`, ""}<meta name="description" content="MedTimeLog helps you track your med usage and the meds of those that you care for."><link rel="canonical" href="https://medtimelog.com/"><!-- HEAD_svelte-htaddw_END -->`, ""}
 
-<div class="mtl text-center my-12 text-[1.3em] svelte-yf2939"><p class="svelte-yf2939">MedTimeLog helps you track your med usage and the medication usage of those that you care for.</p>
-  <p class="svelte-yf2939">MedTimeLog can help caregivers easily share today&#39;s realtime medication delivery status.</p>
-  <p class="svelte-yf2939">Because giving our <em>inherited</em> glaucoma cat needed 6 drops of 3 medications each day was too complicated to share with ease, I created this App to keep us coordinated.</p>
+<div class="mtl text-center my-6 max-w-[62ch] mx-auto svelte-yf2939"><p class="text-[0.9em] svelte-yf2939">Because giving our <em>inherited glaucoma</em> cat needed 6 drops of 3 medications each day was too complicated to share with ease, I created this App to keep us coordinated.</p>
 </div>`;
     });
     css = {
@@ -74339,9 +74348,10 @@ ${`${slots.default ? slots.default({}) : `
       return `<div class="app svelte-3bsbfv">${validate_component(Header, "Header").$$render($$result, {}, {}, {})}
 	<main class="svelte-3bsbfv">${$authState === void 0 ? `<div class="text-center">Loading...</div>` : `${user$1 ? `${slots.default ? slots.default({}) : ``}` : `${validate_component(Teaser, "Teaser").$$render($$result, {}, {}, {})}
 			<div class="mustlogin svelte-3bsbfv"><h2>Login Required</h2>
-				${validate_component(LoginComponent, "LoginComponent").$$render($$result, {}, {}, {})}</div>`}`}</main>
+				${validate_component(LoginComponent, "LoginComponent").$$render($$result, {}, {}, {})}</div>
+			${validate_component(Why, "Why").$$render($$result, {}, {}, {})}`}`}</main>
 		
-	<footer class="svelte-3bsbfv"><p>A work in progress...</p></footer>
+	<footer class="svelte-3bsbfv"><p>By <a href="https://taocode.com">TAOCODE</a></p></footer>
 </div>`;
     });
   }
@@ -74367,9 +74377,9 @@ var init__ = __esm({
     init_layout_server_ts();
     index = 0;
     component = async () => (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default;
-    file = "_app/immutable/components/pages/_layout.svelte-6330a104.js";
-    imports = ["_app/immutable/components/pages/_layout.svelte-6330a104.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/stores-5b8fd2c2.js", "_app/immutable/chunks/singletons-5aa3dc7d.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/chunks/languageCodes-e5e3056c.js", "_app/immutable/chunks/user-a8da15e7.js", "_app/immutable/modules/pages/_layout.ts-007ffdb7.js", "_app/immutable/chunks/_layout-32a0c93b.js"];
-    stylesheets = ["_app/immutable/assets/_layout-0d30937d.css"];
+    file = "_app/immutable/components/pages/_layout.svelte-e3d20436.js";
+    imports = ["_app/immutable/components/pages/_layout.svelte-e3d20436.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/stores-5b8fd2c2.js", "_app/immutable/chunks/singletons-5aa3dc7d.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/chunks/languageCodes-e5e3056c.js", "_app/immutable/chunks/user-a8da15e7.js", "_app/immutable/modules/pages/_layout.ts-007ffdb7.js", "_app/immutable/chunks/_layout-32a0c93b.js"];
+    stylesheets = ["_app/immutable/assets/_layout-936ff0ea.css"];
     fonts = ["_app/immutable/assets/fira-mono-cyrillic-ext-400-normal-3df7909e.woff2", "_app/immutable/assets/fira-mono-all-400-normal-1e3b098c.woff", "_app/immutable/assets/fira-mono-cyrillic-400-normal-c7d433fd.woff2", "_app/immutable/assets/fira-mono-greek-ext-400-normal-9e2fe623.woff2", "_app/immutable/assets/fira-mono-greek-400-normal-a8be01ce.woff2", "_app/immutable/assets/fira-mono-latin-ext-400-normal-6bfabd30.woff2", "_app/immutable/assets/fira-mono-latin-400-normal-e43b3538.woff2"];
   }
 });
@@ -77871,8 +77881,6 @@ var init_page_svelte3 = __esm({
       const colors = medications.map((m) => m.color ? m.color : randomColor());
       const today = /* @__PURE__ */ new Date();
       today.setHours(0, 0, 0, 0);
-      const yesterday = /* @__PURE__ */ new Date();
-      yesterday.setHours(-24, 0, 0, 0);
       let pastTimeLogDetail = [];
       if ($$props.recipient === void 0 && $$bindings.recipient && recipient !== void 0)
         $$bindings.recipient(recipient);
@@ -77900,9 +77908,8 @@ var init_page_svelte3 = __esm({
         },
         [[]]
       ).reverse();
-      todayTimeLog = timeLogByDay[0];
-      timeLogByDay[1];
-      pastTimeLog = timeLogByDay.slice(1);
+      todayTimeLog = timeLog.filter((L) => L.dispensed.toDate() > today);
+      pastTimeLog = timeLogByDay.filter((DL) => DL[0].dispensed.toDate() < today);
       $$unsubscribe_user();
       return `<div class="show-recipient svelte-7tqb7w"><h2>${escape(displayName)}</h2>
 	<div class="my-3"><form class="flex flex-wrap justify-center gap-2" method="POST" action="/recipient?/dispense"><input type="hidden" name="did"${add_attribute("value", $user.uid, 0)}>
@@ -77978,8 +77985,8 @@ var init__5 = __esm({
     init_page_server_ts();
     index5 = 5;
     component5 = async () => (await Promise.resolve().then(() => (init_page_svelte3(), page_svelte_exports3))).default;
-    file5 = "_app/immutable/components/pages/recipient/_page.svelte-8c376173.js";
-    imports5 = ["_app/immutable/components/pages/recipient/_page.svelte-8c376173.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/languageCodes-e5e3056c.js", "_app/immutable/chunks/user-a8da15e7.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/modules/pages/recipient/_page.ts-15b83b54.js", "_app/immutable/chunks/languageCodes-e5e3056c.js", "_app/immutable/chunks/_page-c81ed1f5.js"];
+    file5 = "_app/immutable/components/pages/recipient/_page.svelte-9be59eaa.js";
+    imports5 = ["_app/immutable/components/pages/recipient/_page.svelte-9be59eaa.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/languageCodes-e5e3056c.js", "_app/immutable/chunks/user-a8da15e7.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/modules/pages/recipient/_page.ts-15b83b54.js", "_app/immutable/chunks/languageCodes-e5e3056c.js", "_app/immutable/chunks/_page-c81ed1f5.js"];
     stylesheets5 = ["_app/immutable/assets/Recipient-4822d5ba.css"];
     fonts5 = [];
   }
@@ -78058,7 +78065,7 @@ ${components[1] ? `${validate_component(components[0] || missing_component, "sve
 ${``}`;
 });
 set_paths({ "base": "", "assets": "" });
-set_version("1693179837186");
+set_version("1693237835378");
 var options = {
   csp: { "mode": "auto", "directives": { "upgrade-insecure-requests": false, "block-all-mixed-content": false }, "reportOnly": { "upgrade-insecure-requests": false, "block-all-mixed-content": false } },
   csrf_check_origin: true,
@@ -81324,7 +81331,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "favicon.svg", "old-favicon.png", "old-favicon.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-91590f56.js", "imports": ["_app/immutable/start-91590f56.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/singletons-5aa3dc7d.js", "_app/immutable/chunks/index-8a78a84d.js"], "stylesheets": [], "fonts": [] },
+    entry: { "file": "_app/immutable/start-51d29677.js", "imports": ["_app/immutable/start-51d29677.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/singletons-5aa3dc7d.js", "_app/immutable/chunks/index-8a78a84d.js"], "stylesheets": [], "fonts": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

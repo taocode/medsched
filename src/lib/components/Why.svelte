@@ -10,7 +10,7 @@
 </svelte:head>
 
 <div class="mtl text-center my-6 max-w-[62ch] mx-auto">
-  <p class="text-[1.1em]">MedTimeLog helps you track your med usage and the medication usage of those that you care for; caregivers can easily share realtime medication delivery.</p>
+  <p class="text-[0.9em]">Because giving our <em>inherited glaucoma</em> cat needed 6 drops of 3 medications each day was too complicated to share with ease, I created this App to keep us coordinated.</p>
 </div>
 
 <style>

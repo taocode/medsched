@@ -14,6 +14,7 @@
   import { authState } from 'sveltefirets'
   import { user as userStore } from '$lib/user'
 	import Teaser from '$lib/components/Teaser.svelte';
+	import Why from '$lib/components/Why.svelte';
   $: authNotInited = $authState === undefined
   $: userDataFromCookie = $page.data?.user
   $: user = $userStore || (authNotInited && userDataFromCookie) || null
@@ -34,12 +35,13 @@
 				<h2>Login Required</h2>
 				<LoginComponent />
 			</div>
+			<Why />
 		{/if}
 	{/if}
 </main>
 		
 	<footer>
-		<p>A work in progress...</p>
+		<p>By <a href="https://taocode.com">TAOCODE</a></p>
 	</footer>
 </div>
 
