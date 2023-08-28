@@ -73143,7 +73143,7 @@ var init_languageCodes = __esm({
     init_index2();
     init_dist3();
     init_dist4();
-    PUBLIC_FIREBASE_CONFIG = '{ "apiKey": "AIzaSyC5iP7AMx4IHIv6CcG9nUMdbScwrSM7Qpc", "authDomain": "medtimelog.firebaseapp.com", "projectId": "medtimelog", "storageBucket": "medtimelog.appspot.com", "messagingSenderId": "331132141308", "appId": "1:331132141308:web:b29777869ff763fd682179"}';
+    PUBLIC_FIREBASE_CONFIG = '{"apiKey": "AIzaSyC5iP7AMx4IHIv6CcG9nUMdbScwrSM7Qpc","authDomain": "medtimelog.firebaseapp.com","projectId": "medtimelog","storageBucket": "medtimelog.appspot.com","messagingSenderId": "331132141308","appId": "1:331132141308:web:b29777869ff763fd682179"}';
     firebaseConfig = JSON.parse(PUBLIC_FIREBASE_CONFIG);
     if (!firebaseConfig.projectId) {
       throw Error("PUBLIC_FIREBASE_CONFIG is not set properly in your env variables.");
@@ -74202,7 +74202,7 @@ var layout_svelte_exports = {};
 __export(layout_svelte_exports, {
   default: () => Layout
 });
-var css$3, HomeLink, FirebaseUiAuth, css$2, UserMenu, css$1, Header, LoginComponent, css, Layout;
+var css$4, HomeLink, FirebaseUiAuth, css$3, UserMenu, css$2, Header, LoginComponent, css$1, Teaser, css, Layout;
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/_layout.svelte.js"() {
     init_shims();
@@ -74215,13 +74215,13 @@ var init_layout_svelte = __esm({
     init_dist4();
     init_dist3();
     init_user();
-    css$3 = {
+    css$4 = {
       code: "a.svelte-1o9pr07{color:white;display:flex;align-items:center}img.svelte-1o9pr07{max-height:2em}",
       map: null
     };
     HomeLink = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css$3);
-      return `<a title="home" href="/" class="svelte-1o9pr07"><img src="favicon.svg" alt="fav" class="svelte-1o9pr07">
+      $$result.css.add(css$4);
+      return `<a title="home" href="/" class="svelte-1o9pr07"><img src="favicon.svg" alt="fav" height="150" width="150" class="svelte-1o9pr07">
 	<div class="ml-1 whitespace-nowrap tracking-tight">Med Time Log</div></a>`;
     });
     FirebaseUiAuth = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -74255,7 +74255,7 @@ ${`${slots.default ? slots.default({}) : `
   `}`}
 <div${add_attribute("this", container, 0)}></div>`;
     });
-    css$2 = {
+    css$3 = {
       code: ".usermenu.svelte-ugndw7{max-width:6em;height:2em;display:flex;gap:0.5em}img.svelte-ugndw7{border-radius:100%;max-height:100%}button.svelte-ugndw7{background-color:transparent}",
       map: null
     };
@@ -74269,7 +74269,7 @@ ${`${slots.default ? slots.default({}) : `
       $$unsubscribe_userStore = subscribe(user, (value) => $userStore = value);
       $$unsubscribe_page = subscribe(page, (value) => $page = value);
       $$unsubscribe_authState = subscribe(authState, (value) => $authState = value);
-      $$result.css.add(css$2);
+      $$result.css.add(css$3);
       authNotInited = $authState === void 0;
       userDataFromCookie = $page.data?.user;
       user$1 = $userStore || authNotInited && userDataFromCookie || null;
@@ -74280,12 +74280,12 @@ ${`${slots.default ? slots.default({}) : `
 	${``}` : ``}
 </div>`;
     });
-    css$1 = {
+    css$2 = {
       code: "header.svelte-tsinkf{background-color:var(--color-theme-1)}.contents.svelte-tsinkf{display:flex;justify-content:space-between;align-items:center;color:white;padding:0.5em 0.2em;max-width:40ch;margin:0 auto}.corner.svelte-tsinkf{width:auto}",
       map: null
     };
     Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css$1);
+      $$result.css.add(css$2);
       return `<header class="svelte-tsinkf"><div class="contents svelte-tsinkf"><div class="corner svelte-tsinkf">${validate_component(HomeLink, "HomeLink").$$render($$result, {}, {}, {})}</div>
 		<div class="flex-grow"></div>
 		<div class="corner svelte-tsinkf">${validate_component(UserMenu, "UserMenu").$$render($$result, {}, {}, {})}</div></div>
@@ -74301,6 +74301,19 @@ ${`${slots.default ? slots.default({}) : `
         {},
         {}
       )}`;
+    });
+    css$1 = {
+      code: ".mtl.svelte-yf2939{line-height:4}p.svelte-yf2939{margin:1em 0}",
+      map: null
+    };
+    Teaser = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      $$result.css.add(css$1);
+      return `${$$result.head += `<!-- HEAD_svelte-htaddw_START -->${$$result.title = `<title>MedTimeLog Helps with Timely Medication Tracking</title>`, ""}<meta name="description" content="MedTimeLog helps you track your med usage and the meds of those that you care for."><link rel="canonical" href="https://medtimelog.com/"><!-- HEAD_svelte-htaddw_END -->`, ""}
+
+<div class="mtl text-center my-12 text-[1.3em] svelte-yf2939"><p class="svelte-yf2939">MedTimeLog helps you track your med usage and the medication usage of those that you care for.</p>
+  <p class="svelte-yf2939">MedTimeLog can help caregivers easily share today&#39;s realtime medication delivery status.</p>
+  <p class="svelte-yf2939">Because giving our <em>inherited</em> glaucoma cat needed 6 drops of 3 medications each day was too complicated to share with ease, I created this App to keep us coordinated.</p>
+</div>`;
     });
     css = {
       code: ".app.svelte-3bsbfv{display:flex;flex-direction:column;min-height:100vh}.mustlogin.svelte-3bsbfv{text-align:center}main.svelte-3bsbfv{flex:1;display:flex;flex-direction:column;padding:0 1rem 1rem 1rem;width:100%;max-width:64rem;margin:0 auto;box-sizing:border-box}footer.svelte-3bsbfv{display:flex;flex-direction:column;justify-content:center;align-items:center;padding:12px}@media(min-width: 480px){footer.svelte-3bsbfv{padding:12px 0}}",
@@ -74324,7 +74337,8 @@ ${`${slots.default ? slots.default({}) : `
       $$unsubscribe_page();
       $$unsubscribe_authState();
       return `<div class="app svelte-3bsbfv">${validate_component(Header, "Header").$$render($$result, {}, {}, {})}
-	<main class="svelte-3bsbfv">${$authState === void 0 ? `<div class="text-center">Loading...</div>` : `${user$1 ? `${slots.default ? slots.default({}) : ``}` : `<div class="mustlogin svelte-3bsbfv"><h2>Login Required</h2>
+	<main class="svelte-3bsbfv">${$authState === void 0 ? `<div class="text-center">Loading...</div>` : `${user$1 ? `${slots.default ? slots.default({}) : ``}` : `${validate_component(Teaser, "Teaser").$$render($$result, {}, {}, {})}
+			<div class="mustlogin svelte-3bsbfv"><h2>Login Required</h2>
 				${validate_component(LoginComponent, "LoginComponent").$$render($$result, {}, {}, {})}</div>`}`}</main>
 		
 	<footer class="svelte-3bsbfv"><p>A work in progress...</p></footer>
@@ -74353,9 +74367,9 @@ var init__ = __esm({
     init_layout_server_ts();
     index = 0;
     component = async () => (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default;
-    file = "_app/immutable/components/pages/_layout.svelte-b6b345e9.js";
-    imports = ["_app/immutable/components/pages/_layout.svelte-b6b345e9.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/stores-5b8fd2c2.js", "_app/immutable/chunks/singletons-5aa3dc7d.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/user-2df2436d.js", "_app/immutable/modules/pages/_layout.ts-007ffdb7.js", "_app/immutable/chunks/_layout-32a0c93b.js"];
-    stylesheets = ["_app/immutable/assets/_layout-c83cbb1e.css"];
+    file = "_app/immutable/components/pages/_layout.svelte-6330a104.js";
+    imports = ["_app/immutable/components/pages/_layout.svelte-6330a104.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/stores-5b8fd2c2.js", "_app/immutable/chunks/singletons-5aa3dc7d.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/chunks/languageCodes-e5e3056c.js", "_app/immutable/chunks/user-a8da15e7.js", "_app/immutable/modules/pages/_layout.ts-007ffdb7.js", "_app/immutable/chunks/_layout-32a0c93b.js"];
+    stylesheets = ["_app/immutable/assets/_layout-0d30937d.css"];
     fonts = ["_app/immutable/assets/fira-mono-cyrillic-ext-400-normal-3df7909e.woff2", "_app/immutable/assets/fira-mono-all-400-normal-1e3b098c.woff", "_app/immutable/assets/fira-mono-cyrillic-400-normal-c7d433fd.woff2", "_app/immutable/assets/fira-mono-greek-ext-400-normal-9e2fe623.woff2", "_app/immutable/assets/fira-mono-greek-400-normal-a8be01ce.woff2", "_app/immutable/assets/fira-mono-latin-ext-400-normal-6bfabd30.woff2", "_app/immutable/assets/fira-mono-latin-400-normal-e43b3538.woff2"];
   }
 });
@@ -74480,9 +74494,9 @@ var init__3 = __esm({
     init_page_ts();
     index3 = 2;
     component3 = async () => (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default;
-    file3 = "_app/immutable/components/pages/_page.svelte-666ab261.js";
-    imports3 = ["_app/immutable/components/pages/_page.svelte-666ab261.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/user-2df2436d.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/modules/pages/_page.ts-49165f47.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/_page-f67e8c47.js"];
-    stylesheets3 = ["_app/immutable/assets/_page-e6cda968.css", "_app/immutable/assets/Recipient-657773ac.css"];
+    file3 = "_app/immutable/components/pages/_page.svelte-3edf646a.js";
+    imports3 = ["_app/immutable/components/pages/_page.svelte-3edf646a.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/languageCodes-e5e3056c.js", "_app/immutable/chunks/user-a8da15e7.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/modules/pages/_page.ts-24af8f4b.js", "_app/immutable/chunks/languageCodes-e5e3056c.js", "_app/immutable/chunks/_page-00151355.js"];
+    stylesheets3 = ["_app/immutable/assets/_page-e6cda968.css", "_app/immutable/assets/Recipient-4822d5ba.css"];
     fonts3 = [];
   }
 });
@@ -77752,7 +77766,7 @@ var init_page_svelte3 = __esm({
 `;
     });
     css$12 = {
-      code: "table.svelte-1u355ym.svelte-1u355ym{min-width:30ch;margin:0 auto;border-collapse:separate;border-spacing:0 0.6em;--br:0.5rem}tr.svelte-1u355ym.svelte-1u355ym{background-color:var(--bg);color:var(--color)}td.svelte-1u355ym.svelte-1u355ym{padding:0.25rem 0.5rem}td.svelte-1u355ym.svelte-1u355ym:first-child{border-top-left-radius:var(--br);border-bottom-left-radius:var(--br)}.count.svelte-1u355ym.svelte-1u355ym{padding-right:0}.total.svelte-1u355ym.svelte-1u355ym{padding-left:0}.count.svelte-1u355ym.svelte-1u355ym::after{content:'/';font-size:0.75em;display:inline-block;padding:0 0.25em}td.svelte-1u355ym.svelte-1u355ym:last-child{border-top-right-radius:var(--br);border-bottom-right-radius:var(--br)}.date-col.svelte-1u355ym.svelte-1u355ym{text-align:right}td.svelte-1u355ym button.svelte-1u355ym{color:transparent;background-color:transparent;padding:0 0.2em}tr.svelte-1u355ym:hover td button.svelte-1u355ym{color:white}",
+      code: "table.svelte-12mqtbk.svelte-12mqtbk{min-width:30ch;margin:0 auto;border-collapse:separate;border-spacing:0 0.6em;--br:0.5rem}tr.svelte-12mqtbk.svelte-12mqtbk{background-color:var(--bg);color:var(--color)}td.svelte-12mqtbk.svelte-12mqtbk{padding:0.25rem 0.5rem}td.svelte-12mqtbk.svelte-12mqtbk:first-child{border-top-left-radius:var(--br);border-bottom-left-radius:var(--br)}.count.svelte-12mqtbk.svelte-12mqtbk{padding-right:0}.total.svelte-12mqtbk.svelte-12mqtbk{padding-left:0}.count.svelte-12mqtbk.svelte-12mqtbk::after{content:'/';font-size:0.75em;display:inline-block;padding:0 0.25em}td.svelte-12mqtbk.svelte-12mqtbk:last-child{border-top-right-radius:var(--br);border-bottom-right-radius:var(--br)}.date-col.svelte-12mqtbk.svelte-12mqtbk{text-align:right}td.svelte-12mqtbk button.svelte-12mqtbk{color:transparent;background-color:transparent;padding:0 0.2em}tr.svelte-12mqtbk:hover td button.svelte-12mqtbk{color:white;background:var(--color-remove,darkred)}",
       map: null
     };
     DayTimeLog = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -77786,22 +77800,22 @@ var init_page_svelte3 = __esm({
         $$settled = true;
         dailyTotal = medications.reduce((p2, c) => p2 + c.schedule.length, 0);
         daysCount = dayTimeLog.length;
-        $$rendered = `<h3><span class="count svelte-1u355ym">${escape(daysCount)}</span><span class="total svelte-1u355ym">${escape(dailyTotal)}</span> ${escape(dayName)}:</h3>
-<table class="svelte-1u355ym">${each(dayTimeLog, (L, i) => {
+        $$rendered = `<h3><span class="count svelte-12mqtbk">${escape(daysCount)}</span><span class="total svelte-12mqtbk">${escape(dailyTotal)}</span> ${escape(dayName)}:</h3>
+<table class="svelte-12mqtbk">${each(dayTimeLog, (L, i) => {
           return `<tr${add_attribute(
             "style",
             `--bg: ${colors[L.medicationIndex]};
 			--color: ${readableColor(colors[L.medicationIndex])}`,
             0
-          )} class="svelte-1u355ym"><td class="count svelte-1u355ym">${escape(findDaysCount(L.medicationIndex, L.dispensed))}</td>
-				<td class="total svelte-1u355ym">${escape(medications[L.medicationIndex].schedule.length)}</td>
-				<td class="svelte-1u355ym">${escape(medications[L.medicationIndex].displayName)}</td>
-				<td class="date-col svelte-1u355ym">${escape(formatTimestampLong(L.dispensed))}</td>
-				${allowEdit ? `<td class="svelte-1u355ym"><form method="POST" action="/recipient?/remove"${add_attribute("data-summary", `${medications[L.medicationIndex].displayName} at ${formatTimestampLong(L.dispensed)}`, 0)}><input type="hidden" name="rid"${add_attribute("value", recipientid, 0)}>
+          )} class="svelte-12mqtbk"><td class="count svelte-12mqtbk">${escape(findDaysCount(L.medicationIndex, L.dispensed))}</td>
+				<td class="total svelte-12mqtbk">${escape(medications[L.medicationIndex].schedule.length)}</td>
+				<td class="svelte-12mqtbk">${escape(medications[L.medicationIndex].displayName)}</td>
+				<td class="date-col svelte-12mqtbk">${escape(formatTimestampLong(L.dispensed))}</td>
+				${allowEdit ? `<td class="svelte-12mqtbk"><form method="POST" action="/recipient?/remove"${add_attribute("data-summary", `${medications[L.medicationIndex].displayName} at ${formatTimestampLong(L.dispensed)}`, 0)}><input type="hidden" name="rid"${add_attribute("value", recipientid, 0)}>
 						<input type="hidden" name="did"${add_attribute("value", L.dispenserid, 0)}>
 						<input type="hidden" name="entryTime"${add_attribute("value", L.dispensed.toMillis(), 0)}>
 						<input type="hidden" name="medicationIndex"${add_attribute("value", L.medicationIndex, 0)}>
-						<button class="confirm svelte-1u355ym"><div class="i-fe-trash"></div>
+						<button class="confirm svelte-12mqtbk"><div class="i-fe-trash"></div>
 						</button></form>
 				</td>` : ``}
 			</tr>`;
@@ -77937,7 +77951,9 @@ var init_page_svelte3 = __esm({
           console.log({ recipient });
         }
       }
-      return `${validate_component(Recipient, "Recipient").$$render($$result, { recipient }, {}, {})}`;
+      return `${$$result.head += `<!-- HEAD_svelte-lnqenj_START -->${$$result.title = `<title>Recipient: ${escape(recipient.displayName)} - MedTimeLog</title>`, ""}<!-- HEAD_svelte-lnqenj_END -->`, ""}
+
+${validate_component(Recipient, "Recipient").$$render($$result, { recipient }, {}, {})}`;
     });
   }
 });
@@ -77962,9 +77978,9 @@ var init__5 = __esm({
     init_page_server_ts();
     index5 = 5;
     component5 = async () => (await Promise.resolve().then(() => (init_page_svelte3(), page_svelte_exports3))).default;
-    file5 = "_app/immutable/components/pages/recipient/_page.svelte-ca7ecffd.js";
-    imports5 = ["_app/immutable/components/pages/recipient/_page.svelte-ca7ecffd.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/user-2df2436d.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/modules/pages/recipient/_page.ts-830e560d.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/_page-7b1cd9a0.js"];
-    stylesheets5 = ["_app/immutable/assets/Recipient-657773ac.css"];
+    file5 = "_app/immutable/components/pages/recipient/_page.svelte-8c376173.js";
+    imports5 = ["_app/immutable/components/pages/recipient/_page.svelte-8c376173.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/languageCodes-e5e3056c.js", "_app/immutable/chunks/user-a8da15e7.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/modules/pages/recipient/_page.ts-15b83b54.js", "_app/immutable/chunks/languageCodes-e5e3056c.js", "_app/immutable/chunks/_page-c81ed1f5.js"];
+    stylesheets5 = ["_app/immutable/assets/Recipient-4822d5ba.css"];
     fonts5 = [];
   }
 });
@@ -78042,7 +78058,7 @@ ${components[1] ? `${validate_component(components[0] || missing_component, "sve
 ${``}`;
 });
 set_paths({ "base": "", "assets": "" });
-set_version("1693167125750");
+set_version("1693179837186");
 var options = {
   csp: { "mode": "auto", "directives": { "upgrade-insecure-requests": false, "block-all-mixed-content": false }, "reportOnly": { "upgrade-insecure-requests": false, "block-all-mixed-content": false } },
   csrf_check_origin: true,
@@ -78053,7 +78069,7 @@ var options = {
   root: Root,
   service_worker: false,
   templates: {
-    app: ({ head, body, assets: assets2, nonce }) => '<!DOCTYPE html>\r\n<html lang="en">\r\n	<head>\r\n		<meta charset="utf-8" />\r\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\r\n		<meta name="viewport" content="width=device-width" />\r\n		' + head + '\r\n	</head>\r\n	<body data-sveltekit-preload-data="hover">\r\n		<div style="display: contents">' + body + "</div>\r\n	</body>\r\n</html>\r\n",
+    app: ({ head, body, assets: assets2, nonce }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\n		<meta name="viewport" content="width=device-width" />\n		' + head + '\n	</head>\n	<body data-sveltekit-preload-data="hover">\n		<div style="display: contents">' + body + "</div>\n	</body>\n</html>\n",
     error: ({ status, message }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<title>' + message + `</title>
 
 		<style>
@@ -81308,7 +81324,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "favicon.svg", "old-favicon.png", "old-favicon.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-96eed8d6.js", "imports": ["_app/immutable/start-96eed8d6.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/singletons-5aa3dc7d.js", "_app/immutable/chunks/index-8a78a84d.js"], "stylesheets": [], "fonts": [] },
+    entry: { "file": "_app/immutable/start-91590f56.js", "imports": ["_app/immutable/start-91590f56.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/singletons-5aa3dc7d.js", "_app/immutable/chunks/index-8a78a84d.js"], "stylesheets": [], "fonts": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

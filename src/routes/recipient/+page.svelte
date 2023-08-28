@@ -10,4 +10,8 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Recipient: {recipient.displayName} - MedTimeLog</title>
+</svelte:head>
+
 <Recipient {recipient} />

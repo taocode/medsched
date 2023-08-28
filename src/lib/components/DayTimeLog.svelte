@@ -21,21 +21,6 @@
 	$: dailyTotal = medications.reduce((p,c) => p+c.schedule.length,0)
 	$: daysCount = dayTimeLog.length
 
-	function removeEntry(index,form) {
-		const rmEntry = dayTimeLog[index]
-		console.log({rmEntry})
-		// rm.dispensed.toDate().getTime()
-		// dispenserid = rmEntry.dispenserid
-		// entryTime = rmEntry.dispensed.toMillis()
-		// medicationIndex = rmEntry.medicationIndex
-		// form.submit()
-		return false
-	}
-	// let dispenserid = ''
-	// let entryTime = -1
-	// let medicationIndex = -1
-	// const ts = new Timestamp(0,0)
-	// ts.nanoseconds
 	let confirmRm = false
 	let rmDetails = ''
 	let rmForm
@@ -129,5 +114,6 @@
 	}
 	tr:hover td button {
 		color: white;
+		background: var(--color-remove,darkred);
 	}
 	</style>
