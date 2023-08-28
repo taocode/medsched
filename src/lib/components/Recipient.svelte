@@ -19,8 +19,6 @@
 // console.log({user},$user)
 const today = new Date()
 today.setHours(0,0,0,0)
-const yesterday = new Date()
-yesterday.setHours(-24,0,0,0)
 
 $: timeLogByDay = timeLog.reduce((p,L,i) => {
 	const entryDay = L.dispensed?.toDate()
@@ -37,10 +35,8 @@ $: timeLogByDay = timeLog.reduce((p,L,i) => {
 	lastDay.push(L)
 	return p
 },[[]]).reverse()
-$: todayTimeLog = timeLogByDay[0]
-$: yesterdayTimeLog = timeLogByDay[1]
-$: pastTimeLog = timeLogByDay.slice(1)
-
+$: todayTimeLog = timeLog.filter(L => L.dispensed.toDate() > today)
+$: pastTimeLog = timeLogByDay.filter(DL => DL[0].dispensed.toDate() < today)
 let pastTimeLogDetail = []
 
 async function logMed(medicationIndex) {
