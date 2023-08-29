@@ -8,12 +8,11 @@
 
 <header>
 	<div class="contents">
-	
-		<div class="corner">
+		<div class="corner home">
 			<HomeLink />
 		</div>
 		<div class="flex-grow"></div>
-		<div class="corner">
+		<div class="corner user">
 			<UserMenu />
 		</div>
 </div>
@@ -25,7 +24,7 @@
 	}
 	.contents {
 		display: flex;
-		justify-content: space-between;
+		justify-content: space-around;
 		align-items: center;
 		color: white;
 		padding: 0.5em 0.2em;
@@ -36,5 +35,4 @@
 		width: auto;
 		/* height: 3em; */
 	}
-
 </style>

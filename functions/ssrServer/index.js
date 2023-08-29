@@ -73143,7 +73143,7 @@ var init_languageCodes = __esm({
     init_index2();
     init_dist3();
     init_dist4();
-    PUBLIC_FIREBASE_CONFIG = '{"apiKey": "AIzaSyC5iP7AMx4IHIv6CcG9nUMdbScwrSM7Qpc","authDomain": "medtimelog.firebaseapp.com","projectId": "medtimelog","storageBucket": "medtimelog.appspot.com","messagingSenderId": "331132141308","appId": "1:331132141308:web:b29777869ff763fd682179"}';
+    PUBLIC_FIREBASE_CONFIG = '{ "apiKey": "AIzaSyC5iP7AMx4IHIv6CcG9nUMdbScwrSM7Qpc", "authDomain": "medtimelog.firebaseapp.com", "projectId": "medtimelog", "storageBucket": "medtimelog.appspot.com", "messagingSenderId": "331132141308", "appId": "1:331132141308:web:b29777869ff763fd682179"}';
     firebaseConfig = JSON.parse(PUBLIC_FIREBASE_CONFIG);
     if (!firebaseConfig.projectId) {
       throw Error("PUBLIC_FIREBASE_CONFIG is not set properly in your env variables.");
@@ -74216,12 +74216,12 @@ var init_layout_svelte = __esm({
     init_dist3();
     init_user();
     css$5 = {
-      code: "a.svelte-1o9pr07{color:white;display:flex;align-items:center}img.svelte-1o9pr07{max-height:2em}",
+      code: "a.svelte-oes0ky{color:white;display:flex;align-items:center;gap:0.25em}img.svelte-oes0ky{height:2em;width:auto}",
       map: null
     };
     HomeLink = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       $$result.css.add(css$5);
-      return `<a title="home" href="/" class="svelte-1o9pr07"><img src="favicon.svg" alt="fav" height="150" width="150" class="svelte-1o9pr07">
+      return `<a title="home" href="/" class="svelte-oes0ky"><img src="favicon.svg" alt="fav" height="150" width="150" class="svelte-oes0ky">
 	<div class="ml-1 whitespace-nowrap tracking-tight">Med Time Log</div></a>`;
     });
     FirebaseUiAuth = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -74281,14 +74281,14 @@ ${`${slots.default ? slots.default({}) : `
 </div>`;
     });
     css$3 = {
-      code: "header.svelte-tsinkf{background-color:var(--color-theme-1)}.contents.svelte-tsinkf{display:flex;justify-content:space-between;align-items:center;color:white;padding:0.5em 0.2em;max-width:40ch;margin:0 auto}.corner.svelte-tsinkf{width:auto}",
+      code: "header.svelte-i0nqbu{background-color:var(--color-theme-1)}.contents.svelte-i0nqbu{display:flex;justify-content:space-around;align-items:center;color:white;padding:0.5em 0.2em;max-width:40ch;margin:0 auto}.corner.svelte-i0nqbu{width:auto}",
       map: null
     };
     Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       $$result.css.add(css$3);
-      return `<header class="svelte-tsinkf"><div class="contents svelte-tsinkf"><div class="corner svelte-tsinkf">${validate_component(HomeLink, "HomeLink").$$render($$result, {}, {}, {})}</div>
+      return `<header class="svelte-i0nqbu"><div class="contents svelte-i0nqbu"><div class="corner home svelte-i0nqbu">${validate_component(HomeLink, "HomeLink").$$render($$result, {}, {}, {})}</div>
 		<div class="flex-grow"></div>
-		<div class="corner svelte-tsinkf">${validate_component(UserMenu, "UserMenu").$$render($$result, {}, {}, {})}</div></div>
+		<div class="corner user svelte-i0nqbu">${validate_component(UserMenu, "UserMenu").$$render($$result, {}, {}, {})}</div></div>
 </header>`;
     });
     LoginComponent = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -74377,9 +74377,9 @@ var init__ = __esm({
     init_layout_server_ts();
     index = 0;
     component = async () => (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default;
-    file = "_app/immutable/components/pages/_layout.svelte-e3d20436.js";
-    imports = ["_app/immutable/components/pages/_layout.svelte-e3d20436.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/stores-5b8fd2c2.js", "_app/immutable/chunks/singletons-5aa3dc7d.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/chunks/languageCodes-e5e3056c.js", "_app/immutable/chunks/user-a8da15e7.js", "_app/immutable/modules/pages/_layout.ts-007ffdb7.js", "_app/immutable/chunks/_layout-32a0c93b.js"];
-    stylesheets = ["_app/immutable/assets/_layout-936ff0ea.css"];
+    file = "_app/immutable/components/pages/_layout.svelte-a45f8ef9.js";
+    imports = ["_app/immutable/components/pages/_layout.svelte-a45f8ef9.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/stores-5b8fd2c2.js", "_app/immutable/chunks/singletons-5aa3dc7d.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/user-2df2436d.js", "_app/immutable/modules/pages/_layout.ts-007ffdb7.js", "_app/immutable/chunks/_layout-32a0c93b.js"];
+    stylesheets = ["_app/immutable/assets/_layout-a21a18e0.css"];
     fonts = ["_app/immutable/assets/fira-mono-cyrillic-ext-400-normal-3df7909e.woff2", "_app/immutable/assets/fira-mono-all-400-normal-1e3b098c.woff", "_app/immutable/assets/fira-mono-cyrillic-400-normal-c7d433fd.woff2", "_app/immutable/assets/fira-mono-greek-ext-400-normal-9e2fe623.woff2", "_app/immutable/assets/fira-mono-greek-400-normal-a8be01ce.woff2", "_app/immutable/assets/fira-mono-latin-ext-400-normal-6bfabd30.woff2", "_app/immutable/assets/fira-mono-latin-400-normal-e43b3538.woff2"];
   }
 });
@@ -74504,8 +74504,8 @@ var init__3 = __esm({
     init_page_ts();
     index3 = 2;
     component3 = async () => (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default;
-    file3 = "_app/immutable/components/pages/_page.svelte-3edf646a.js";
-    imports3 = ["_app/immutable/components/pages/_page.svelte-3edf646a.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/languageCodes-e5e3056c.js", "_app/immutable/chunks/user-a8da15e7.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/modules/pages/_page.ts-24af8f4b.js", "_app/immutable/chunks/languageCodes-e5e3056c.js", "_app/immutable/chunks/_page-00151355.js"];
+    file3 = "_app/immutable/components/pages/_page.svelte-f2099938.js";
+    imports3 = ["_app/immutable/components/pages/_page.svelte-f2099938.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/user-2df2436d.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/modules/pages/_page.ts-49165f47.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/_page-f67e8c47.js"];
     stylesheets3 = ["_app/immutable/assets/_page-e6cda968.css", "_app/immutable/assets/Recipient-4822d5ba.css"];
     fonts3 = [];
   }
@@ -77985,8 +77985,8 @@ var init__5 = __esm({
     init_page_server_ts();
     index5 = 5;
     component5 = async () => (await Promise.resolve().then(() => (init_page_svelte3(), page_svelte_exports3))).default;
-    file5 = "_app/immutable/components/pages/recipient/_page.svelte-9be59eaa.js";
-    imports5 = ["_app/immutable/components/pages/recipient/_page.svelte-9be59eaa.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/languageCodes-e5e3056c.js", "_app/immutable/chunks/user-a8da15e7.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/modules/pages/recipient/_page.ts-15b83b54.js", "_app/immutable/chunks/languageCodes-e5e3056c.js", "_app/immutable/chunks/_page-c81ed1f5.js"];
+    file5 = "_app/immutable/components/pages/recipient/_page.svelte-78ddb840.js";
+    imports5 = ["_app/immutable/components/pages/recipient/_page.svelte-78ddb840.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/user-2df2436d.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/modules/pages/recipient/_page.ts-830e560d.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/_page-7b1cd9a0.js"];
     stylesheets5 = ["_app/immutable/assets/Recipient-4822d5ba.css"];
     fonts5 = [];
   }
@@ -78065,7 +78065,7 @@ ${components[1] ? `${validate_component(components[0] || missing_component, "sve
 ${``}`;
 });
 set_paths({ "base": "", "assets": "" });
-set_version("1693237835378");
+set_version("1693271636505");
 var options = {
   csp: { "mode": "auto", "directives": { "upgrade-insecure-requests": false, "block-all-mixed-content": false }, "reportOnly": { "upgrade-insecure-requests": false, "block-all-mixed-content": false } },
   csrf_check_origin: true,
@@ -78076,7 +78076,7 @@ var options = {
   root: Root,
   service_worker: false,
   templates: {
-    app: ({ head, body, assets: assets2, nonce }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\n		<meta name="viewport" content="width=device-width" />\n		' + head + '\n	</head>\n	<body data-sveltekit-preload-data="hover">\n		<div style="display: contents">' + body + "</div>\n	</body>\n</html>\n",
+    app: ({ head, body, assets: assets2, nonce }) => '<!DOCTYPE html>\r\n<html lang="en">\r\n	<head>\r\n		<meta charset="utf-8" />\r\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\r\n		<meta name="viewport" content="width=device-width" />\r\n		' + head + '\r\n	</head>\r\n	<body data-sveltekit-preload-data="hover">\r\n		<div style="display: contents">' + body + "</div>\r\n	</body>\r\n</html>\r\n",
     error: ({ status, message }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<title>' + message + `</title>
 
 		<style>
@@ -81331,7 +81331,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "favicon.svg", "old-favicon.png", "old-favicon.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-51d29677.js", "imports": ["_app/immutable/start-51d29677.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/singletons-5aa3dc7d.js", "_app/immutable/chunks/index-8a78a84d.js"], "stylesheets": [], "fonts": [] },
+    entry: { "file": "_app/immutable/start-11d2c6e7.js", "imports": ["_app/immutable/start-11d2c6e7.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/singletons-5aa3dc7d.js", "_app/immutable/chunks/index-8a78a84d.js"], "stylesheets": [], "fonts": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

@@ -7,8 +7,10 @@ a {
 	color: white;
 	display: flex;
 	align-items: center;
+	gap: 0.25em;
 }
 img {
-	max-height: 2em;
+	height: 2em;
+	width: auto;
 }
 </style>
