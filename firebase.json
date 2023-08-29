@@ -38,7 +38,7 @@
           "value": "nosniff"
         }, {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self';script-src 'unsafe-inline' 'self';script-src-elem *.gstatic.com apis.google.com 'unsafe-inline' 'self';style-src 'unsafe-inline' 'self';style-src-elem *.gstatic.com *.googleapis.com 'self';font-src fonts.gstatic.com 'self';img-src *.gstatic.com *.googleusercontent.com data: 'self';connect-src *.googleapis.com 'self';object-src *.google.com *.googleusercontent.com *.gstatic.com;frame-src medtimelog.firebaseapp.com;"
+          "value": "default-src 'self';script-src 'unsafe-inline' 'self';script-src-elem *.gstatic.com apis.google.com 'unsafe-inline' 'self';style-src 'unsafe-inline' 'self';style-src-elem *.gstatic.com *.googleapis.com 'self' 'unsafe-inline';font-src fonts.gstatic.com 'self';img-src *.gstatic.com *.googleusercontent.com data: 'self';connect-src *.googleapis.com 'self';object-src *.google.com *.googleusercontent.com *.gstatic.com;frame-src medtimelog.firebaseapp.com;"
         }, {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
