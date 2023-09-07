@@ -1,5 +1,4 @@
 <script>
-	
 	import { page } from '$app/stores'
 	import { authState, logOut } from 'sveltefirets'
 	import { user as userStore } from '$lib/user'
@@ -11,32 +10,30 @@
 </script>
 
 <div class="usermenu">
-
-{#if user}
-	<button on:click={()=>show = !show}>
-		<img src={user.photoURL} alt={user.displayName}>
-	</button>
-	{#if show}
-	<button title="Sign Out" class="signout" on:click={logOut}> 
-		<div class="i-fe-logout">
-		</div>
-	</button>
+	{#if user}
+		<button on:click={() => (show = !show)}>
+			<img src={user.photoURL} alt={user.displayName} />
+		</button>
+		{#if show}
+			<button title="Sign Out" class="signout" on:click={logOut}>
+				<div class="i-fe-logout" />
+			</button>
+		{/if}
 	{/if}
-{/if}
 </div>
 
 <style lang="postcss">
-.usermenu {
-	max-width: 6em;
-	height: 2em;
-	display: flex;
-	gap: 0.5em;
-}
-img {
-border-radius: 100%;
-max-height: 100%;
-}
-button {
-	background-color: transparent;
-}
+	.usermenu {
+		max-width: 6em;
+		height: 2em;
+		display: flex;
+		gap: 0.5em;
+	}
+	img {
+		border-radius: 100%;
+		max-height: 100%;
+	}
+	button {
+		background-color: transparent;
+	}
 </style>

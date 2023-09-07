@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { FirebaseUiAuth, saveUserData } from 'sveltefirets'
+	import { FirebaseUiAuth, saveUserData } from 'sveltefirets'
 </script>
 
 <FirebaseUiAuth
-  languageCode={'en'}
-  signInWith={{ google: true }}
-  on:authresult={(e) => saveUserData(e.detail)} />
+	languageCode={'en'}
+	signInWith={{ google: true }}
+	on:authresult={e => saveUserData(e.detail)} />

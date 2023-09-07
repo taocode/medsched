@@ -1,8 +1,7 @@
 <script>
-export let recipients = []
+	export let recipients = []
 </script>
 
 {#each recipients as r}
-<a href={`/recipient/${r.id}`}>{r.displayName}</a>
+	<a href={`/recipient/${r.id}`}>{r.displayName}</a>
 {/each}
-

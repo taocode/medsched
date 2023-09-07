@@ -11,11 +11,11 @@
 		<div class="corner home">
 			<HomeLink />
 		</div>
-		<div class="flex-grow"></div>
+		<div class="flex-grow" />
 		<div class="corner user">
 			<UserMenu />
 		</div>
-</div>
+	</div>
 </header>
 
 <style>

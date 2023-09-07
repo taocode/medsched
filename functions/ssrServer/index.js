@@ -74216,12 +74216,12 @@ var init_layout_svelte = __esm({
     init_dist3();
     init_user();
     css$5 = {
-      code: "a.svelte-oes0ky{color:white;display:flex;align-items:center;gap:0.25em}img.svelte-oes0ky{height:2em;width:auto}",
+      code: "a.svelte-1vvyqym{color:white;display:flex;align-items:center;gap:0.25em}img.svelte-1vvyqym{height:2em;width:auto}",
       map: null
     };
     HomeLink = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       $$result.css.add(css$5);
-      return `<a title="home" href="/" class="svelte-oes0ky"><img src="favicon.svg" alt="fav" height="150" width="150" class="svelte-oes0ky">
+      return `<a title="home" href="/" class="svelte-1vvyqym"><img src="favicon.svg" alt="fav" height="150" width="150" class="svelte-1vvyqym">
 	<div class="ml-1 whitespace-nowrap tracking-tight">Med Time Log</div></a>`;
     });
     FirebaseUiAuth = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -74256,7 +74256,7 @@ ${`${slots.default ? slots.default({}) : `
 <div${add_attribute("this", container, 0)}></div>`;
     });
     css$4 = {
-      code: ".usermenu.svelte-ugndw7{max-width:6em;height:2em;display:flex;gap:0.5em}img.svelte-ugndw7{border-radius:100%;max-height:100%}button.svelte-ugndw7{background-color:transparent}",
+      code: ".usermenu.svelte-m9hsyy{max-width:6em;height:2em;display:flex;gap:0.5em}img.svelte-m9hsyy{border-radius:100%;max-height:100%}button.svelte-m9hsyy{background-color:transparent}",
       map: null
     };
     UserMenu = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -74276,8 +74276,8 @@ ${`${slots.default ? slots.default({}) : `
       $$unsubscribe_userStore();
       $$unsubscribe_page();
       $$unsubscribe_authState();
-      return `<div class="usermenu svelte-ugndw7">${user$1 ? `<button class="svelte-ugndw7"><img${add_attribute("src", user$1.photoURL, 0)}${add_attribute("alt", user$1.displayName, 0)} class="svelte-ugndw7"></button>
-	${``}` : ``}
+      return `<div class="usermenu svelte-m9hsyy">${user$1 ? `<button class="svelte-m9hsyy"><img${add_attribute("src", user$1.photoURL, 0)}${add_attribute("alt", user$1.displayName, 0)} class="svelte-m9hsyy"></button>
+		${``}` : ``}
 </div>`;
     });
     css$3 = {
@@ -74303,25 +74303,30 @@ ${`${slots.default ? slots.default({}) : `
       )}`;
     });
     css$2 = {
-      code: ".mtl.svelte-yf2939{line-height:4}p.svelte-yf2939{margin:1em 0}",
+      code: ".mtl.svelte-1myg23t{line-height:4}p.svelte-1myg23t{margin:1em 0}",
       map: null
     };
     Teaser = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       $$result.css.add(css$2);
-      return `${$$result.head += `<!-- HEAD_svelte-htaddw_START -->${$$result.title = `<title>MedTimeLog Helps with Timely Medication Tracking</title>`, ""}<meta name="description" content="MedTimeLog helps you track your med usage and the meds of those that you care for."><link rel="canonical" href="https://medtimelog.com/"><!-- HEAD_svelte-htaddw_END -->`, ""}
+      return `${$$result.head += `<!-- HEAD_svelte-gu5hch_START -->${$$result.title = `<title>MedTimeLog Helps with Timely Medication Tracking</title>`, ""}<meta name="description" content="MedTimeLog helps you track your med usage and the meds of those that you care for."><link rel="canonical" href="https://medtimelog.com/"><!-- HEAD_svelte-gu5hch_END -->`, ""}
 
-<div class="mtl text-center my-6 max-w-[62ch] mx-auto svelte-yf2939"><p class="text-[1.1em] svelte-yf2939">MedTimeLog helps you track your med usage and the medication usage of those that you care for; caregivers can easily share realtime medication delivery.</p>
+<div class="mtl text-center my-6 max-w-[62ch] mx-auto svelte-1myg23t"><p class="text-[1.1em] svelte-1myg23t">MedTimeLog helps you track your med usage and the medication usage of those
+		that you care for; caregivers can easily share realtime medication delivery.
+	</p>
 </div>`;
     });
     css$1 = {
-      code: ".mtl.svelte-yf2939{line-height:4}p.svelte-yf2939{margin:1em 0}",
+      code: ".mtl.svelte-1myg23t{line-height:4}p.svelte-1myg23t{margin:1em 0}",
       map: null
     };
     Why = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       $$result.css.add(css$1);
-      return `${$$result.head += `<!-- HEAD_svelte-htaddw_START -->${$$result.title = `<title>MedTimeLog Helps with Timely Medication Tracking</title>`, ""}<meta name="description" content="MedTimeLog helps you track your med usage and the meds of those that you care for."><link rel="canonical" href="https://medtimelog.com/"><!-- HEAD_svelte-htaddw_END -->`, ""}
+      return `${$$result.head += `<!-- HEAD_svelte-gu5hch_START -->${$$result.title = `<title>MedTimeLog Helps with Timely Medication Tracking</title>`, ""}<meta name="description" content="MedTimeLog helps you track your med usage and the meds of those that you care for."><link rel="canonical" href="https://medtimelog.com/"><!-- HEAD_svelte-gu5hch_END -->`, ""}
 
-<div class="mtl text-center my-6 max-w-[62ch] mx-auto svelte-yf2939"><p class="text-[0.9em] svelte-yf2939">Because giving our <em>inherited glaucoma</em> cat needed 6 drops of 3 medications each day was too complicated to share with ease, I created this App to keep us coordinated.</p>
+<div class="mtl text-center my-6 max-w-[62ch] mx-auto svelte-1myg23t"><p class="text-[0.9em] svelte-1myg23t">Because giving our <em>inherited glaucoma</em> cat needed 6 drops of 3 medications
+		each day was too complicated to share with ease, I created this App to keep us
+		coordinated.
+	</p>
 </div>`;
     });
     css = {
@@ -74350,7 +74355,7 @@ ${`${slots.default ? slots.default({}) : `
 			<div class="mustlogin svelte-3bsbfv"><h2>Login Required</h2>
 				${validate_component(LoginComponent, "LoginComponent").$$render($$result, {}, {}, {})}</div>
 			${validate_component(Why, "Why").$$render($$result, {}, {}, {})}`}`}</main>
-		
+
 	<footer class="svelte-3bsbfv"><p>By <a href="https://taocode.com">TAOCODE</a></p></footer>
 </div>`;
     });
@@ -74377,9 +74382,9 @@ var init__ = __esm({
     init_layout_server_ts();
     index = 0;
     component = async () => (await Promise.resolve().then(() => (init_layout_svelte(), layout_svelte_exports))).default;
-    file = "_app/immutable/components/pages/_layout.svelte-a45f8ef9.js";
-    imports = ["_app/immutable/components/pages/_layout.svelte-a45f8ef9.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/stores-5b8fd2c2.js", "_app/immutable/chunks/singletons-5aa3dc7d.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/user-2df2436d.js", "_app/immutable/modules/pages/_layout.ts-007ffdb7.js", "_app/immutable/chunks/_layout-32a0c93b.js"];
-    stylesheets = ["_app/immutable/assets/_layout-a21a18e0.css"];
+    file = "_app/immutable/components/pages/_layout.svelte-abf24a28.js";
+    imports = ["_app/immutable/components/pages/_layout.svelte-abf24a28.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/stores-5b8fd2c2.js", "_app/immutable/chunks/singletons-5aa3dc7d.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/user-2df2436d.js", "_app/immutable/modules/pages/_layout.ts-007ffdb7.js", "_app/immutable/chunks/_layout-32a0c93b.js"];
+    stylesheets = ["_app/immutable/assets/_layout-5a283ae6.css"];
     fonts = ["_app/immutable/assets/fira-mono-cyrillic-ext-400-normal-3df7909e.woff2", "_app/immutable/assets/fira-mono-all-400-normal-1e3b098c.woff", "_app/immutable/assets/fira-mono-cyrillic-400-normal-c7d433fd.woff2", "_app/immutable/assets/fira-mono-greek-ext-400-normal-9e2fe623.woff2", "_app/immutable/assets/fira-mono-greek-400-normal-a8be01ce.woff2", "_app/immutable/assets/fira-mono-latin-ext-400-normal-6bfabd30.woff2", "_app/immutable/assets/fira-mono-latin-400-normal-e43b3538.woff2"];
   }
 });
@@ -74463,7 +74468,7 @@ var init_page_svelte = __esm({
     init_dist2();
     init_user();
     css2 = {
-      code: "section.svelte-1tu2315{display:flex;flex-direction:column;justify-content:flex-start;align-items:center;flex:0.6}",
+      code: "section.svelte-1k9anz9{display:flex;flex-direction:column;justify-content:flex-start;align-items:center;flex:0.6}",
       map: null
     };
     Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -74475,12 +74480,12 @@ var init_page_svelte = __esm({
       recipients = data.recipients;
       return `${$$result.head += `<!-- HEAD_svelte-uidbj8_START -->${$$result.title = `<title>Home</title>`, ""}<meta name="description" content="Track and Log medication use"><!-- HEAD_svelte-uidbj8_END -->`, ""}
 
-<section class="svelte-1tu2315"><h2>Recipient?</h2>
+<section class="svelte-1k9anz9"><h2>Recipient?</h2>
 
-<div class="flex flex-wrap justify-center gap-2">${recipients.length ? each(recipients, (r3) => {
-        return `<div><a class="btn btn-primary"${add_attribute("href", `/recipient/?id=${r3.id}`, 0)}>${escape(r3.displayName)}</a></div>`;
+	<div class="flex flex-wrap justify-center gap-2">${recipients.length ? each(recipients, (r3) => {
+        return `<div><a class="btn btn-primary"${add_attribute("href", `/recipient/?id=${r3.id}`, 0)}>${escape(r3.displayName)}</a>
+			</div>`;
       }) : `Loading...`}</div>
-
 </section>`;
     });
   }
@@ -74504,9 +74509,9 @@ var init__3 = __esm({
     init_page_ts();
     index3 = 2;
     component3 = async () => (await Promise.resolve().then(() => (init_page_svelte(), page_svelte_exports))).default;
-    file3 = "_app/immutable/components/pages/_page.svelte-f2099938.js";
-    imports3 = ["_app/immutable/components/pages/_page.svelte-f2099938.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/user-2df2436d.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/modules/pages/_page.ts-49165f47.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/_page-f67e8c47.js"];
-    stylesheets3 = ["_app/immutable/assets/_page-e6cda968.css", "_app/immutable/assets/Recipient-4822d5ba.css"];
+    file3 = "_app/immutable/components/pages/_page.svelte-441548e4.js";
+    imports3 = ["_app/immutable/components/pages/_page.svelte-441548e4.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/user-2df2436d.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/modules/pages/_page.ts-49165f47.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/_page-f67e8c47.js"];
+    stylesheets3 = ["_app/immutable/assets/_page-059e2fae.css", "_app/immutable/assets/Recipient-ea51cb2b.css"];
     fonts3 = [];
   }
 });
@@ -74815,7 +74820,11 @@ function formatTimestampShortDate(ts) {
 }
 function formatTimestampMedDate(ts) {
   const dtm = ts.toDate();
-  return dtm.toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" });
+  return dtm.toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric"
+  });
 }
 function twJoin() {
   var index6 = 0;
@@ -77776,7 +77785,7 @@ var init_page_svelte3 = __esm({
 `;
     });
     css$12 = {
-      code: "table.svelte-12mqtbk.svelte-12mqtbk{min-width:30ch;margin:0 auto;border-collapse:separate;border-spacing:0 0.6em;--br:0.5rem}tr.svelte-12mqtbk.svelte-12mqtbk{background-color:var(--bg);color:var(--color)}td.svelte-12mqtbk.svelte-12mqtbk{padding:0.25rem 0.5rem}td.svelte-12mqtbk.svelte-12mqtbk:first-child{border-top-left-radius:var(--br);border-bottom-left-radius:var(--br)}.count.svelte-12mqtbk.svelte-12mqtbk{padding-right:0}.total.svelte-12mqtbk.svelte-12mqtbk{padding-left:0}.count.svelte-12mqtbk.svelte-12mqtbk::after{content:'/';font-size:0.75em;display:inline-block;padding:0 0.25em}td.svelte-12mqtbk.svelte-12mqtbk:last-child{border-top-right-radius:var(--br);border-bottom-right-radius:var(--br)}.date-col.svelte-12mqtbk.svelte-12mqtbk{text-align:right}td.svelte-12mqtbk button.svelte-12mqtbk{color:transparent;background-color:transparent;padding:0 0.2em}tr.svelte-12mqtbk:hover td button.svelte-12mqtbk{color:white;background:var(--color-remove,darkred)}",
+      code: "table.svelte-1vv7x5f.svelte-1vv7x5f{min-width:30ch;margin:0 auto;border-collapse:separate;border-spacing:0 0.6em;--br:0.5rem}tr.svelte-1vv7x5f.svelte-1vv7x5f{background-color:var(--bg);color:var(--color)}td.svelte-1vv7x5f.svelte-1vv7x5f{padding:0.25rem 0.5rem}td.svelte-1vv7x5f.svelte-1vv7x5f:first-child{border-top-left-radius:var(--br);border-bottom-left-radius:var(--br)}.count.svelte-1vv7x5f.svelte-1vv7x5f{padding-right:0}.total.svelte-1vv7x5f.svelte-1vv7x5f{padding-left:0}.count.svelte-1vv7x5f.svelte-1vv7x5f::after{content:'/';font-size:0.75em;display:inline-block;padding:0 0.25em}td.svelte-1vv7x5f.svelte-1vv7x5f:last-child{border-top-right-radius:var(--br);border-bottom-right-radius:var(--br)}.date-col.svelte-1vv7x5f.svelte-1vv7x5f{text-align:right}td.svelte-1vv7x5f button.svelte-1vv7x5f{color:transparent;background-color:transparent;padding:0 0.2em}tr.svelte-1vv7x5f:hover td button.svelte-1vv7x5f{color:white;background:var(--color-remove, darkred)}",
       map: null
     };
     DayTimeLog = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -77810,27 +77819,29 @@ var init_page_svelte3 = __esm({
         $$settled = true;
         dailyTotal = medications.reduce((p2, c) => p2 + c.schedule.length, 0);
         daysCount = dayTimeLog.length;
-        $$rendered = `<h3><span class="count svelte-12mqtbk">${escape(daysCount)}</span><span class="total svelte-12mqtbk">${escape(dailyTotal)}</span> ${escape(dayName)}:</h3>
-<table class="svelte-12mqtbk">${each(dayTimeLog, (L, i) => {
+        $$rendered = `<h3><span class="count svelte-1vv7x5f">${escape(daysCount)}</span><span class="total svelte-1vv7x5f">${escape(dailyTotal)}</span>
+	${escape(dayName)}:
+</h3>
+<table class="svelte-1vv7x5f">${each(dayTimeLog, (L, i) => {
           return `<tr${add_attribute(
             "style",
             `--bg: ${colors[L.medicationIndex]};
 			--color: ${readableColor(colors[L.medicationIndex])}`,
             0
-          )} class="svelte-12mqtbk"><td class="count svelte-12mqtbk">${escape(findDaysCount(L.medicationIndex, L.dispensed))}</td>
-				<td class="total svelte-12mqtbk">${escape(medications[L.medicationIndex].schedule.length)}</td>
-				<td class="svelte-12mqtbk">${escape(medications[L.medicationIndex].displayName)}</td>
-				<td class="date-col svelte-12mqtbk">${escape(formatTimestampLong(L.dispensed))}</td>
-				${allowEdit ? `<td class="svelte-12mqtbk"><form method="POST" action="/recipient?/remove"${add_attribute("data-summary", `${medications[L.medicationIndex].displayName} at ${formatTimestampLong(L.dispensed)}`, 0)}><input type="hidden" name="rid"${add_attribute("value", recipientid, 0)}>
+          )} class="svelte-1vv7x5f"><td class="count svelte-1vv7x5f">${escape(findDaysCount(L.medicationIndex, L.dispensed))}</td>
+			<td class="total svelte-1vv7x5f">${escape(medications[L.medicationIndex].schedule.length)}</td>
+			<td class="svelte-1vv7x5f">${escape(medications[L.medicationIndex].displayName)}</td>
+			<td class="date-col svelte-1vv7x5f">${escape(formatTimestampLong(L.dispensed))}</td>
+			${allowEdit ? `<td class="svelte-1vv7x5f"><form method="POST" action="/recipient?/remove"${add_attribute("data-summary", `${medications[L.medicationIndex].displayName} at ${formatTimestampLong(L.dispensed)}`, 0)}><input type="hidden" name="rid"${add_attribute("value", recipientid, 0)}>
 						<input type="hidden" name="did"${add_attribute("value", L.dispenserid, 0)}>
 						<input type="hidden" name="entryTime"${add_attribute("value", L.dispensed.toMillis(), 0)}>
 						<input type="hidden" name="medicationIndex"${add_attribute("value", L.medicationIndex, 0)}>
-						<button class="confirm svelte-12mqtbk"><div class="i-fe-trash"></div>
+						<button class="confirm svelte-1vv7x5f"><div class="i-fe-trash"></div>
 						</button></form>
 				</td>` : ``}
-			</tr>`;
+		</tr>`;
         })}</table>
-	${validate_component(Modal, "Modal").$$render(
+${validate_component(Modal, "Modal").$$render(
           $$result,
           {
             title: "Remove?",
@@ -77850,16 +77861,16 @@ var init_page_svelte3 = __esm({
                   return `Yes, remove`;
                 }
               })}
-			${validate_component(Button, "Button").$$render($$result, { color: "alternative" }, {}, {
+		${validate_component(Button, "Button").$$render($$result, { color: "alternative" }, {}, {
                 default: () => {
                   return `No thanks`;
                 }
               })}
-		`;
+	`;
             },
             default: () => {
               return `<span class="strike">${escape(rmDetails)}</span>?
-		`;
+	`;
             }
           }
         )}`;
@@ -77867,7 +77878,7 @@ var init_page_svelte3 = __esm({
       return $$rendered;
     });
     css3 = {
-      code: ".show-recipient.svelte-7tqb7w.svelte-7tqb7w{text-align:center}button.svelte-7tqb7w.svelte-7tqb7w{background-color:var(--bg);color:var(--color);border:0;padding:0.2em 0.5em;border-radius:0.2rem}.days-summary.svelte-7tqb7w.svelte-7tqb7w{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:0.5rem}.day-summary.svelte-7tqb7w.svelte-7tqb7w{background-color:#555;padding:0.3em 0.4em;color:white;line-height:1.2;transition:all 200ms ease}.day-summary.svelte-7tqb7w.svelte-7tqb7w:hover{background-color:var(--color-theme-1,red)}.day-summary.svelte-7tqb7w .count.svelte-7tqb7w{font-size:1.3em}.day-summary.svelte-7tqb7w .date.svelte-7tqb7w{font-size:0.8em}",
+      code: ".show-recipient.svelte-9w1a81.svelte-9w1a81{text-align:center}button.svelte-9w1a81.svelte-9w1a81{background-color:var(--bg);color:var(--color);border:0;padding:0.2em 0.5em;border-radius:0.2rem}.days-summary.svelte-9w1a81.svelte-9w1a81{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:0.5rem}.day-summary.svelte-9w1a81.svelte-9w1a81{background-color:#555;padding:0.3em 0.4em;color:white;line-height:1.2;transition:all 200ms ease}.day-summary.svelte-9w1a81.svelte-9w1a81:hover{background-color:var(--color-theme-1, red)}.day-summary.svelte-9w1a81 .count.svelte-9w1a81{font-size:1.3em}.day-summary.svelte-9w1a81 .date.svelte-9w1a81{font-size:0.8em}",
       map: null
     };
     Recipient = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -77891,7 +77902,7 @@ var init_page_svelte3 = __esm({
             ({ id: id2, displayName, medications, timeLog } = recipient);
         }
       }
-      timeLogByDay = timeLog.reduce(
+      timeLogByDay = timeLog.sort((a, b) => a.dispensed.toMillis() - b.dispensed.toMillis()).reduce(
         (p2, L, i) => {
           const entryDay = L.dispensed?.toDate();
           entryDay.setHours(0, 0, 0, 0);
@@ -77911,11 +77922,11 @@ var init_page_svelte3 = __esm({
       todayTimeLog = timeLog.filter((L) => L.dispensed.toDate() > today);
       pastTimeLog = timeLogByDay.filter((DL) => DL[0].dispensed.toDate() < today);
       $$unsubscribe_user();
-      return `<div class="show-recipient svelte-7tqb7w"><h2>${escape(displayName)}</h2>
+      return `<div class="show-recipient svelte-9w1a81"><h2>${escape(displayName)}</h2>
 	<div class="my-3"><form class="flex flex-wrap justify-center gap-2" method="POST" action="/recipient?/dispense"><input type="hidden" name="did"${add_attribute("value", $user.uid, 0)}>
 			<input type="hidden" name="rid"${add_attribute("value", id2, 0)}>
 			${each(medications, (m, i) => {
-        return `<button name="medicationIndex"${add_attribute("value", i, 0)}${add_attribute("style", `--bg: ${colors[i]}; --color: ${readableColor(colors[i])};`, 0)} class="svelte-7tqb7w">${escape(m.displayName)}</button>`;
+        return `<button name="medicationIndex"${add_attribute("value", i, 0)}${add_attribute("style", `--bg: ${colors[i]}; --color: ${readableColor(colors[i])};`, 0)} class="svelte-9w1a81">${escape(m.displayName)}</button>`;
       })}</form></div>
 	${todayTimeLog.length ? `${validate_component(DayTimeLog, "DayTimeLog").$$render(
         $$result,
@@ -77929,10 +77940,10 @@ var init_page_svelte3 = __esm({
         {}
       )}` : ``}
 	<h3>Past ${escape(pastTimeLog.length)} Days:</h3>
-	<div class="days-summary svelte-7tqb7w">${each(pastTimeLog, (L, n) => {
-        return `<button class="day-summary rounded svelte-7tqb7w"><div class="count svelte-7tqb7w">${escape(L.length)}</div>
-			<div class="date svelte-7tqb7w">${escape(formatTimestampShortDate(L[0].dispensed))}</div>
-		</button>`;
+	<div class="days-summary svelte-9w1a81">${each(pastTimeLog, (L, n) => {
+        return `<button class="day-summary rounded svelte-9w1a81"><div class="count svelte-9w1a81">${escape(L.length)}</div>
+				<div class="date svelte-9w1a81">${escape(formatTimestampShortDate(L[0].dispensed))}</div>
+			</button>`;
       })}</div>
 	${pastTimeLogDetail.length ? `<div class="pastLogDetail">${validate_component(DayTimeLog, "DayTimeLog").$$render(
         $$result,
@@ -77985,9 +77996,9 @@ var init__5 = __esm({
     init_page_server_ts();
     index5 = 5;
     component5 = async () => (await Promise.resolve().then(() => (init_page_svelte3(), page_svelte_exports3))).default;
-    file5 = "_app/immutable/components/pages/recipient/_page.svelte-78ddb840.js";
-    imports5 = ["_app/immutable/components/pages/recipient/_page.svelte-78ddb840.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/user-2df2436d.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/modules/pages/recipient/_page.ts-830e560d.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/_page-7b1cd9a0.js"];
-    stylesheets5 = ["_app/immutable/assets/Recipient-4822d5ba.css"];
+    file5 = "_app/immutable/components/pages/recipient/_page.svelte-4f79f9ce.js";
+    imports5 = ["_app/immutable/components/pages/recipient/_page.svelte-4f79f9ce.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/user-2df2436d.js", "_app/immutable/chunks/index-8a78a84d.js", "_app/immutable/modules/pages/recipient/_page.ts-830e560d.js", "_app/immutable/chunks/languageCodes-c1eb52c6.js", "_app/immutable/chunks/_page-7b1cd9a0.js"];
+    stylesheets5 = ["_app/immutable/assets/Recipient-ea51cb2b.css"];
     fonts5 = [];
   }
 });
@@ -78065,7 +78076,7 @@ ${components[1] ? `${validate_component(components[0] || missing_component, "sve
 ${``}`;
 });
 set_paths({ "base": "", "assets": "" });
-set_version("1693271636505");
+set_version("1694059762784");
 var options = {
   csp: { "mode": "auto", "directives": { "upgrade-insecure-requests": false, "block-all-mixed-content": false }, "reportOnly": { "upgrade-insecure-requests": false, "block-all-mixed-content": false } },
   csrf_check_origin: true,
@@ -78076,7 +78087,7 @@ var options = {
   root: Root,
   service_worker: false,
   templates: {
-    app: ({ head, body, assets: assets2, nonce }) => '<!DOCTYPE html>\r\n<html lang="en">\r\n	<head>\r\n		<meta charset="utf-8" />\r\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\r\n		<meta name="viewport" content="width=device-width" />\r\n		' + head + '\r\n	</head>\r\n	<body data-sveltekit-preload-data="hover">\r\n		<div style="display: contents">' + body + "</div>\r\n	</body>\r\n</html>\r\n",
+    app: ({ head, body, assets: assets2, nonce }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\n		<meta name="viewport" content="width=device-width" />\n		' + head + '\n	</head>\n	<body data-sveltekit-preload-data="hover">\n		<div style="display: contents">' + body + "</div>\n	</body>\n</html>\n",
     error: ({ status, message }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<title>' + message + `</title>
 
 		<style>
@@ -81331,7 +81342,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "favicon.svg", "old-favicon.png", "old-favicon.svg", "robots.txt"]),
   mimeTypes: { ".png": "image/png", ".svg": "image/svg+xml", ".txt": "text/plain" },
   _: {
-    entry: { "file": "_app/immutable/start-11d2c6e7.js", "imports": ["_app/immutable/start-11d2c6e7.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/singletons-5aa3dc7d.js", "_app/immutable/chunks/index-8a78a84d.js"], "stylesheets": [], "fonts": [] },
+    entry: { "file": "_app/immutable/start-2eb50371.js", "imports": ["_app/immutable/start-2eb50371.js", "_app/immutable/chunks/index-c8402f5f.js", "_app/immutable/chunks/singletons-5aa3dc7d.js", "_app/immutable/chunks/index-8a78a84d.js"], "stylesheets": [], "fonts": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),

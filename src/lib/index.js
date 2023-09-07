@@ -1,4 +1,4 @@
-const rc = () => Math.floor(Math.random()*255)
+const rc = () => Math.floor(Math.random() * 255)
 export function randomColor() {
 	return `rgb(${rc()},${rc()},${rc()})`
 }
@@ -8,9 +8,13 @@ export function formatTimestampLong(ts) {
 }
 export function formatTimestampShortDate(ts) {
 	const dtm = ts.toDate()
-	return dtm.toLocaleDateString('en-US',{day: 'numeric', month: 'numeric'})
+	return dtm.toLocaleDateString('en-US', { day: 'numeric', month: 'numeric' })
 }
 export function formatTimestampMedDate(ts) {
 	const dtm = ts.toDate()
-	return dtm.toLocaleDateString('en-US',{day: 'numeric', month: 'long', year: 'numeric'})
+	return dtm.toLocaleDateString('en-US', {
+		day: 'numeric',
+		month: 'long',
+		year: 'numeric',
+	})
 }

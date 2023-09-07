@@ -11,23 +11,21 @@
 	import './styles.css'
 
 	import { page } from '$app/stores'
-  import { authState } from 'sveltefirets'
-  import { user as userStore } from '$lib/user'
-	import Teaser from '$lib/components/Teaser.svelte';
-	import Why from '$lib/components/Why.svelte';
-  $: authNotInited = $authState === undefined
-  $: userDataFromCookie = $page.data?.user
-  $: user = $userStore || (authNotInited && userDataFromCookie) || null
-
+	import { authState } from 'sveltefirets'
+	import { user as userStore } from '$lib/user'
+	import Teaser from '$lib/components/Teaser.svelte'
+	import Why from '$lib/components/Why.svelte'
+	$: authNotInited = $authState === undefined
+	$: userDataFromCookie = $page.data?.user
+	$: user = $userStore || (authNotInited && userDataFromCookie) || null
 </script>
 
 <div class="app">
 	<Header />
 	<main>
-{#if $authState === undefined}
-  <div class="text-center">Loading...</div>
-{:else}
-  {#if user}
+		{#if $authState === undefined}
+			<div class="text-center">Loading...</div>
+		{:else if user}
 			<slot />
 		{:else}
 			<Teaser />
@@ -37,9 +35,8 @@
 			</div>
 			<Why />
 		{/if}
-	{/if}
-</main>
-		
+	</main>
+
 	<footer>
 		<p>By <a href="https://taocode.com">TAOCODE</a></p>
 	</footer>

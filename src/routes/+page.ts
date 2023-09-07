@@ -7,8 +7,8 @@ import { getCollection } from 'sveltefirets'
 // import type { IMessage } from '$lib/message.interface'
 import type { PageLoad } from './$types'
 export const load: PageLoad = async () => {
-  const recipients = await getCollection(`recipients`)
-  // console.log('loaded', {recipients})
-  return { recipients }
+	const recipients = await getCollection(`recipients`)
+	// console.log('loaded', {recipients})
+	return { recipients }
 }
 // collectionStore(firestore,'recipients')
