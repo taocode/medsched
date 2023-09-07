@@ -19,8 +19,10 @@
 // console.log({user},$user)
 const today = new Date()
 today.setHours(0,0,0,0)
-
-$: timeLogByDay = timeLog.reduce((p,L,i) => {
+// const thing = new Timestamp()
+$: timeLogByDay = timeLog
+	.sort((a,b) => a.dispensed.toMillis() - b.dispensed.toMillis())
+	.reduce((p,L,i) => {
 	const entryDay = L.dispensed?.toDate()
 	entryDay.setHours(0,0,0,0)
 	let lastDay = p[p.length-1]
