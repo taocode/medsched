@@ -25,7 +25,6 @@
 	today.setHours(0, 0, 0, 0)
 	// const thing = new Timestamp()
 	$: timeLogByDay = timeLog
-		.sort((a, b) => a.dispensed.toMillis() - b.dispensed.toMillis())
 		.reduce(
 			(p, L, i) => {
 				const entryDay = L.dispensed?.toDate()

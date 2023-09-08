@@ -13,4 +13,4 @@ package-lock.json
 yarn.lock
 
 # ssrServer is output
-functions/ssrServer
+functions/ssrServer/*

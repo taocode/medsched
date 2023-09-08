@@ -30,11 +30,14 @@ export const actions = {
 		const doc = await getDocument(`/recipients/${recipientid}`)
 		// const timeLog = doc.timeLog
 		// console.log('good to remove:',{recipientid, docData})
-		const timeLog = doc.timeLog.filter(
-			L =>
-				L.dispensed.toMillis() !== entryTime &&
-				L.medicationIndex !== medicationIndex
-		)
+		const timeLog = doc.timeLog
+			.filter(
+				L =>
+					L.dispensed.toMillis() !== entryTime &&
+					L.medicationIndex !== medicationIndex
+			)
+			// correct the order according to date
+			.sort((a, b) => a.dispensed.toMillis() - b.dispensed.toMillis())
 		// console.log('removing entry from timelog',doc.timeLog.length, timeLog.length)
 		update(`recipients/${recipientid}`, { timeLog })
 		throw redirect(302, `/recipient?id=${recipientid}`)
