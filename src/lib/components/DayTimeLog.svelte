@@ -21,7 +21,7 @@
 	}
 
 	const colors = medications.map(m => (m.color ? m.color : randomColor))
-	$: dailyTotal = medications.reduce((p, c) => p + c.schedule.length, 0)
+	$: dailyTotal = medications.reduce((p, c) => p + c.schedule?.length || 0, 0)
 	$: daysCount = dayTimeLog.length
 
 	let confirmRm = false
@@ -37,7 +37,7 @@
 </script>
 
 <h3>
-	<span class="count">{daysCount}</span><span class="total">{dailyTotal}</span>
+	<span class="count">{daysCount}</span>{#if dailyTotal}<span class="total">{dailyTotal}</span>{/if}
 	{dayName}:
 </h3>
 <table>
@@ -46,7 +46,7 @@
 			style={`--bg: ${colors[L.medicationIndex]};
 			--color: ${readableColor(colors[L.medicationIndex])}`}>
 			<td class="count">{findDaysCount(L.medicationIndex, L.dispensed)}</td>
-			<td class="total">{medications[L.medicationIndex].schedule.length}</td>
+			{#if medications[L.medicationIndex].schedule}<td class="total">{medications[L.medicationIndex].schedule.length}</td>{/if}
 			<td>{medications[L.medicationIndex].displayName}</td>
 			<td class="date-col">{formatTimestampLong(L.dispensed)} </td>
 			{#if allowEdit}
@@ -114,7 +114,7 @@
 	.total {
 		padding-left: 0;
 	}
-	.count::after {
+	.total::before {
 		content: '/';
 		font-size: 0.75em;
 		display: inline-block;
