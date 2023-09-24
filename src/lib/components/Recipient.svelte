@@ -1,5 +1,5 @@
 <script>
-	import { Timestamp } from 'firebase/firestore'
+	import { arrayUnion, Timestamp } from 'firebase/firestore'
 	import { fade } from 'svelte/transition'
 	// import { docStore, getFirebaseContext, userStore, collectionStore } from 'sveltefire'
 	// import { userStore, getFirebaseContext } from "sveltefire"
@@ -11,7 +11,9 @@
 		randomColor,
 	} from '$lib'
 
+	import { dispenseRecipientMedication } from '$lib/db'
 	import { user } from '$lib/user'
+	import { update } from 'sveltefirets'
 
 	export let recipient
 	let { id, displayName, medications, timeLog } = recipient
@@ -44,44 +46,33 @@
 			[[]]
 		)
 		.reverse()
-	$: todayTimeLog = timeLog.filter(L => L.dispensed.toDate() > today)
-	$: pastTimeLog = timeLogByDay.filter(DL => DL[0].dispensed.toDate() < today)
+	$: todayTimeLog = timeLog.filter(L => L.dispensed?.toDate() > today)
+	$: pastTimeLog = timeLogByDay.filter(DL => DL[0]?.dispensed?.toDate() < today)
 	let pastTimeLogDetail = []
 
-	async function logMed(medicationIndex) {
-		// const db = getFirestore()
-		console.log(id, medicationIndex)
-		timeLog.push({ medicationIndex, delivered: Timestamp.now() })
-		const newDoc = recipient
-		newDoc.timeLog = timeLog // necessary? unclear
-		recipient = undefined
-		setTimeout(() => (recipient = newDoc), 1)
-		// const res = await db.doc('/recipients/'+id).set(recipient)
-		// ds.
+	async function dispense(medicationIndex) {
+		return dispenseRecipientMedication($user.uid, recipient.id, medicationIndex)
 	}
 </script>
 
 <div class="show-recipient">
 	<h2>{displayName}</h2>
 	<div class="my-3">
-		<form
-			class="flex flex-wrap justify-center gap-2"
-			method="POST"
-			action="/recipient?/dispense">
-			<input type="hidden" name="did" value={$user.uid} />
-			<input type="hidden" name="rid" value={id} />
+		<div
+			class="flex flex-wrap justify-center gap-2">
 			{#each medications as m, i}
 				<button
 					name="medicationIndex"
 					value={i}
+					on:click|preventDefault={() => dispense(i) }
 					style={`--bg: ${colors[i]}; --color: ${readableColor(colors[i])};`}
 					>{m.displayName}</button>
 			{/each}
-		</form>
+		</div>
 	</div>
 	{#if todayTimeLog.length}
 		<DayTimeLog
-			recipientid={id}
+			recipient={recipient}
 			dayTimeLog={todayTimeLog}
 			{medications}
 			allowEdit={true} />

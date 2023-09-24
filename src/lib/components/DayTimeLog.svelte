@@ -2,9 +2,10 @@
 	import { formatTimestampLong, randomColor } from '$lib'
 	import { readableColor } from 'color2k'
 
-	import { Modal, Button, ButtonGroup } from 'flowbite-svelte'
+	import { Modal, Button } from 'flowbite-svelte'
+	import { removeTimeLogEntry } from '$lib/db'
 
-	export let recipientid
+	export let recipient
 	export let dayName = 'Today'
 	export let dayTimeLog = []
 	export let medications = []
@@ -25,11 +26,15 @@
 	$: daysCount = dayTimeLog.length
 
 	let confirmRm = false
-	let rmDetails = ''
-	let rmForm
-	function removeConfirm(event) {
-		rmForm = event.target
-		rmDetails = rmForm.dataset.summary
+	let rmSummary = ''
+	// let rmMedIndex = -1
+	let rmDispensedMillis = -1
+	function removeConfirm(dispensedMillis,summary) {
+		// rmForm = event.target
+		console.log('remove medindex:',summary)
+		// rmMedIndex = parseInt(medicationIndex)
+		rmDispensedMillis = dispensedMillis
+		rmSummary = summary
 		// console.log('remove?')
 		confirmRm = true
 		return false
@@ -51,39 +56,26 @@
 			<td class="date-col">{formatTimestampLong(L.dispensed)} </td>
 			{#if allowEdit}
 				<td>
-					<form
-						method="POST"
-						action="/recipient?/remove"
-						data-summary={`${
-							medications[L.medicationIndex].displayName
-						} at ${formatTimestampLong(L.dispensed)}`}
-						on:submit|preventDefault={removeConfirm}>
-						<input type="hidden" name="rid" value={recipientid} />
-						<input type="hidden" name="did" value={L.dispenserid} />
-						<input
-							type="hidden"
-							name="entryTime"
-							value={L.dispensed.toMillis()} />
-						<input
-							type="hidden"
-							name="medicationIndex"
-							value={L.medicationIndex} />
-						<button class="confirm">
+					<div>
+						<button class="confirm" 
+							on:click|preventDefault={()=>removeConfirm(L.dispensed.toMillis(),`${
+								medications[L.medicationIndex].displayName
+							} at ${formatTimestampLong(L.dispensed)}`)}>
 							<div class="i-fe-trash" />
 						</button>
-					</form>
+					</div>
 				</td>
 			{/if}
 		</tr>
 	{/each}
 </table>
 <Modal title="Remove?" autoclose bind:open={confirmRm}>
-	<span class="strike">{rmDetails}</span>?
+	<span class="strike">{rmSummary}</span>?
 	<svelte:fragment slot="footer">
 		<Button
 			color="red"
 			on:click={() => {
-				rmForm.submit()
+				removeTimeLogEntry(recipient, rmDispensedMillis)
 			}}>Yes, remove</Button>
 		<Button color="alternative">No thanks</Button>
 	</svelte:fragment>
