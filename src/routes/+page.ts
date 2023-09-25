@@ -8,7 +8,8 @@ import { getCollection } from 'sveltefirets'
 import type { PageLoad } from './$types'
 export const load: PageLoad = async () => {
 	const recipients = await getCollection(`recipients`)
+	const medications = await getCollection(`medications`)
 	// console.log('loaded', {recipients})
-	return { recipients }
+	return { recipients, medications }
 }
 // collectionStore(firestore,'recipients')

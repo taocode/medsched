@@ -15,6 +15,8 @@
 	export let data
 	let recipients = []
 	$: recipients = data.recipients
+	let medications = []
+	$: medications = data.medications
 </script>
 
 <svelte:head>
@@ -24,7 +26,6 @@
 
 <section>
 	<h2>Recipient?</h2>
-
 	<div class="flex flex-wrap justify-center gap-2">
 		{#each recipients as r}
 			<div>
@@ -32,8 +33,18 @@
 					>{r.displayName}</a>
 			</div>
 		{:else}
-			Loading...
+			Loading Recipients...
 		{/each}
+	</div>
+	<h2>Medication?</h2>
+	<div class="flex flex-wrap justify-center gap-2">
+		<div>
+			{#each medications as m}
+				<a class="btn btn-primary" href={`/medication/?id=${m.id}`}
+					>{m.displayName}</a>
+			{/each}
+			<a class="btn btn-primary" href="/medication/?id=add"><div class="i-feather-plus">Add Medication</div></a>
+		</div>
 	</div>
 </section>
 
