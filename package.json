@@ -11,11 +11,10 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
-		"@fontsource/fira-mono": "^4.5.10",
 		"@iconify-json/fe": "^1.1.7",
 		"@neoconfetti/svelte": "^1.0.0",
-		"@sveltejs/adapter-static": "^1.0.0",
-		"@sveltejs/kit": "1.1.1",
+		"@sveltejs/adapter-static": "^2.0.3",
+		"@sveltejs/kit": "^1.22.0",
 		"@types/cookie": "^0.5.2",
 		"@unocss/extractor-svelte": "^0.56.1",
 		"@unocss/reset": "^0.56.1",
