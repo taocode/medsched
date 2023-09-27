@@ -10,14 +10,16 @@
 	import 'uno.css'
 	import './styles.css'
 
-	import { page } from '$app/stores'
+	// import { page } from '$app/stores'
 	import { authState } from 'sveltefirets'
 	import { user as userStore } from '$lib/user'
 	import Teaser from '$lib/components/Teaser.svelte'
 	import Why from '$lib/components/Why.svelte'
+	export let data
 	$: authNotInited = $authState === undefined
-	$: userDataFromCookie = $page.data?.user
+	$: userDataFromCookie = data?.user || null
 	$: user = $userStore || (authNotInited && userDataFromCookie) || null
+	// $: user = $userStore || null
 </script>
 
 <div class="app">

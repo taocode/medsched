@@ -10,7 +10,7 @@
 	$: {
 		recipientId = $page.url.searchParams.get('id')
 		recipient = docStore(`recipients/${recipientId}`)
-		console.log({recipientId},recipient)
+		// console.log({recipientId},recipient)
 		// ({recipient} = data)
 		// console.log({ recipient })
 
