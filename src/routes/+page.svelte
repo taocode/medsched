@@ -28,7 +28,7 @@
 	<div class="flex flex-wrap justify-center gap-2">
 		{#each recipients as r}
 			<div>
-				<a class="btn btn-primary" href={`/recipient/?id=${r.id}`}
+				<a class="btn btn-primary" href={`/recipient?id=${r.id}`}
 					>{r.displayName}</a>
 			</div>
 		{:else}
