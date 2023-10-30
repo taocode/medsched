@@ -15,6 +15,7 @@
 		"@neoconfetti/svelte": "^1.0.0",
 		"@sveltejs/adapter-static": "^2.0.3",
 		"@sveltejs/kit": "^1.25.2",
+		"@sveltejs/pancake": "^0.0.18",
 		"@types/cookie": "^0.5.2",
 		"@unocss/extractor-svelte": "^0.56.5",
 		"@unocss/reset": "^0.56.5",
