@@ -58,6 +58,14 @@
 				<td>
 					<div>
 						<button class="confirm" 
+							on:click|preventDefault={()=>editConfirm(L.dispensed.toMillis(),`${
+								medications[L.medicationIndex].displayName
+							} at ${formatTimestampLong(L.dispensed)}`)}>
+							<div class="i-fe-trash" />
+						</button>
+					</div>
+					<div>
+						<button class="confirm" 
 							on:click|preventDefault={()=>removeConfirm(L.dispensed.toMillis(),`${
 								medications[L.medicationIndex].displayName
 							} at ${formatTimestampLong(L.dispensed)}`)}>

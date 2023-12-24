@@ -2,6 +2,7 @@
 	import { page } from '$app/stores'
 	import { authState, logOut } from 'sveltefirets'
 	import { user as userStore } from '$lib/user'
+	import { LightSwitch } from '@skeletonlabs/skeleton'
 	$: authNotInited = $authState === undefined
 	$: userDataFromCookie = $page.data?.user
 	$: user = $userStore || (authNotInited && userDataFromCookie) || null
@@ -15,6 +16,9 @@
 			<img src={user.photoURL} alt={user.displayName} />
 		</button>
 		{#if show}
+			<div class="light-switch bg-gray-300 dark:bg-gray-600">
+				<LightSwitch />
+			</div>
 			<button title="Sign Out" class="signout" on:click={logOut}>
 				<div class="i-fe-logout" />
 			</button>
@@ -35,5 +39,8 @@
 	}
 	button {
 		background-color: transparent;
+	}
+	.light-switch {
+		@apply rounded-full h-6 self-center;
 	}
 </style>

@@ -1,4 +1,4 @@
-<script>
+<script lang='ts'>
 	// import { initializeApp } from 'firebase/app'
 	// import { getFirestore } from 'firebase/firestore'
 	// import { getAuth } from 'firebase/auth'
@@ -13,6 +13,11 @@
 	import { page } from '$app/stores'
 	import { authState } from 'sveltefirets'
 	import { user as userStore } from '$lib/user'
+	import '../app.postcss'
+
+	import { initializeStores, Modal, getModalStore, Toast, getToastStore } from '@skeletonlabs/skeleton'
+	// import type { ModalSettings, ModalComponent, ModalStore, ToastSettings, ToastStore } from '@skeletonlabs/skeleton'
+
 	import Teaser from '$lib/components/Teaser.svelte'
 	import Why from '$lib/components/Why.svelte'
 	$: authNotInited = $authState === undefined
@@ -35,6 +40,8 @@
 			</div>
 			<Why />
 		{/if}
+
+		
 	</main>
 
 	<footer>
@@ -59,7 +66,7 @@
 		padding: 0 1rem 1rem 1rem;
 		width: 100%;
 		max-width: 64rem;
-		margin: 0 auto;
+		margin: 1em auto;
 		box-sizing: border-box;
 	}
 

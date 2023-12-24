@@ -25,7 +25,7 @@
 <section>
 	<h2>Recipient?</h2>
 
-	<div class="flex flex-wrap justify-center gap-2">
+	<div class="flex flex-wrap justify-center gap-2 my-3">
 		{#each recipients as r}
 			<div>
 				<a class="btn btn-primary" href={`/recipient?id=${r.id}`}
