@@ -10,12 +10,11 @@ body {
 }
 
 
-.btn {
-	@apply uppercase py-1 px-2 rounded transition duration-200;
-	&:hover {
-		text-decoration: none;
-	}
-}
-.btn-primary {
-	@apply bg-green-700 text-white hover:bg-green-800;
+[data-theme='mtl-custom-theme'] {
+  background-image: radial-gradient(at 2% 1%, rgba(var(--color-secondary-800) / 0.33) 0px, transparent 50%),
+			radial-gradient(at 98% 1%, rgba(var(--color-tertiary-800) / 0.33) 0px, transparent 50%);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

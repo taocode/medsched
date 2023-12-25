@@ -64,8 +64,10 @@
 				<button
 					name="medicationIndex"
 					value={i}
+					class="btn"
 					on:click|preventDefault={() => dispense(i) }
 					style={`--bg: ${colors[i]}; --color: ${readableColor(colors[i])};`}
+					type="button"
 					>{m.displayName}</button>
 			{/each}
 		</div>
@@ -109,9 +111,6 @@
 	button {
 		background-color: var(--bg);
 		color: var(--color);
-		border: 0;
-		padding: 0.2em 0.5em;
-		border-radius: 0.2rem;
 	}
 	.days-summary {
 		display: flex;
