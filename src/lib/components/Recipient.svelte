@@ -85,7 +85,7 @@
 			{medications}
 			allowEdit={true} />
 	{/if}
-	<h3>Past {lastDaysCount} Days</h3>
+	<h3>{lastDaysTimeLog.length} of the Past {lastDaysCount} Days</h3>
 	<div class="days-summary">
 		{#each lastDaysTimeLog as L, n}
 			<button
@@ -108,7 +108,7 @@
 		{medications} />
 	</div>
 	{/if}
-	<h3>{pastTimeLog.length} total days in log</h3>
+	<h3>{pastTimeLog.length} Total Days in Log</h3>
 </div>
 
 <style>
