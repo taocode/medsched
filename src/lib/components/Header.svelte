@@ -4,6 +4,8 @@
 	import UserMenu from './UserMenu.svelte'
 	import SignInOut from '$lib/components/SignInOut.svelte'
 	// export let auth
+	
+	import { LightSwitch } from '@skeletonlabs/skeleton'
 </script>
 
 <header>
@@ -12,6 +14,9 @@
 			<HomeLink />
 		</div>
 		<div class="flex-grow" />
+		<div class="light-switch">
+			<LightSwitch />
+		</div>
 		<div class="corner user">
 			<UserMenu />
 		</div>
@@ -34,5 +39,8 @@
 	.corner {
 		width: auto;
 		/* height: 3em; */
+	}
+	.light-switch {
+		@apply mr-2 scale-[80%] mix-blend-overlay opacity-90;
 	}
 </style>

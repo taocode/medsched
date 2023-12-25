@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+html,
+body {
+	@apply h-full 
+	dark:bg-[#020202] dark:text-white;
+}
+
+
+.btn {
+	@apply uppercase py-1 px-2 rounded transition duration-200;
+	&:hover {
+		text-decoration: none;
+	}
+}
+.btn-primary {
+	@apply bg-green-700 text-white hover:bg-green-800;
+}

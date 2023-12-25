@@ -12,9 +12,12 @@
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
 	--color-remove: hsl(0, 95%, 37.3%);
+	--color-bg-3: rgba(255, 255, 255, 0.75);
+	--color-bg-4: rgba(255, 255, 255, 0);
 	font-family: var(--font-body);
 	color: var(--color-text);
 }
+
 
 body {
 	min-height: 100vh;
@@ -24,8 +27,8 @@ body {
 	background-size: 100vw 100vh;
 	background-image: radial-gradient(
 			50% 50% at 50% 50%,
-			rgba(255, 255, 255, 0.75) 0%,
-			rgba(255, 255, 255, 0) 100%
+			var(--color-bg-3) 0%,
+			var(--color-bg-4) 100%
 		),
 		linear-gradient(
 			180deg,
@@ -119,4 +122,12 @@ button:focus:not(:focus-visible) {
 	position: absolute;
 	width: 1px;
 	white-space: nowrap;
+}
+
+.dark {
+	--color-bg-0: hsl(208, 33%, 16%);
+	--color-bg-1: hsl(209, 36%, 14%);
+	--color-bg-2: hsl(224, 44%, 5%);
+	--color-bg-3: rgba(0, 0, 0, 0.75);
+	--color-bg-4: rgba(0, 0, 0, 0);
 }

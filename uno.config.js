@@ -11,15 +11,8 @@ export default defineConfig({
 			'primary-dark': 'var(--color-theme-1-dark,purple)',
 		},
 	},
-	shortcuts: [
-		{ btn: 'uppercase py-1 px-2 rounded transition duration-200' },
-		{
-			'btn-primary':
-				'bg-primary text-white hover:decoration-none hover:bg-primary-dark',
-		},
-	],
 	presets: [
-		presetUno(),
+		// presetUno(),
 		presetIcons({
 			extraProperties: {
 				display: 'inline-block',
@@ -30,9 +23,6 @@ export default defineConfig({
 		presetWebFonts({
 			provider: 'google',
 			fonts: {
-				// these will extend the default theme
-				// sans: 'Roboto',
-				mono: ['Fira Code', 'Fira Mono:400,700'],
 				sans: [
 					{
 						name: 'Kanit',
@@ -41,7 +31,6 @@ export default defineConfig({
 					},
 				],
 			},
-			// mono: ['Fira Code', 'Fira Mono:400,700'],
 		}),
 	],
 })
