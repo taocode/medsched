@@ -28,6 +28,9 @@ devDependencies:
   '@sveltejs/kit':
     specifier: ^1.25.2
     version: 1.30.3(svelte@3.59.2)(vite@4.5.1)
+  '@sveltejs/pancake':
+    specifier: ^0.0.18
+    version: 0.0.18
   '@types/cookie':
     specifier: ^0.6.0
     version: 0.6.0
@@ -1343,6 +1346,12 @@ packages:
       vite: 4.5.1
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@sveltejs/pancake@0.0.18:
+    resolution: {integrity: sha512-vnpKn+sHE0yvw/6x4juF9EoDS8iYC5JNIVtRgclA37rfxdnIpvbVxStiZ5/gWncjERN4jtSpTAplS1zCARCBXA==}
+    dependencies:
+      yootils: 0.0.16
     dev: true
 
   /@sveltejs/vite-plugin-svelte-inspector@1.0.4(@sveltejs/vite-plugin-svelte@2.5.3)(svelte@3.59.2)(vite@4.5.1):
@@ -3847,4 +3856,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     requiresBuild: true
+    dev: true
+
+  /yootils@0.0.16:
+    resolution: {integrity: sha512-aIVecm5ucOzwhtKbl0zkfg0ZSOUR9c2da0k8cIc9umjjzkvVCWUUX/UHZ1CLPsv4wmJLqt0aWeLB7p9n9JDwYQ==}
     dev: true
