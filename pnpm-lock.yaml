@@ -38,19 +38,19 @@ devDependencies:
     specifier: ^0.58.0
     version: 0.58.0
   color2k:
-    specifier: ^2.0.2
+    specifier: ^2.0.3
     version: 2.0.3
   eslint:
-    specifier: ^8.51.0
+    specifier: ^8.56.0
     version: 8.56.0
   eslint-config-prettier:
-    specifier: ^9.0.0
+    specifier: ^9.1.0
     version: 9.1.0(eslint@8.56.0)
   eslint-plugin-svelte:
-    specifier: ^2.34.0
+    specifier: ^2.35.1
     version: 2.35.1(eslint@8.56.0)(svelte@3.59.2)
   firebase:
-    specifier: ^9.21.0
+    specifier: ^9.23.0
     version: 9.23.0
   postcss-nesting:
     specifier: ^12.0.2
