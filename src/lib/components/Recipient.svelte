@@ -5,6 +5,7 @@
 	// import { userStore, getFirebaseContext } from "sveltefire"
 	import { readableColor } from 'color2k'
 	import DayTimeLog from './DayTimeLog.svelte'
+	// import ChartDispenseLog from './ChartDispenseLog.svelte'
 	import {
 		formatTimestampShortDate,
 		formatTimestampMedDate,
@@ -46,8 +47,13 @@
 			[[]]
 		)
 		.reverse()
+	const lastDaysCount = 14
+	const lastDaysDate = new Date(today.getTime() - lastDaysCount * 24 * 60 * 60 * 1000)
+	console.log({lastDaysDate})
 	$: todayTimeLog = timeLog.filter(L => L.dispensed?.toDate() > today)
 	$: pastTimeLog = timeLogByDay.filter(DL => DL[0]?.dispensed?.toDate() < today)
+	$: lastDaysTimeLog = timeLogByDay.filter(DL => 
+			(DL[0].dispensed?.toDate() < today && DL[0]?.dispensed?.toDate() > lastDaysDate) )
 	let pastTimeLogDetail = []
 
 	async function dispense(medicationIndex) {
@@ -79,9 +85,9 @@
 			{medications}
 			allowEdit={true} />
 	{/if}
-	<h3>Past {pastTimeLog.length} Days:</h3>
+	<h3>Past {lastDaysCount} Days</h3>
 	<div class="days-summary">
-		{#each pastTimeLog as L, n}
+		{#each lastDaysTimeLog as L, n}
 			<button
 				class="day-summary rounded"
 				on:click={() => {
@@ -94,14 +100,15 @@
 		{/each}
 	</div>
 	{#if pastTimeLogDetail.length}
-		<div class="pastLogDetail" in:fade>
-			<DayTimeLog
-				recipientid={id}
-				dayName={'on ' + formatTimestampMedDate(pastTimeLogDetail[0].dispensed)}
-				dayTimeLog={pastTimeLogDetail}
-				{medications} />
-		</div>
+	<div class="pastLogDetail" in:fade>
+		<DayTimeLog
+		recipientid={id}
+		dayName={'on ' + formatTimestampMedDate(pastTimeLogDetail[0].dispensed)}
+		dayTimeLog={pastTimeLogDetail}
+		{medications} />
+	</div>
 	{/if}
+	<h3>{pastTimeLog.length} total days in log</h3>
 </div>
 
 <style>
