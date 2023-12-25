@@ -1,6 +1,7 @@
 import { join } from 'path'
 import type { Config } from 'tailwindcss'
 import { skeleton } from '@skeletonlabs/tw-plugin'
+import { mtlCustomTheme } from './mtl-custom-theme'
 
 export default {
 	darkMode: 'class',
@@ -18,6 +19,9 @@ export default {
 	plugins: [
 		skeleton({
 			themes: {
+				custom: [
+					mtlCustomTheme
+				],
 				preset: [
 					{
 						name: 'skeleton',

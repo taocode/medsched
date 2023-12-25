@@ -1,8 +1,7 @@
-<script>
+<script lang='ts'>
 	import { formatTimestampLong, randomColor } from '$lib'
 	import { readableColor } from 'color2k'
 
-	import { Modal, Button } from 'flowbite-svelte'
 	import { removeTimeLogEntry } from '$lib/db'
 
 	export let recipient
@@ -11,6 +10,9 @@
 	export let medications = []
 	export let allowEdit = false
 
+	import { getModalStore } from '@skeletonlabs/skeleton'
+	const modalStore = getModalStore()
+							
 	function findDaysCount(medIndex, dispTS) {
 		// console.log({medIndex,dispTS})
 		return (
@@ -27,17 +29,21 @@
 
 	let confirmRm = false
 	let rmSummary = ''
-	// let rmMedIndex = -1
-	let rmDispensedMillis = -1
+
 	function removeConfirm(dispensedMillis,summary) {
 		// rmForm = event.target
 		console.log('remove medindex:',summary)
-		// rmMedIndex = parseInt(medicationIndex)
-		rmDispensedMillis = dispensedMillis
-		rmSummary = summary
-		// console.log('remove?')
-		confirmRm = true
-		return false
+		const modal: ModalSettings = {
+			backdropClasses: 'bg-primary-800',
+			type: 'confirm',
+			title: 'Please Confirm',
+			body:  `Remove ${summary}?`,
+			response: (r: boolean | undefined) => {
+				console.log('response:', r)
+				if (r) removeTimeLogEntry(recipient,dispensedMillis)
+			},
+		}
+		modalStore.trigger(modal)
 	}
 </script>
 
@@ -58,14 +64,6 @@
 				<td>
 					<div>
 						<button class="confirm" 
-							on:click|preventDefault={()=>editConfirm(L.dispensed.toMillis(),`${
-								medications[L.medicationIndex].displayName
-							} at ${formatTimestampLong(L.dispensed)}`)}>
-							<div class="i-fe-trash" />
-						</button>
-					</div>
-					<div>
-						<button class="confirm" 
 							on:click|preventDefault={()=>removeConfirm(L.dispensed.toMillis(),`${
 								medications[L.medicationIndex].displayName
 							} at ${formatTimestampLong(L.dispensed)}`)}>
@@ -77,17 +75,11 @@
 		</tr>
 	{/each}
 </table>
-<Modal title="Remove?" autoclose bind:open={confirmRm}>
-	<span class="strike">{rmSummary}</span>?
-	<svelte:fragment slot="footer">
-		<Button
-			color="red"
-			on:click={() => {
-				removeTimeLogEntry(recipient, rmDispensedMillis)
-			}}>Yes, remove</Button>
-		<Button color="alternative">No thanks</Button>
-	</svelte:fragment>
-</Modal>
+
+{#if $modalStore[0]}
+	<header>{$modalStore[0].title}</header>
+	<article>{$modalStore[0].body}</article>
+{/if}
 
 <style>
 	table {
