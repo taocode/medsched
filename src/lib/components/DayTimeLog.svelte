@@ -23,7 +23,7 @@
 		)
 	}
 
-	const colors = medications.map(m => (m.color ? m.color : randomColor))
+	const colors = medications.map(m => (m.color ? m.color : randomColor()))
 	$: dailyTotal = medications.reduce((p, c) => p + c.schedule?.length || 0, 0)
 	$: daysCount = dayTimeLog.length
 

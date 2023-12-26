@@ -1,55 +1,97 @@
 <script>
-  import * as Pancake from '@sveltejs/pancake';
+  import * as Pancake from '@sveltejs/pancake'
 
-  const points = [
-    { x: 0,  y: 0 },
-    { x: 1,  y: 1 },
-    { x: 2,  y: 4 },
-    { x: 3,  y: 9 },
-    { x: 4,  y: 16 },
-    { x: 5,  y: 25 },
-    { x: 6,  y: 36 },
-    { x: 7,  y: 49 },
-    { x: 8,  y: 64 },
-    { x: 9,  y: 81 },
-    { x: 10, y: 100 }
-  ];
+  import {
+    formatTimestampShortDate,
+		formatTimestampMedDate,
+    formatTimestampLong,
+		formatTimestampHourFraction,
+		randomColor,
+	} from '$lib'
+  
+  export let log
+  export let colors
+  export let medications
+  
+  console.log({log})
+  const dispenseData = log.map((L,i)=>{
+    // console.log(c.length,{a})
+    return L.map((LE,n)=> {
+      const medicationIndex = LE.medicationIndex
+      return { 
+        medicationIndex,
+        summary: `${medications[medicationIndex].displayName} on ${formatTimestampMedDate(LE.dispensed)} at ${formatTimestampLong(LE.dispensed)}`,
+        x: i+0.5,
+        y: formatTimestampHourFraction(LE.dispensed)}
+    })
+  })
+  // console.log({colors,medications,dispenseData})
+  function formatHour(hour) {
+    return hour === 12 || hour === 24 ? 12 : hour % 12
+    // {#if value  23}12a{:else if value === 12}12p{:else if value < 12}{value}a{:else}{value % 12}p{/if}
+  }
+  function ampm(hour) {
+    return hour === 24 || hour < 12 ? 'a' : 'p'
+  }
 </script>
 
-<div class="chart">
-  <Pancake.Chart x1={0} x2={10} y1={0} y2={100}>
-    <Pancake.Box x2={10} y2={100}>
+<h3>{dispenseData.length} Day Chart</h3>
+<div class="chart bg-surface-200 dark:bg-surface-900">
+  <Pancake.Chart x1={0} x2={dispenseData.length+0.3} y1={25} y2={7}>
+    <Pancake.Box x2={dispenseData.length} y1={7} y2={25}>
       <div class="axes"></div>
     </Pancake.Box>
 
-    <Pancake.Grid vertical count={5} let:value>
-      <span class="x label">{value}</span>
-    </Pancake.Grid>
+    <div class="gridx">
+      <Pancake.Grid vertical count={dispenseData.length} let:value>
+        <span class="x gridline"></span>
+        <span class="x label">{#if log[value] && log[value][0]}{formatTimestampShortDate(log[value][0].dispensed)}{/if}</span>
+      </Pancake.Grid>
+    </div>
 
-    <Pancake.Grid horizontal count={3} let:value>
-      <span class="y label">{value}</span>
+    <Pancake.Grid horizontal count={9} let:value>
+      <span class="y gridline"></span>
+      <span class="y label">{formatHour(value)}<span class="ampm">{ampm(value)}</span></span>
     </Pancake.Grid>
 
     <Pancake.Svg>
-      <Pancake.SvgLine data={points} let:d>
-        <path class="data" {d}/>
-      </Pancake.SvgLine>
+      {#each dispenseData as L,i}
+        {#each L as P}
+        <Pancake.SvgPoint x={P.x} y={P.y} let:d
+        >
+        <path class="data point med_{P.medicationIndex}"
+          {d} 
+          title="{P.summary}"
+          style="--c: {colors[P.medicationIndex]}; 
+          --sw: 2ch;
+          --offset: {P.medicationIndex*0.15}ch;
+          "
+           />
+        </Pancake.SvgPoint>
+        {/each}
+      {/each}
     </Pancake.Svg>
   </Pancake.Chart>
 </div>
 
 <style>
   .chart {
-    height: 40vh;
-    padding: 3em 2em 2em 3em;
+    height: max(50vh, 440px);
+    padding: 2em 2em 2em 3em;
     position: relative;
+    --c-grid: 0 0 0;
+    --c-shadow: 255 255 255;
+  }
+  :global(.dark .chart) {
+    --c-grid: 255 255 255;
+    --c-shadow: 0 0 0;
   }
 
   .axes {
     width: 100%;
     height: 100%;
-    border-left: 1px solid black;
-    border-bottom: 1px solid black;
+    border-left: 1px solid rgb(var(--c-grid));
+    border-bottom: 1px solid rgb(var(--c-grid));
   }
 
   .y.label {
@@ -58,22 +100,69 @@
     width: 2em;
     text-align: right;
     bottom: -0.5em;
+    /* background: var(--color-surface-400,red) / 255; */
   }
 
   .x.label {
     position: absolute;
     width: 4em;
-    left: -2em;
+    left: 0.5ch;
     bottom: -22px;
     font-family: sans-serif;
     text-align: center;
   }
-
+  .ampm {
+    font-size: 0.75em;
+  }
+  .y.gridline {
+    display: block;
+    border-top: 2px dashed #7774;
+  }
+  .x.gridline {
+    display: block;
+    border-left: 2px dashed #7774;
+    height: 100%;
+    margin-right: 3ch;
+    margin-left: -3ch;
+  }
+  :global(.gridx div div:first-of-type .x.gridline) {
+    border-left: none;
+  }
+@media (max-width: 500px) {
+  :global(.gridx .x.label) {
+    display: none;
+  }
+  :global(.gridx div div:nth-child(3n+1) .x.label) {
+    display: inline-block;
+    margin-left: -1em;
+  }
+}
+@media (min-width: 500px) and (max-width: 900px) {
+  :global(.gridx .x.label) {
+    display: none;
+    
+  }
+  :global(.gridx div div:nth-child(2n+1) .x.label) {
+    display: inline-block;
+    margin-left: -1em;
+  }
+}
   path.data {
     stroke: red;
     stroke-linejoin: round;
     stroke-linecap: round;
     stroke-width: 2px;
     fill: none;
+  }
+  path.data_1 {
+    stroke: green;
+  }
+  path.data.point {
+    stroke: var(--c,pink);
+    stroke-width: var(--sw,1em);
+    transform: translateX(var(--offset,2px));
+    filter: drop-shadow(0 0 0.1px rgb(var(--c-shadow) / 0.9)) 
+      drop-shadow(0 0 0.2px rgb(var(--c-shadow) / 0.5))
+      drop-shadow(0 0 0.5px rgb(var(--c-shadow) / 0.2));
   }
 </style>

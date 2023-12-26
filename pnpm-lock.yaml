@@ -26,7 +26,7 @@ devDependencies:
     specifier: ^2.0.3
     version: 2.0.3(@sveltejs/kit@1.30.3)
   '@sveltejs/kit':
-    specifier: ^1.25.2
+    specifier: ^1.30.3
     version: 1.30.3(svelte@3.59.2)(vite@4.5.1)
   '@sveltejs/pancake':
     specifier: ^0.0.18
@@ -59,16 +59,16 @@ devDependencies:
     specifier: ^12.0.2
     version: 12.0.2(postcss@8.4.32)
   prettier:
-    specifier: ^3.0.3
+    specifier: ^3.1.1
     version: 3.1.1
   prettier-plugin-svelte:
-    specifier: ^3.0.0
+    specifier: ^3.1.2
     version: 3.1.2(prettier@3.1.1)(svelte@3.59.2)
   svelte:
-    specifier: ^3.58.0
+    specifier: ^3.59.2
     version: 3.59.2
   svelte-check:
-    specifier: ^3.5.2
+    specifier: ^3.6.2
     version: 3.6.2(@babel/core@7.23.6)(postcss@8.4.32)(svelte@3.59.2)
   sveltefirets:
     specifier: ^0.0.36
