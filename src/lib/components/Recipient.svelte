@@ -5,6 +5,7 @@
 	// import { userStore, getFirebaseContext } from "sveltefire"
 	import { readableColor } from 'color2k'
 	import DayTimeLog from './DayTimeLog.svelte'
+	import ChartDispenseLog from './ChartDispenseLog.svelte'
 	import {
 		formatTimestampShortDate,
 		formatTimestampMedDate,
@@ -46,8 +47,15 @@
 			[[]]
 		)
 		.reverse()
+	const lastDaysCount = 14
+	const lastDaysDate = new Date(today.getTime() - lastDaysCount * 24 * 60 * 60 * 1000)
+	// console.log({lastDaysDate})
 	$: todayTimeLog = timeLog.filter(L => L.dispensed?.toDate() > today)
 	$: pastTimeLog = timeLogByDay.filter(DL => DL[0]?.dispensed?.toDate() < today)
+	$: lastDaysTimeLog = timeLogByDay.filter(DL => 
+			(DL[0].dispensed?.toDate() < today && DL[0]?.dispensed?.toDate() > lastDaysDate) )
+			// .reverse()
+	$: chartTimeLog = [todayTimeLog,...lastDaysTimeLog]
 	let pastTimeLogDetail = []
 
 	async function dispense(medicationIndex) {
@@ -64,8 +72,10 @@
 				<button
 					name="medicationIndex"
 					value={i}
+					class="btn"
 					on:click|preventDefault={() => dispense(i) }
 					style={`--bg: ${colors[i]}; --color: ${readableColor(colors[i])};`}
+					type="button"
 					>{m.displayName}</button>
 			{/each}
 		</div>
@@ -77,13 +87,16 @@
 			{medications}
 			allowEdit={true} />
 	{/if}
-	<h3>Past {pastTimeLog.length} Days:</h3>
+
+	<ChartDispenseLog log={chartTimeLog} {colors} {medications} />
+
+	<h3>{lastDaysTimeLog.length} of the Past {lastDaysCount} Days</h3>
 	<div class="days-summary">
-		{#each pastTimeLog as L, n}
+		{#each lastDaysTimeLog as L, n}
 			<button
 				class="day-summary rounded"
 				on:click={() => {
-					pastTimeLogDetail = pastTimeLog[n]
+					pastTimeLogDetail = lastDaysTimeLog[n]
 					console.log('ptld', n, pastTimeLogDetail)
 				}}>
 				<div class="count">{L.length}</div>
@@ -92,14 +105,15 @@
 		{/each}
 	</div>
 	{#if pastTimeLogDetail.length}
-		<div class="pastLogDetail" in:fade>
-			<DayTimeLog
-				recipientid={id}
-				dayName={'on ' + formatTimestampMedDate(pastTimeLogDetail[0].dispensed)}
-				dayTimeLog={pastTimeLogDetail}
-				{medications} />
-		</div>
+	<div class="pastLogDetail" in:fade>
+		<DayTimeLog
+		recipientid={id}
+		dayName={'on ' + formatTimestampMedDate(pastTimeLogDetail[0].dispensed)}
+		dayTimeLog={pastTimeLogDetail}
+		{medications} />
+	</div>
 	{/if}
+	<h3>{pastTimeLog.length} Total Days in Log</h3>
 </div>
 
 <style>
@@ -109,9 +123,6 @@
 	button {
 		background-color: var(--bg);
 		color: var(--color);
-		border: 0;
-		padding: 0.2em 0.5em;
-		border-radius: 0.2rem;
 	}
 	.days-summary {
 		display: flex;

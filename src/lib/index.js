@@ -18,3 +18,7 @@ export function formatTimestampMedDate(ts) {
 		year: 'numeric',
 	})
 }
+export function formatTimestampHourFraction(ts) {
+	const dtm = ts.toDate()
+	return dtm.getHours() + (dtm.getMinutes() / 60)
+}

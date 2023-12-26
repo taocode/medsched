@@ -1,4 +1,4 @@
-<script>
+<script lang='ts'>
 	// import { initializeApp } from 'firebase/app'
 	// import { getFirestore } from 'firebase/firestore'
 	// import { getAuth } from 'firebase/auth'
@@ -13,6 +13,25 @@
 	// import { page } from '$app/stores'
 	import { authState } from 'sveltefirets'
 	import { user as userStore } from '$lib/user'
+	import '../app.postcss'
+
+	/* Skeleton UI setup */
+	// import type { ModalSettings, ModalComponent, ModalStore, ToastSettings, ToastStore } from '@skeletonlabs/skeleton'
+	import { initializeStores, LightSwitch, Modal, getModalStore, Toast, getToastStore } from '@skeletonlabs/skeleton'
+	initializeStores()
+	
+import ModalEditLogEntry from '$lib/components/modals/ModalEditLogEntry.svelte'
+// import ModalComponentTwo from '/example/path/here';
+
+const modalRegistry: Record<string, ModalComponent> = {
+	// Set a unique modal ID, then pass the component reference
+	modalEditLogEntry: { ref: ModalEditLogEntry },
+	// modalComponentTwo: { ref: ModalComponentTwo },
+	// ...
+}
+const modalStore = getModalStore()
+							
+
 	import Teaser from '$lib/components/Teaser.svelte'
 	import Why from '$lib/components/Why.svelte'
 	export let data
@@ -22,7 +41,9 @@
 	// $: user = $userStore || null
 </script>
 
-<div class="app">
+<Modal components={modalRegistry} backdropClasses='!bg-green-500' modalClasses='!bg-red-500' />
+
+<div class="app" class:blur={$modalStore[0]}>
 	<Header />
 	<main>
 		{#if $authState === undefined}
@@ -37,6 +58,8 @@
 			</div>
 			<Why />
 		{/if}
+
+		
 	</main>
 
 	<footer>
@@ -61,7 +84,7 @@
 		padding: 0 1rem 1rem 1rem;
 		width: 100%;
 		max-width: 64rem;
-		margin: 0 auto;
+		margin: 1em auto;
 		box-sizing: border-box;
 	}
 
