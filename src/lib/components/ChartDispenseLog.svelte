@@ -6,15 +6,14 @@
 		formatTimestampMedDate,
     formatTimestampLong,
 		formatTimestampHourFraction,
-		randomColor,
 	} from '$lib'
   
   export let log
   export let colors
   export let medications
   
-  console.log({log})
-  const dispenseData = log.map((L,i)=>{
+  // console.log({log})
+  const dispensePoints = log.map((L,i)=>{
     // console.log(c.length,{a})
     return L.map((LE,n)=> {
       const medicationIndex = LE.medicationIndex
@@ -25,7 +24,24 @@
         y: formatTimestampHourFraction(LE.dispensed)}
     })
   })
-  // console.log({colors,medications,dispenseData})
+  const dispenseLines = log.reduce((a,L,i)=>{
+    // console.log('dls',{L})
+    const doseCounter = {}
+    L.forEach(C=>{
+      const m = `${C.medicationIndex}`
+      const k = `${i},${m}`
+      if (isNaN(doseCounter[k])) doseCounter[k] = 0
+      doseCounter[k] += 1
+      const mc = `${m},${doseCounter[k]}`
+      if (!Array.isArray(a[mc])) a[mc] = []
+      a[mc].push({
+        x: i+0.5,
+        y: formatTimestampHourFraction(C.dispensed)
+      })
+    })
+    return a
+  },{})
+  // console.log({colors,medications,dispensePoints})
   function formatHour(hour) {
     return hour === 12 || hour === 24 ? 12 : hour % 12
     // {#if value  23}12a{:else if value === 12}12p{:else if value < 12}{value}a{:else}{value % 12}p{/if}
@@ -35,15 +51,15 @@
   }
 </script>
 
-<h3>{dispenseData.length} Day Chart</h3>
+<h3>{dispensePoints.length} Day Chart</h3>
 <div class="chart bg-surface-200 dark:bg-surface-900">
-  <Pancake.Chart x1={0} x2={dispenseData.length+0.3} y1={25} y2={7}>
-    <Pancake.Box x2={dispenseData.length} y1={7} y2={25}>
+  <Pancake.Chart x1={0} x2={dispensePoints.length+0.3} y1={25} y2={7}>
+    <Pancake.Box x2={dispensePoints.length} y1={7} y2={25}>
       <div class="axes"></div>
     </Pancake.Box>
 
     <div class="gridx">
-      <Pancake.Grid vertical count={dispenseData.length} let:value>
+      <Pancake.Grid vertical count={dispensePoints.length} let:value>
         <span class="x gridline"></span>
         <span class="x label">{#if log[value] && log[value][0]}{formatTimestampShortDate(log[value][0].dispensed)}{/if}</span>
       </Pancake.Grid>
@@ -55,7 +71,16 @@
     </Pancake.Grid>
 
     <Pancake.Svg>
-      {#each dispenseData as L,i}
+      {#each Object.keys(dispenseLines) as DL}
+      <Pancake.SvgLine data={dispenseLines[DL]} let:d
+      >
+        <path class="data" {d} 
+        style="--c: {colors[DL.split(',')[0]]};
+        --offset: {DL.split(',')[0]*0.15}ch;
+        "/>
+      </Pancake.SvgLine>
+      {/each}
+      {#each dispensePoints as L,i}
         {#each L as P}
         <Pancake.SvgPoint x={P.x} y={P.y} let:d
         >
@@ -63,7 +88,6 @@
           {d} 
           title="{P.summary}"
           style="--c: {colors[P.medicationIndex]}; 
-          --sw: 2ch;
           --offset: {P.medicationIndex*0.15}ch;
           "
            />
@@ -76,7 +100,7 @@
 
 <style>
   .chart {
-    height: max(50vh, 440px);
+    height: max(40vh, 270px);
     padding: 2em 2em 2em 3em;
     position: relative;
     --c-grid: 0 0 0;
@@ -148,21 +172,17 @@
   }
 }
   path.data {
-    stroke: red;
-    stroke-linejoin: round;
+    stroke: var(--c,red);
+    stroke-dasharray: 6,6,1,6;
     stroke-linecap: round;
-    stroke-width: 2px;
     fill: none;
-  }
-  path.data_1 {
-    stroke: green;
-  }
-  path.data.point {
-    stroke: var(--c,pink);
-    stroke-width: var(--sw,1em);
+    stroke-width: 0.2rem;
     transform: translateX(var(--offset,2px));
     filter: drop-shadow(0 0 0.1px rgb(var(--c-shadow) / 0.9)) 
-      drop-shadow(0 0 0.2px rgb(var(--c-shadow) / 0.5))
-      drop-shadow(0 0 0.5px rgb(var(--c-shadow) / 0.2));
+    drop-shadow(0 0 0.2px rgb(var(--c-shadow) / 0.5))
+    drop-shadow(0 0 0.5px rgb(var(--c-shadow) / 0.2));
   }
-</style>
+  path.data.point {
+    stroke-width: 1.6ch;
+  }
+  </style>
