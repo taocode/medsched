@@ -36,8 +36,7 @@ const modalStore = getModalStore()
 	import Why from '$lib/components/Why.svelte'
 	export let data
 	$: authNotInited = $authState === undefined
-	$: userDataFromCookie = data?.user || null
-	$: user = $userStore || (authNotInited && userDataFromCookie) || null
+	$: user = $userStore || authNotInited || null
 	// $: user = $userStore || null
 </script>
 
