@@ -137,7 +137,7 @@
     margin-left: -1em;
   }
 }
-@media (min-width: 500px) and (max-width: 900px) {
+@media (min-width: 501px) and (max-width: 900px) {
   :global(.gridx .x.label) {
     display: none;
     
