@@ -10,7 +10,7 @@
 	export let medications = []
 	export let allowEdit = false
 
-	import { getModalStore } from '@skeletonlabs/skeleton'
+	import { getModalStore, type ModalSettings } from '@skeletonlabs/skeleton'
 	const modalStore = getModalStore()
 							
 	function findDaysCount(medIndex, dispTS) {
@@ -27,9 +27,6 @@
 	$: dailyTotal = medications.reduce((p, c) => p + c.schedule?.length || 0, 0)
 	$: daysCount = dayTimeLog.length
 
-	let confirmRm = false
-	let rmSummary = ''
-
 	function removeConfirm(dispensedMillis,summary) {
 		// rmForm = event.target
 		console.log('remove medindex:',summary)
@@ -41,6 +38,19 @@
 			response: (r: boolean | undefined) => {
 				console.log('response:', r)
 				if (r) removeTimeLogEntry(recipient,dispensedMillis)
+			},
+		}
+		modalStore.trigger(modal)
+	}
+	function editEntry(dispensedMillis,summary) {
+		console.log(`edit entry for ${recipient.displayName}`,{recipient,summary,dispensedMillis})
+		const modal: ModalSettings = {
+			type: 'component',
+			component: 'modalEditLogEntry',
+			title:  `Edit ${summary}?`,
+			meta: {
+				dispensedMillis,
+				recipient,
 			},
 		}
 		modalStore.trigger(modal)
@@ -59,11 +69,18 @@
 			<td class="count">{findDaysCount(L.medicationIndex, L.dispensed)}</td>
 			{#if medications[L.medicationIndex].schedule}<td class="total">{medications[L.medicationIndex].schedule.length}</td>{/if}
 			<td>{medications[L.medicationIndex].displayName}</td>
-			<td class="date-col">{formatTimestampLong(L.dispensed)} </td>
 			{#if allowEdit}
-				<td>
+				<td class="actions">
 					<div>
-						<button class="confirm" 
+						<button class="btn edit variant-filled-warning" 
+							on:click|preventDefault={()=>editEntry(L.dispensed.toMillis(),`${
+								medications[L.medicationIndex].displayName
+							} at ${formatTimestampLong(L.dispensed)}`)}>
+							<div class="i-fe-pencil" />
+						</button>
+					</div>
+					<div>
+						<button class="btn variant-filled-error delete" 
 							on:click|preventDefault={()=>removeConfirm(L.dispensed.toMillis(),`${
 								medications[L.medicationIndex].displayName
 							} at ${formatTimestampLong(L.dispensed)}`)}>
@@ -72,6 +89,7 @@
 					</div>
 				</td>
 			{/if}
+			<td class="date-col">{formatTimestampLong(L.dispensed)} </td>
 		</tr>
 	{/each}
 </table>
@@ -81,7 +99,7 @@
 	<article>{$modalStore[0].body}</article>
 {/if}
 
-<style>
+<style lang="postcss">
 	table {
 		min-width: 30ch;
 		margin: 0 auto;
@@ -92,6 +110,7 @@
 	tr {
 		background-color: var(--bg);
 		color: var(--color);
+		position: relative;
 	}
 	td {
 		padding: 0.25rem 0.5rem;
@@ -119,13 +138,15 @@
 	.date-col {
 		text-align: right;
 	}
-	td button {
-		color: transparent;
-		background-color: transparent;
-		padding: 0 0.2em;
+	.btn {
+		margin-top: -0.25rem;
+		padding: 0.5em 1.5em;
+		border-radius: 0;
 	}
-	tr:hover td button {
-		color: white;
-		background: var(--color-remove, darkred);
+	.actions {
+		@apply absolute flex inset-0 justify-end z-[-1] opacity-0 transition-all duration-200;
+	}
+	tr:hover .actions {
+		@apply z-50 opacity-100;
 	}
 </style>

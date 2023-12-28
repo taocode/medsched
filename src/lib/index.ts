@@ -22,3 +22,10 @@ export function formatTimestampHourFraction(ts) {
 	const dtm = ts.toDate()
 	return dtm.getHours() + (dtm.getMinutes() / 60)
 }
+
+export function formatDateValue(dtm: Date) {
+	// ISO string gives UTC; adjust hours with this
+	const hoursOffset = dtm.getTimezoneOffset() / -60
+	dtm.setHours(dtm.getHours()+hoursOffset)
+	return dtm.toISOString().split('.')[0] // drops '.0000' milliseconds
+}

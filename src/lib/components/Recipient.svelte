@@ -59,7 +59,7 @@
 	let pastTimeLogDetail = []
 
 	async function dispense(medicationIndex) {
-		return dispenseRecipientMedication($user.uid, recipient.id, medicationIndex)
+		dispenseRecipientMedication($user.uid, recipient.id, medicationIndex)
 	}
 </script>
 

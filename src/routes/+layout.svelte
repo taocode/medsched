@@ -17,7 +17,7 @@
 
 	/* Skeleton UI setup */
 	// import type { ModalSettings, ModalComponent, ModalStore, ToastSettings, ToastStore } from '@skeletonlabs/skeleton'
-	import { initializeStores, LightSwitch, Modal, getModalStore, Toast, getToastStore } from '@skeletonlabs/skeleton'
+	import { initializeStores, Modal, getModalStore, type ModalComponent } from '@skeletonlabs/skeleton'
 	initializeStores()
 	
 import ModalEditLogEntry from '$lib/components/modals/ModalEditLogEntry.svelte'
@@ -34,13 +34,13 @@ const modalStore = getModalStore()
 
 	import Teaser from '$lib/components/Teaser.svelte'
 	import Why from '$lib/components/Why.svelte'
-	export let data
+	// export let data
 	$: authNotInited = $authState === undefined
 	$: user = $userStore || authNotInited || null
 	// $: user = $userStore || null
 </script>
 
-<Modal components={modalRegistry} backdropClasses='!bg-green-500' modalClasses='!bg-red-500' />
+<Modal components={modalRegistry} />
 
 <div class="app" class:blur={$modalStore[0]}>
 	<Header />

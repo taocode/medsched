@@ -10,6 +10,8 @@ export function getAppRO() {
 	appRO = getApps().some(F => F.name === APP_RO)
 		? getApp(APP_RO)
 		: initializeApp(firebaseConfig, APP_RO)
+		// const db = getFirestore(appRO)
+		// connectFirestoreEmulator(db, '127.0.0.1', 8080)
 	return appRO
 }
 
