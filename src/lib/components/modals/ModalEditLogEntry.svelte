@@ -13,10 +13,10 @@
 	let newValue = dateValue($modalStore[0].meta.dispensedMillis)
 	
 	function update(event) {
-		console.log('update()',{newValue}, new Date(newValue).getTime())
+		// console.log('update()',{newValue}, new Date(newValue).getTime())
 		const { recipient, dispensedMillis } = $modalStore[0].meta
 		editTimeLogEntry(recipient,dispensedMillis,new Date(newValue).getTime())
-		// modalStore.close()
+		modalStore.close()
 	}
 </script>
 
@@ -56,9 +56,6 @@
 	}
 	h2 {
 		@apply my-3;
-	}
-	.logos-show {
-		@apply pb-4;
 	}
 	.actions {
 		@apply flex flex-wrap gap-3 justify-end my-3;
