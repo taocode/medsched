@@ -13,7 +13,7 @@
   export let medications
   
   // console.log({log})
-  const dispensePoints = log.map((L,i)=>{
+  $: dispensePoints = log.map((L,i)=>{
     // console.log(c.length,{a})
     return L.map((LE,n)=> {
       const medicationIndex = LE.medicationIndex
@@ -24,7 +24,7 @@
         y: formatTimestampHourFraction(LE.dispensed)}
     })
   })
-  const dispenseLines = log.reduce((a,L,i)=>{
+  $: dispenseLines = log.reduce((a,L,i)=>{
     // console.log('dls',{L})
     const doseCounter = {}
     L.forEach(C=>{
