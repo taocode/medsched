@@ -14,7 +14,6 @@
 
 	import { dispenseRecipientMedication } from '$lib/db'
 	import { user } from '$lib/user'
-	import { update } from 'sveltefirets'
 
 	export let recipient
 	let { id, displayName, medications, timeLog } = recipient
