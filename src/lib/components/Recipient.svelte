@@ -91,7 +91,7 @@
 			{recipient}
 			dayTimeLog={todayTimeLog}
 			{medications}
-			allowEdit={true} />
+			allowEdit />
 	{/if}
 
 	<ChartDispenseLog log={chartTimeLog} {colors} {medications} />
@@ -113,7 +113,7 @@
 	{#if pastTimeLogDetail.length}
 		<div class="pastLogDetail" in:fade>
 			<DayTimeLog
-				recipientid={id}
+				{recipient}
 				dayName={'on ' +
 					formatTimestampMedDate(pastTimeLogDetail[0].dispensed)}
 				dayTimeLog={pastTimeLogDetail}
