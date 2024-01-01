@@ -11,6 +11,24 @@
   export let log
   export let colors
   export let medications
+
+  $: minHour = log.reduce((a,LD)=>{
+    const Dm = LD.reduce((m,LE)=>{
+      const cH = LE.dispensed.toDate().getHours()
+      return cH < m ? cH : m
+    }, a)
+    console.log({Dm,a})
+    return Dm < a ? Dm : a
+  }, 25)
+  $: maxHour = log.reduce((a,LD)=>{
+    const Dm = LD.reduce((m,LE)=>{
+      const cH = LE.dispensed.toDate().getHours()
+      return cH > m ? cH : m
+    }, a)
+    console.log({Dm,a})
+    return Dm > a ? Dm : a
+  }, 0)
+  // $: console.log({minHour})
   
   // console.log({log})
   $: dispensePoints = log.map((L,i)=>{
@@ -53,8 +71,8 @@
 
 <h3>{dispensePoints.length} Day Chart</h3>
 <div class="chart bg-surface-200 dark:bg-surface-900">
-  <Pancake.Chart x1={0} x2={dispensePoints.length+0.3} y1={25} y2={7}>
-    <Pancake.Box x2={dispensePoints.length} y1={7} y2={25}>
+  <Pancake.Chart x1={0} x2={dispensePoints.length+0.3} y1={maxHour+1.5} y2={minHour-0.5}>
+    <Pancake.Box x2={dispensePoints.length} y1={minHour-0.5} y2={maxHour+1.5}>
       <div class="axes"></div>
     </Pancake.Box>
 
