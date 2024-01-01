@@ -108,21 +108,21 @@
 		--br: 0.5rem;
 	}
 	.entry {
-		@apply grid mx-auto gap-2 relative;
-		grid-template-columns: 2ch 1fr 1fr;
+		@apply grid mx-auto gap-2 relative px-[0.5ch];
+		grid-template-columns: 0.5ch 1fr 1fr;
 		background-color: var(--bg);
 		color: var(--color);
 		border-radius: var(--br);
 	}
 	.entry.has-total {
-		grid-template-columns: 2ch 4ch 1fr 1fr;
+		grid-template-columns: 0.5ch 4ch 1fr 1fr;
 	}
 	.entry > div {
 		padding: 0.25rem 0.5rem;
 	}
 	.count {
 		/* padding-right: 0; */
-		@apply max-w-[3ch] pr-0 text-right;
+		@apply max-w-[3ch] pr-1;
 	}
 	.total {
 		/* padding-left: 0; */
