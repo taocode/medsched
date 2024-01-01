@@ -61,16 +61,18 @@
 	<span class="count">{daysCount}</span>{#if dailyTotal}<span class="total">{dailyTotal}</span>{/if}
 	{dayName}:
 </h3>
-<table>
+<div class="day-log">
 	{#each dayTimeLog as L, i}
-		<tr
+		<div class="entry"
+			class:has-total={medications[L.medicationIndex].schedule}
 			style={`--bg: ${colors[L.medicationIndex]};
-			--color: ${readableColor(colors[L.medicationIndex])}`}>
-			<td class="count">{findDaysCount(L.medicationIndex, L.dispensed)}</td>
-			{#if medications[L.medicationIndex].schedule}<td class="total">{medications[L.medicationIndex].schedule.length}</td>{/if}
-			<td>{medications[L.medicationIndex].displayName}</td>
+			--color: ${readableColor(colors[L.medicationIndex])}`}
+			>
+			<div class="count">{findDaysCount(L.medicationIndex, L.dispensed)}</div>
+			{#if medications[L.medicationIndex].schedule}<div class="total">{medications[L.medicationIndex].schedule.length}</div>{/if}
+			<div>{medications[L.medicationIndex].displayName}</div>
 			{#if allowEdit}
-				<td class="actions">
+				<div class="actions">
 					<div>
 						<button class="btn edit variant-filled-warning" 
 							on:click|preventDefault={()=>editEntry(L.dispensed.toMillis(),`${
@@ -87,12 +89,12 @@
 							<div class="i-fe-trash" />
 						</button>
 					</div>
-				</td>
+				</div>
 			{/if}
-			<td class="date-col">{formatTimestampLong(L.dispensed)} </td>
-		</tr>
+			<div class="date-col">{formatTimestampLong(L.dispensed)} </div>
+		</div>
 	{/each}
-</table>
+</div>
 
 {#if $modalStore[0]}
 	<header>{$modalStore[0].title}</header>
@@ -100,40 +102,37 @@
 {/if}
 
 <style lang="postcss">
-	table {
-		min-width: 30ch;
-		margin: 0 auto;
-		border-collapse: separate;
-		border-spacing: 0 0.6em;
+	.day-log {
+		min-width: 20ch;
+		@apply flex flex-col gap-2 max-w-[38ch] mx-auto;
 		--br: 0.5rem;
 	}
-	tr {
+	.entry {
+		@apply grid mx-auto gap-2 relative;
+		grid-template-columns: 2ch 1fr 1fr;
 		background-color: var(--bg);
 		color: var(--color);
-		position: relative;
+		border-radius: var(--br);
 	}
-	td {
+	.entry.has-total {
+		grid-template-columns: 2ch 4ch 1fr 1fr;
+	}
+	.entry > div {
 		padding: 0.25rem 0.5rem;
 	}
-	td:first-child {
-		border-top-left-radius: var(--br);
-		border-bottom-left-radius: var(--br);
-	}
 	.count {
-		padding-right: 0;
+		/* padding-right: 0; */
+		@apply max-w-[3ch] pr-0 text-right;
 	}
 	.total {
-		padding-left: 0;
+		/* padding-left: 0; */
+		@apply max-w-[5ch] p-0;
 	}
 	.total::before {
 		content: '/';
 		font-size: 0.75em;
-		display: inline-block;
-		padding: 0 0.25em;
-	}
-	td:last-child {
-		border-top-right-radius: var(--br);
-		border-bottom-right-radius: var(--br);
+		display: inline-flex;
+		padding: 0 0.33em 0 0;
 	}
 	.date-col {
 		text-align: right;
@@ -146,7 +145,7 @@
 	.actions {
 		@apply absolute flex inset-0 justify-end z-[-1] opacity-0 transition-all duration-200;
 	}
-	tr:hover .actions {
+	.entry:hover .actions {
 		@apply z-50 opacity-100;
 	}
 </style>
