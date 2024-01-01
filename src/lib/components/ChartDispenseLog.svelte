@@ -28,7 +28,10 @@
     console.log({Dm,a})
     return Dm > a ? Dm : a
   }, 0)
+  $: lastHour = maxHour+2.5
+  $: firstHour = minHour-1.5
   // $: console.log({minHour})
+
   
   // console.log({log})
   $: dispensePoints = log.map((L,i)=>{
@@ -70,65 +73,71 @@
 </script>
 
 <h3>{dispensePoints.length} Day Chart</h3>
-<div class="chart bg-surface-200 dark:bg-surface-900">
-  <Pancake.Chart x1={0} x2={dispensePoints.length+0.3} y1={maxHour+1.5} y2={minHour-0.5}>
-    <Pancake.Box x2={dispensePoints.length} y1={minHour-0.5} y2={maxHour+1.5}>
-      <div class="axes"></div>
-    </Pancake.Box>
-
-    <div class="gridx">
-      <Pancake.Grid vertical count={dispensePoints.length} let:value>
-        <span class="x gridline"></span>
-        <span class="x label">{#if log[value] && log[value][0]}{formatTimestampShortDate(log[value][0].dispensed)}{/if}</span>
+<div class="chart-wrap">
+  <div class="chart bg-surface-200 dark:bg-surface-900">
+    <Pancake.Chart x1={0} x2={dispensePoints.length+0.3} y1={lastHour} y2={firstHour}>
+      <Pancake.Box x2={dispensePoints.length} y1={firstHour} y2={lastHour}>
+        <div class="axes"></div>
+      </Pancake.Box>
+  
+      <div class="gridx">
+        <Pancake.Grid vertical count={dispensePoints.length} let:value>
+          <span class="x gridline"></span>
+          <span class="x label">{#if log[value] && log[value][0]}{formatTimestampShortDate(log[value][0].dispensed)}{/if}</span>
+        </Pancake.Grid>
+      </div>
+  
+      <Pancake.Grid horizontal count={8} let:value>
+        <span class="y gridline"></span>
+        <span class="y label">{formatHour(value)}<span class="ampm">{ampm(value)}</span></span>
       </Pancake.Grid>
-    </div>
-
-    <Pancake.Grid horizontal count={9} let:value>
-      <span class="y gridline"></span>
-      <span class="y label">{formatHour(value)}<span class="ampm">{ampm(value)}</span></span>
-    </Pancake.Grid>
-
-    <Pancake.Svg>
-      {#each Object.keys(dispenseLines) as DL}
-      <Pancake.SvgLine data={dispenseLines[DL]} let:d
-      >
-        <path class="data" {d} 
-        style="--c: {colors[DL.split(',')[0]]};
-        --offset: {DL.split(',')[0]*0.15}ch;
-        "/>
-      </Pancake.SvgLine>
-      {/each}
-      {#each dispensePoints as L,i}
-        {#each L as P}
-        <Pancake.SvgPoint x={P.x} y={P.y} let:d
+  
+      <Pancake.Svg>
+        {#each Object.keys(dispenseLines) as DL}
+        <Pancake.SvgLine data={dispenseLines[DL]} let:d
         >
-        <path class="data point med_{P.medicationIndex}"
-          {d} 
-          title="{P.summary}"
-          style="--c: {colors[P.medicationIndex]}; 
-          --offset: {P.medicationIndex*0.15}ch;
-          "
-           />
-        </Pancake.SvgPoint>
+          <path class="data" {d}
+          style="--c: {colors[DL.split(',')[0]]};
+          --offset: {DL.split(',')[0]*0.15}ch;
+          "/>
+        </Pancake.SvgLine>
         {/each}
-      {/each}
-    </Pancake.Svg>
-  </Pancake.Chart>
+        {#each dispensePoints as L,i}
+          {#each L as P}
+          <Pancake.SvgPoint x={P.x} y={P.y} let:d
+          >
+          <path class="data point med_{P.medicationIndex}"
+            {d}
+            title="{P.summary}"
+            style="--c: {colors[P.medicationIndex]};
+            --offset: {P.medicationIndex*0.15}ch;
+            "
+             />
+          </Pancake.SvgPoint>
+          {/each}
+        {/each}
+      </Pancake.Svg>
+    </Pancake.Chart>
+  </div>
 </div>
 
-<style>
+<style lang="postcss">
   .chart {
     height: max(40vh, 270px);
-    padding: 2em 2em 2em 3em;
+    min-width: 720px;
+    overflow: auto;
+    padding: 0.5em 0.5em 2.25em 2em;
     position: relative;
     --c-grid: 0 0 0;
     --c-shadow: 255 255 255;
+  }
+  .chart-wrap {
+    @apply overflow-auto;
   }
   :global(.dark .chart) {
     --c-grid: 255 255 255;
     --c-shadow: 0 0 0;
   }
-
   .axes {
     width: 100%;
     height: 100%;
@@ -138,8 +147,8 @@
 
   .y.label {
     position: absolute;
-    left: -2.5em;
-    width: 2em;
+    left: -4ch;
+    width: 3ch;
     text-align: right;
     bottom: -0.5em;
     /* background: var(--color-surface-400,red) / 255; */
@@ -148,8 +157,8 @@
   .x.label {
     position: absolute;
     width: 4em;
-    left: 0.5ch;
-    bottom: -22px;
+    left: -0.2em;
+    bottom: -1.7em;
     font-family: sans-serif;
     text-align: center;
   }
@@ -160,15 +169,16 @@
     display: block;
     border-top: 2px dashed #7774;
   }
+  
   .x.gridline {
     display: block;
     border-left: 2px dashed #7774;
     height: 100%;
-    margin-right: 3ch;
-    margin-left: -3ch;
+    margin-right: -3.3ch;
+    margin-left: 3.3ch;
   }
-  :global(.gridx div div:first-of-type .x.gridline) {
-    border-left: none;
+  :global(.pancake-grid-item:last-of-type .x.gridline) {
+    display: none;
   }
 @media (max-width: 500px) {
   :global(.gridx .x.label) {
@@ -182,7 +192,6 @@
 @media (min-width: 501px) and (max-width: 900px) {
   :global(.gridx .x.label) {
     display: none;
-    
   }
   :global(.gridx div div:nth-child(2n+1) .x.label) {
     display: inline-block;
