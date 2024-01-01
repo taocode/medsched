@@ -17,7 +17,6 @@
 			const cH = LE.dispensed.toDate().getHours()
 			return cH < m ? cH : m
 		}, a)
-		console.log({ Dm, a })
 		return Dm < a ? Dm : a
 	}, 25)
 	$: maxHour = log.reduce((a, LD) => {
@@ -25,11 +24,11 @@
 			const cH = LE.dispensed.toDate().getHours()
 			return cH > m ? cH : m
 		}, a)
-		console.log({ Dm, a })
 		return Dm > a ? Dm : a
 	}, 0)
 	$: lastHour = maxHour + 2.5
 	$: firstHour = minHour - 1.5
+  $: hoursDiff = maxHour-minHour
 	// $: console.log({minHour})
 
 	// console.log({log})
@@ -78,7 +77,8 @@
 
 <h3>{dispensePoints.length} Day Chart</h3>
 <div class="chart-wrap">
-	<div class="chart bg-surface-200 dark:bg-surface-900">
+	<div class="chart bg-surface-200 dark:bg-surface-900" 
+    style="--h: {hoursDiff*1.25}em;">
 		<Pancake.Chart
 			x1={0}
 			x2={dispensePoints.length + 0.3}
@@ -139,9 +139,9 @@
 
 <style lang="postcss">
 	.chart {
-		height: max(40vh, 270px);
-		min-width: 720px;
-		overflow: auto;
+		height: var(--h);
+		min-width: 620px;
+		overflow: hidden;
 		padding: 0.5em 0.5em 2.25em 2em;
 		position: relative;
 		--c-grid: 0 0 0;
@@ -163,7 +163,7 @@
 
 	.y.label {
 		position: absolute;
-		left: -4ch;
+		left: -3.5ch;
 		width: 3ch;
 		text-align: right;
 		bottom: -0.5em;
@@ -196,36 +196,33 @@
 	:global(.pancake-grid-item:last-of-type .x.gridline) {
 		display: none;
 	}
-	@media (max-width: 500px) {
+	@media (max-width: 786px) {
 		:global(.gridx .x.label) {
 			display: none;
 		}
-		:global(.gridx div div:nth-child(3n + 1) .x.label) {
-			display: inline-block;
-			margin-left: -1em;
-		}
-	}
-	@media (min-width: 501px) and (max-width: 900px) {
-		:global(.gridx .x.label) {
-			display: none;
-		}
-		:global(.gridx div div:nth-child(2n + 1) .x.label) {
-			display: inline-block;
-			margin-left: -1em;
-		}
+    :global(.gridx div div:nth-child(odd) .x.label) {
+      display: inline-block;
+    }
 	}
 	path.data {
 		stroke: var(--c, red);
-		stroke-dasharray: 6, 6, 1, 6;
+    stroke-opacity: 0.5;
+    mix-blend-mode: multiply;
+		stroke-dasharray: 7, 5, 2, 5;
 		stroke-linecap: round;
 		fill: none;
-		stroke-width: 0.2rem;
+		stroke-width: 0.125rem;
 		transform: translateX(var(--offset, 2px));
 		filter: drop-shadow(0 0 0.1px rgb(var(--c-shadow) / 0.9))
 			drop-shadow(0 0 0.2px rgb(var(--c-shadow) / 0.5))
 			drop-shadow(0 0 0.5px rgb(var(--c-shadow) / 0.2));
 	}
+  :global(.dark path.data) {
+    mix-blend-mode: screen;
+  }
 	path.data.point {
-		stroke-width: 1.6ch;
+		stroke-width: 0.6rem;
+    stroke-opacity: 1;
+    mix-blend-mode: normal;
 	}
 </style>
