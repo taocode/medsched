@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { dev } from '$app/environment'
 	import { formatTimestampLong, randomColor } from '$lib'
 	import { readableColor } from 'color2k'
 
@@ -8,7 +9,7 @@
 	export let dayName = 'Today'
 	export let dayTimeLog = []
 	export let medications = []
-	export let allowEdit = false
+	export let allowEdit = dev
 
 	import {
 		getModalStore,
