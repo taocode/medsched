@@ -13,14 +13,14 @@
 		// console.log({recipientId},recipient)
 		// ({recipient} = data)
 		// console.log({ recipient })
-
 	}
 </script>
 
 <svelte:head>
-	<title>Recipient: {$recipient?.displayName || 'Oops'} - MedTimeLog</title>
+	<title
+		>Recipient: {$recipient?.displayName || 'Oops'} - MedTimeLog</title>
 </svelte:head>
 
 {#if $recipient}
-<Recipient recipient={$recipient} />
+	<Recipient recipient={$recipient} />
 {/if}

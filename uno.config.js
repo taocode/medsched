@@ -1,4 +1,9 @@
-import { defineConfig, presetUno, presetIcons, presetWebFonts } from 'unocss'
+import {
+	defineConfig,
+	presetUno,
+	presetIcons,
+	presetWebFonts,
+} from 'unocss'
 import extractorSvelte from '@unocss/extractor-svelte'
 // import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
 

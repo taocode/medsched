@@ -5,7 +5,7 @@ import { vitePreprocess } from '@sveltejs/kit/vite'
 const config = {
 	kit: {
 		adapter: adapter({
-			fallback: "404.html",
+			fallback: '404.html',
 		}),
 	},
 	preprocess: vitePreprocess(),

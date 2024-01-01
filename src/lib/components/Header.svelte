@@ -4,7 +4,7 @@
 	import UserMenu from './UserMenu.svelte'
 	import SignInOut from '$lib/components/SignInOut.svelte'
 	// export let auth
-	
+
 	import { LightSwitch } from '@skeletonlabs/skeleton'
 </script>
 

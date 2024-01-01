@@ -1,4 +1,8 @@
-import { createUserStore, firebaseConfig, type IBaseUser } from 'sveltefirets'
+import {
+	createUserStore,
+	firebaseConfig,
+	type IBaseUser,
+} from 'sveltefirets'
 export interface IUser extends IBaseUser {
 	theme: string // whatever custom properties your project has
 }

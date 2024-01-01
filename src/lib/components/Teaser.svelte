@@ -12,8 +12,9 @@
 
 <div class="mtl text-center my-6 max-w-[62ch] mx-auto">
 	<p class="text-[1.1em]">
-		MedTimeLog helps you track your med usage and the medication usage of those
-		that you care for; caregivers can easily share realtime medication delivery.
+		MedTimeLog helps you track your med usage and the medication usage of
+		those that you care for; caregivers can easily share realtime
+		medication delivery.
 	</p>
 </div>
 

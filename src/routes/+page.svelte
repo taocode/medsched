@@ -28,8 +28,9 @@
 	<div class="flex flex-wrap justify-center gap-2 my-3">
 		{#each recipients as r}
 			<div>
-				<a class="btn variant-filled-primary" href={`/recipient?id=${r.id}`}
-					>{r.displayName}</a>
+				<a
+					class="btn variant-filled-primary"
+					href={`/recipient?id=${r.id}`}>{r.displayName}</a>
 			</div>
 		{:else}
 			Loading...

@@ -8,7 +8,10 @@ export function formatTimestampLong(ts) {
 }
 export function formatTimestampShortDate(ts) {
 	const dtm = ts.toDate()
-	return dtm.toLocaleDateString('en-US', { day: 'numeric', month: 'numeric' })
+	return dtm.toLocaleDateString('en-US', {
+		day: 'numeric',
+		month: 'numeric',
+	})
 }
 export function formatTimestampMedDate(ts) {
 	const dtm = ts.toDate()
@@ -20,12 +23,12 @@ export function formatTimestampMedDate(ts) {
 }
 export function formatTimestampHourFraction(ts) {
 	const dtm = ts.toDate()
-	return dtm.getHours() + (dtm.getMinutes() / 60)
+	return dtm.getHours() + dtm.getMinutes() / 60
 }
 
 export function formatDateValue(dtm: Date) {
 	// ISO string gives UTC; adjust hours with this
 	const hoursOffset = dtm.getTimezoneOffset() / -60
-	dtm.setHours(dtm.getHours()+hoursOffset)
+	dtm.setHours(dtm.getHours() + hoursOffset)
 	return dtm.toISOString().split('.')[0] // drops '.0000' milliseconds
 }

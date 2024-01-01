@@ -1,4 +1,4 @@
-<script lang='ts'>
+<script lang="ts">
 	// import { initializeApp } from 'firebase/app'
 	// import { getFirestore } from 'firebase/firestore'
 	// import { getAuth } from 'firebase/auth'
@@ -17,20 +17,24 @@
 
 	/* Skeleton UI setup */
 	// import type { ModalSettings, ModalComponent, ModalStore, ToastSettings, ToastStore } from '@skeletonlabs/skeleton'
-	import { initializeStores, Modal, getModalStore, type ModalComponent } from '@skeletonlabs/skeleton'
+	import {
+		initializeStores,
+		Modal,
+		getModalStore,
+		type ModalComponent,
+	} from '@skeletonlabs/skeleton'
 	initializeStores()
-	
-import ModalEditLogEntry from '$lib/components/modals/ModalEditLogEntry.svelte'
-// import ModalComponentTwo from '/example/path/here';
 
-const modalRegistry: Record<string, ModalComponent> = {
-	// Set a unique modal ID, then pass the component reference
-	modalEditLogEntry: { ref: ModalEditLogEntry },
-	// modalComponentTwo: { ref: ModalComponentTwo },
-	// ...
-}
-const modalStore = getModalStore()
-							
+	import ModalEditLogEntry from '$lib/components/modals/ModalEditLogEntry.svelte'
+	// import ModalComponentTwo from '/example/path/here';
+
+	const modalRegistry: Record<string, ModalComponent> = {
+		// Set a unique modal ID, then pass the component reference
+		modalEditLogEntry: { ref: ModalEditLogEntry },
+		// modalComponentTwo: { ref: ModalComponentTwo },
+		// ...
+	}
+	const modalStore = getModalStore()
 
 	import Teaser from '$lib/components/Teaser.svelte'
 	import Why from '$lib/components/Why.svelte'
@@ -57,8 +61,6 @@ const modalStore = getModalStore()
 			</div>
 			<Why />
 		{/if}
-
-		
 	</main>
 
 	<footer>

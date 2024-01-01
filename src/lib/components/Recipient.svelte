@@ -47,14 +47,21 @@
 		)
 		.reverse()
 	const lastDaysCount = 14
-	const lastDaysDate = new Date(today.getTime() - lastDaysCount * 24 * 60 * 60 * 1000)
+	const lastDaysDate = new Date(
+		today.getTime() - lastDaysCount * 24 * 60 * 60 * 1000
+	)
 	// console.log({lastDaysDate})
 	$: todayTimeLog = timeLog.filter(L => L.dispensed?.toDate() > today)
-	$: pastTimeLog = timeLogByDay.filter(DL => DL[0]?.dispensed?.toDate() < today)
-	$: lastDaysTimeLog = timeLogByDay.filter(DL => 
-			(DL[0].dispensed?.toDate() < today && DL[0]?.dispensed?.toDate() > lastDaysDate) )
-			// .reverse()
-	$: chartTimeLog = [todayTimeLog,...lastDaysTimeLog]
+	$: pastTimeLog = timeLogByDay.filter(
+		DL => DL[0]?.dispensed?.toDate() < today
+	)
+	$: lastDaysTimeLog = timeLogByDay.filter(
+		DL =>
+			DL[0].dispensed?.toDate() < today &&
+			DL[0]?.dispensed?.toDate() > lastDaysDate
+	)
+	// .reverse()
+	$: chartTimeLog = [todayTimeLog, ...lastDaysTimeLog]
 	let pastTimeLogDetail = []
 
 	async function dispense(medicationIndex) {
@@ -65,23 +72,23 @@
 <div class="show-recipient">
 	<h2>{displayName}</h2>
 	<div class="my-3">
-		<div
-			class="flex flex-wrap justify-center gap-2">
+		<div class="flex flex-wrap justify-center gap-2">
 			{#each medications as m, i}
 				<button
 					name="medicationIndex"
 					value={i}
 					class="btn"
-					on:click|preventDefault={() => dispense(i) }
-					style={`--bg: ${colors[i]}; --color: ${readableColor(colors[i])};`}
-					type="button"
-					>{m.displayName}</button>
+					on:click|preventDefault={() => dispense(i)}
+					style={`--bg: ${colors[i]}; --color: ${readableColor(
+						colors[i]
+					)};`}
+					type="button">{m.displayName}</button>
 			{/each}
 		</div>
 	</div>
 	{#if todayTimeLog.length}
 		<DayTimeLog
-			recipient={recipient}
+			{recipient}
 			dayTimeLog={todayTimeLog}
 			{medications}
 			allowEdit={true} />
@@ -104,13 +111,14 @@
 		{/each}
 	</div>
 	{#if pastTimeLogDetail.length}
-	<div class="pastLogDetail" in:fade>
-		<DayTimeLog
-		recipientid={id}
-		dayName={'on ' + formatTimestampMedDate(pastTimeLogDetail[0].dispensed)}
-		dayTimeLog={pastTimeLogDetail}
-		{medications} />
-	</div>
+		<div class="pastLogDetail" in:fade>
+			<DayTimeLog
+				recipientid={id}
+				dayName={'on ' +
+					formatTimestampMedDate(pastTimeLogDetail[0].dispensed)}
+				dayTimeLog={pastTimeLogDetail}
+				{medications} />
+		</div>
 	{/if}
 	<h3>{pastTimeLog.length} Total Days in Log</h3>
 </div>

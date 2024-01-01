@@ -14,16 +14,13 @@ export default {
 		),
 	],
 	theme: {
-		extend: {
-		},
+		extend: {},
 	},
 	plugins: [
 		forms,
 		skeleton({
 			themes: {
-				custom: [
-					mtlCustomTheme
-				],
+				custom: [mtlCustomTheme],
 				preset: [
 					{
 						name: 'skeleton',

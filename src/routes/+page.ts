@@ -11,7 +11,7 @@ export const load: PageLoad = async () => {
 		const recipients = await getCollection(`recipients`)
 		return { recipients }
 	} catch (err) {
-		console.warn('error loading',{err})
+		console.warn('error loading', { err })
 		return { recipients: [] }
 	}
 	// console.log('loaded', {recipients})

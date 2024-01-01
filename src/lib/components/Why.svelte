@@ -12,9 +12,9 @@
 
 <div class="mtl text-center my-6 max-w-[62ch] mx-auto">
 	<p class="text-[0.9em]">
-		Because giving our <em>inherited glaucoma</em> cat needed 6 drops of 3 medications
-		each day was too complicated to share with ease, I created this App to keep us
-		coordinated.
+		Because giving our <em>inherited glaucoma</em> cat needed 6 drops of 3
+		medications each day was too complicated to share with ease, I created
+		this App to keep us coordinated.
 	</p>
 </div>
 

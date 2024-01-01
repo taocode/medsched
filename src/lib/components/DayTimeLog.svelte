@@ -1,4 +1,4 @@
-<script lang='ts'>
+<script lang="ts">
 	import { formatTimestampLong, randomColor } from '$lib'
 	import { readableColor } from 'color2k'
 
@@ -10,9 +10,12 @@
 	export let medications = []
 	export let allowEdit = false
 
-	import { getModalStore, type ModalSettings } from '@skeletonlabs/skeleton'
+	import {
+		getModalStore,
+		type ModalSettings,
+	} from '@skeletonlabs/skeleton'
 	const modalStore = getModalStore()
-							
+
 	function findDaysCount(medIndex, dispTS) {
 		// console.log({medIndex,dispTS})
 		return (
@@ -24,30 +27,37 @@
 	}
 
 	const colors = medications.map(m => (m.color ? m.color : randomColor()))
-	$: dailyTotal = medications.reduce((p, c) => p + c.schedule?.length || 0, 0)
+	$: dailyTotal = medications.reduce(
+		(p, c) => p + c.schedule?.length || 0,
+		0
+	)
 	$: daysCount = dayTimeLog.length
 
-	function removeConfirm(dispensedMillis,summary) {
+	function removeConfirm(dispensedMillis, summary) {
 		// rmForm = event.target
-		console.log('remove medindex:',summary)
+		console.log('remove medindex:', summary)
 		const modal: ModalSettings = {
 			backdropClasses: 'bg-primary-800',
 			type: 'confirm',
 			title: 'Please Confirm',
-			body:  `Remove ${summary}?`,
+			body: `Remove ${summary}?`,
 			response: (r: boolean | undefined) => {
 				console.log('response:', r)
-				if (r) removeTimeLogEntry(recipient,dispensedMillis)
+				if (r) removeTimeLogEntry(recipient, dispensedMillis)
 			},
 		}
 		modalStore.trigger(modal)
 	}
-	function editEntry(dispensedMillis,summary) {
-		console.log(`edit entry for ${recipient.displayName}`,{recipient,summary,dispensedMillis})
+	function editEntry(dispensedMillis, summary) {
+		console.log(`edit entry for ${recipient.displayName}`, {
+			recipient,
+			summary,
+			dispensedMillis,
+		})
 		const modal: ModalSettings = {
 			type: 'component',
 			component: 'modalEditLogEntry',
-			title:  `Edit ${summary}?`,
+			title: `Edit ${summary}?`,
 			meta: {
 				dispensedMillis,
 				recipient,
@@ -58,40 +68,56 @@
 </script>
 
 <h3>
-	<span class="count">{daysCount}</span>{#if dailyTotal}<span class="total">{dailyTotal}</span>{/if}
+	<span class="count">{daysCount}</span>{#if dailyTotal}<span
+			class="total">{dailyTotal}</span
+		>{/if}
 	{dayName}:
 </h3>
 <div class="day-log">
 	{#each dayTimeLog as L, i}
-		<div class="entry"
+		<div
+			class="entry"
 			class:has-total={medications[L.medicationIndex].schedule}
 			style={`--bg: ${colors[L.medicationIndex]};
-			--color: ${readableColor(colors[L.medicationIndex])}`}
-			>
-			<div class="count">{findDaysCount(L.medicationIndex, L.dispensed)}</div>
-			{#if medications[L.medicationIndex].schedule}<div class="total">{medications[L.medicationIndex].schedule.length}</div>{/if}
+			--color: ${readableColor(colors[L.medicationIndex])}`}>
+			<div class="count">
+				{findDaysCount(L.medicationIndex, L.dispensed)}
+			</div>
+			{#if medications[L.medicationIndex].schedule}<div class="total">
+					{medications[L.medicationIndex].schedule.length}
+				</div>{/if}
 			<div>{medications[L.medicationIndex].displayName}</div>
 			{#if allowEdit}
 				<div class="actions">
 					<div>
-						<button class="btn edit variant-filled-warning" 
-							on:click|preventDefault={()=>editEntry(L.dispensed.toMillis(),`${
-								medications[L.medicationIndex].displayName
-							} at ${formatTimestampLong(L.dispensed)}`)}>
+						<button
+							class="btn edit variant-filled-warning"
+							on:click|preventDefault={() =>
+								editEntry(
+									L.dispensed.toMillis(),
+									`${
+										medications[L.medicationIndex].displayName
+									} at ${formatTimestampLong(L.dispensed)}`
+								)}>
 							<div class="i-fe-pencil" />
 						</button>
 					</div>
 					<div>
-						<button class="btn variant-filled-error delete" 
-							on:click|preventDefault={()=>removeConfirm(L.dispensed.toMillis(),`${
-								medications[L.medicationIndex].displayName
-							} at ${formatTimestampLong(L.dispensed)}`)}>
+						<button
+							class="btn variant-filled-error delete"
+							on:click|preventDefault={() =>
+								removeConfirm(
+									L.dispensed.toMillis(),
+									`${
+										medications[L.medicationIndex].displayName
+									} at ${formatTimestampLong(L.dispensed)}`
+								)}>
 							<div class="i-fe-trash" />
 						</button>
 					</div>
 				</div>
 			{/if}
-			<div class="date-col">{formatTimestampLong(L.dispensed)} </div>
+			<div class="date-col">{formatTimestampLong(L.dispensed)}</div>
 		</div>
 	{/each}
 </div>

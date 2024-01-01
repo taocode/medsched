@@ -1,85 +1,81 @@
 {
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
-  },
-  "hosting": {
-    "public": "build",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "headers": [
-      {
-        "source": "**/*",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "public, max-age=60"
-          },
-          {
-            "key": "X-Content-Type-Options",
-            "value": "nosniff"
-          },
-          {
-            "key": "Content-Security-Policy",
-            "value": "default-src 'self';script-src 'unsafe-inline' 'self';script-src-elem *.gstatic.com apis.google.com 'unsafe-inline' 'self';style-src 'unsafe-inline' 'self';style-src-elem *.gstatic.com *.googleapis.com 'self' 'unsafe-inline';font-src fonts.gstatic.com 'self';img-src *.gstatic.com *.googleusercontent.com data: 'self';connect-src *.googleapis.com 'self';object-src *.google.com *.googleusercontent.com *.gstatic.com;frame-src medtimelog.firebaseapp.com;"
-          },
-          {
-            "key": "Referrer-Policy",
-            "value": "strict-origin-when-cross-origin"
-          },
-          {
-            "key": "Permissions-Policy",
-            "value": "publickey-credentials-get=()"
-          },
-          {
-            "key": "Strict-Transport-Security",
-            "value": "max-age=31536000; includeSubDomains; preload"
-          }
-        ]
-      },
-      {
-        "source": "**/*.@(jpg|jpeg|png|gif|webp|svg)",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "public, max-age=21600"
-          }
-        ]
-      },
-      {
-        "source": "/_app/immutable/**/*",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "public, max-age=31540000, immutable"
-          }
-        ]
-      }
-    ],
-    "cleanUrls": true
-  },
-  "emulators": {
-    "auth": {
-      "port": 9099
-    },
-    "firestore": {
-      "port": 8080
-    },
-    "ui": {
-      "enabled": true
-    },
-    "singleProjectMode": true,
-    "functions": {
-      "port": 5001
-    },
-    "hosting": {
-      "port": 5000
-    }
-  },
-  "functions": {
-    "source": "functions"
-  }
+	"firestore": {
+		"rules": "firestore.rules",
+		"indexes": "firestore.indexes.json"
+	},
+	"hosting": {
+		"public": "build",
+		"ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+		"headers": [
+			{
+				"source": "**/*",
+				"headers": [
+					{
+						"key": "Cache-Control",
+						"value": "public, max-age=60"
+					},
+					{
+						"key": "X-Content-Type-Options",
+						"value": "nosniff"
+					},
+					{
+						"key": "Content-Security-Policy",
+						"value": "default-src 'self';script-src 'unsafe-inline' 'self';script-src-elem *.gstatic.com apis.google.com 'unsafe-inline' 'self';style-src 'unsafe-inline' 'self';style-src-elem *.gstatic.com *.googleapis.com 'self' 'unsafe-inline';font-src fonts.gstatic.com 'self';img-src *.gstatic.com *.googleusercontent.com data: 'self';connect-src *.googleapis.com 'self';object-src *.google.com *.googleusercontent.com *.gstatic.com;frame-src medtimelog.firebaseapp.com;"
+					},
+					{
+						"key": "Referrer-Policy",
+						"value": "strict-origin-when-cross-origin"
+					},
+					{
+						"key": "Permissions-Policy",
+						"value": "publickey-credentials-get=()"
+					},
+					{
+						"key": "Strict-Transport-Security",
+						"value": "max-age=31536000; includeSubDomains; preload"
+					}
+				]
+			},
+			{
+				"source": "**/*.@(jpg|jpeg|png|gif|webp|svg)",
+				"headers": [
+					{
+						"key": "Cache-Control",
+						"value": "public, max-age=21600"
+					}
+				]
+			},
+			{
+				"source": "/_app/immutable/**/*",
+				"headers": [
+					{
+						"key": "Cache-Control",
+						"value": "public, max-age=31540000, immutable"
+					}
+				]
+			}
+		],
+		"cleanUrls": true
+	},
+	"emulators": {
+		"auth": {
+			"port": 9099
+		},
+		"firestore": {
+			"port": 8080
+		},
+		"ui": {
+			"enabled": true
+		},
+		"singleProjectMode": true,
+		"functions": {
+			"port": 5001
+		},
+		"hosting": {
+			"port": 5000
+		}
+	},
+	"functions": {
+		"source": "functions"
+	}
 }
