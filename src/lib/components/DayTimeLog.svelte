@@ -87,7 +87,7 @@
 			{#if medications[L.medicationIndex].schedule}<div class="total">
 					{medications[L.medicationIndex].schedule.length}
 				</div>{/if}
-			<div>{medications[L.medicationIndex].displayName}</div>
+			<div class="name">{medications[L.medicationIndex].displayName}</div>
 			{#if allowEdit}
 				<div class="actions">
 					<div>
@@ -136,16 +136,19 @@
 	}
 	.entry {
 		@apply grid mx-auto gap-2 w-full relative px-[0.5ch];
-		grid-template-columns: 0.5ch 1fr 1fr;
+		grid-template-columns: 0.5ch 2fr 1fr;
 		background-color: var(--bg);
 		color: var(--color);
 		border-radius: var(--br);
 	}
 	.entry.has-total {
-		grid-template-columns: 0.5ch 4ch 1fr 13ch;
+		grid-template-columns: 0.5ch 4ch 3fr 2fr;
 	}
 	.entry > div {
 		padding: 0.25rem 0.5rem;
+	}
+	.entry {
+		font-size: 0.95em;
 	}
 	.count {
 		/* padding-right: 0; */
@@ -153,16 +156,16 @@
 	}
 	.total {
 		/* padding-left: 0; */
-		@apply max-w-[5ch] p-0;
+		@apply max-w-[5ch] p-0 whitespace-nowrap;
 	}
 	.total::before {
 		content: '/';
 		font-size: 0.75em;
-		display: inline-flex;
+		display: inline;
 		padding: 0 0.33em 0 0;
 	}
 	.date-col {
-		text-align: right;
+		@apply text-right whitespace-nowrap;
 	}
 	.btn {
 		margin-top: -0.25rem;
