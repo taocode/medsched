@@ -26,12 +26,12 @@
 	initializeStores()
 
 	import ModalEditLogEntry from '$lib/components/modals/ModalEditLogEntry.svelte'
-	// import ModalComponentTwo from '/example/path/here';
+	import ModalDayTimeLog from '$lib/components/modals/ModalDayTimeLog.svelte'
 
 	const modalRegistry: Record<string, ModalComponent> = {
 		// Set a unique modal ID, then pass the component reference
 		modalEditLogEntry: { ref: ModalEditLogEntry },
-		// modalComponentTwo: { ref: ModalComponentTwo },
+		modalDayTimeLog: { ref: ModalDayTimeLog },
 		// ...
 	}
 	const modalStore = getModalStore()

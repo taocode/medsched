@@ -135,14 +135,14 @@
 		--br: 0.5rem;
 	}
 	.entry {
-		@apply grid mx-auto gap-2 relative px-[0.5ch];
+		@apply grid mx-auto gap-2 w-full relative px-[0.5ch];
 		grid-template-columns: 0.5ch 1fr 1fr;
 		background-color: var(--bg);
 		color: var(--color);
 		border-radius: var(--br);
 	}
 	.entry.has-total {
-		grid-template-columns: 0.5ch 4ch 1fr 1fr;
+		grid-template-columns: 0.5ch 4ch 1fr 13ch;
 	}
 	.entry > div {
 		padding: 0.25rem 0.5rem;

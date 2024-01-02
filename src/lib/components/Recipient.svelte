@@ -1,6 +1,6 @@
-<script>
-	import { arrayUnion, Timestamp } from 'firebase/firestore'
-	import { fade } from 'svelte/transition'
+<script lang='ts'>
+	// import { arrayUnion, Timestamp } from 'firebase/firestore'
+	// import { fade } from 'svelte/transition'
 	// import { docStore, getFirebaseContext, userStore, collectionStore } from 'sveltefire'
 	// import { userStore, getFirebaseContext } from "sveltefire"
 	import { readableColor } from 'color2k'
@@ -11,6 +11,8 @@
 		formatTimestampMedDate,
 		randomColor,
 	} from '$lib'
+	import { type ModalSettings, getModalStore } from '@skeletonlabs/skeleton'
+	const modalStore = getModalStore()
 
 	import { dispenseRecipientMedication } from '$lib/db'
 	import { user } from '$lib/user'
@@ -62,10 +64,26 @@
 	)
 	// .reverse()
 	$: chartTimeLog = [todayTimeLog, ...lastDaysTimeLog]
-	let pastTimeLogDetail = []
+	
 
 	async function dispense(medicationIndex) {
 		dispenseRecipientMedication($user.uid, recipient.id, medicationIndex)
+	}
+	function showPTLD(n) {
+		const dayTimeLog = lastDaysTimeLog[n]
+		// console.log({n, dayTimeLog})
+		const modal: ModalSettings = {
+			type: 'component',
+			component: 'modalDayTimeLog',
+			title: '',
+			body: '',
+			meta: {
+				dayTimeLog,
+				recipient,
+				medications
+			},
+		}
+		modalStore.trigger(modal)
 	}
 </script>
 
@@ -94,36 +112,28 @@
 			allowEdit />
 	{/if}
 
-	<ChartDispenseLog log={chartTimeLog} {colors} {medications} />
+	<div class="display-area">
+		<div class="display chart">
+			<ChartDispenseLog log={chartTimeLog} {colors} {medications} />	
+		</div>
+</div>
 
 	<h3>{lastDaysTimeLog.length} of the Past {lastDaysCount} Days</h3>
 	<div class="days-summary">
 		{#each lastDaysTimeLog as L, n}
 			<button
 				class="day-summary rounded"
-				on:click={() => {
-					pastTimeLogDetail = lastDaysTimeLog[n]
-					console.log('ptld', n, pastTimeLogDetail)
-				}}>
+				on:click={()=>showPTLD(n)}>
 				<div class="count">{L.length}</div>
 				<div class="date">{formatTimestampShortDate(L[0].dispensed)}</div>
 			</button>
 		{/each}
 	</div>
-	{#if pastTimeLogDetail.length}
-		<div class="pastLogDetail" in:fade>
-			<DayTimeLog
-				{recipient}
-				dayName={'on ' +
-					formatTimestampMedDate(pastTimeLogDetail[0].dispensed)}
-				dayTimeLog={pastTimeLogDetail}
-				{medications} />
-		</div>
-	{/if}
+
 	<h3>{pastTimeLog.length} Total Days in Log</h3>
 </div>
 
-<style>
+<style lang="postcss">
 	.show-recipient {
 		text-align: center;
 	}
@@ -154,4 +164,8 @@
 	.day-summary .date {
 		font-size: 0.8em;
 	}
+	.display-area {
+		@apply relative;
+	}
+
 </style>
