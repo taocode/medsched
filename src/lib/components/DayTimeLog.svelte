@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { dev } from '$app/environment'
-	import { formatTimestampLong, randomColor } from '$lib'
+	import { formatTimestampLong, formatTimestampShort, randomColor } from '$lib'
 	import { readableColor } from 'color2k'
 
 	import { removeTimeLogEntry } from '$lib/db'
@@ -10,6 +10,7 @@
 	export let dayTimeLog = []
 	export let medications = []
 	export let allowEdit = dev
+	export let brief = false
 
 	import {
 		getModalStore,
@@ -68,26 +69,27 @@
 	}
 </script>
 
-<h3>
+<h3 style="--total: {dailyTotal};">
 	<span class="count">{daysCount}</span>{#if dailyTotal}<span
-			class="total">{dailyTotal}</span
+			class="total">/ {dailyTotal}</span
 		>{/if}
 	{dayName}:
 </h3>
-<div class="day-log">
+<div class="day-log"
+	class:brief
+	>
 	{#each dayTimeLog as L, i}
 		<div
 			class="entry"
 			class:has-total={medications[L.medicationIndex].schedule}
-			style={`--bg: ${colors[L.medicationIndex]};
-			--color: ${readableColor(colors[L.medicationIndex])}`}>
+			style="--bg: {colors[L.medicationIndex]};
+			--color: {readableColor(colors[L.medicationIndex])};
+			--total: {medications[L.medicationIndex].schedule?.length || 0}">
 			<div class="count">
 				{findDaysCount(L.medicationIndex, L.dispensed)}
 			</div>
-			{#if medications[L.medicationIndex].schedule}<div class="total">
-					{medications[L.medicationIndex].schedule.length}
-				</div>{/if}
-			<div class="name">{medications[L.medicationIndex].displayName}</div>
+			{#if !brief}<div class="name">{medications[L.medicationIndex].displayName}</div>{/if}
+			<div class="date-col">{formatTimestampShort(L.dispensed)}</div>
 			{#if allowEdit}
 				<div class="actions">
 					<div>
@@ -118,7 +120,6 @@
 					</div>
 				</div>
 			{/if}
-			<div class="date-col">{formatTimestampLong(L.dispensed)}</div>
 		</div>
 	{/each}
 </div>
@@ -131,38 +132,34 @@
 <style lang="postcss">
 	.day-log {
 		min-width: 20ch;
-		@apply flex flex-col gap-2 max-w-[38ch] mx-auto;
+		@apply flex flex-col gap-2 max-w-fit mx-auto;
 		--br: 0.5rem;
 	}
+	.brief {
+		@apply flex-row flex-wrap;
+	}
 	.entry {
-		@apply grid mx-auto gap-2 w-full relative px-[0.5ch];
-		grid-template-columns: 0.5ch 2fr 1fr;
+		@apply flex mx-auto gap-1 relative px-[0.5ch];
+		/* grid-template-columns: 0.5ch 2fr 1fr; */
 		background-color: var(--bg);
 		color: var(--color);
 		border-radius: var(--br);
-	}
-	.entry.has-total {
-		grid-template-columns: 0.5ch 4ch 3fr 2fr;
-	}
-	.entry > div {
-		padding: 0.25rem 0.5rem;
+		padding: 0.1rem 0.5rem;
 	}
 	.entry {
 		font-size: 0.95em;
 	}
 	.count {
 		/* padding-right: 0; */
-		@apply max-w-[3ch] pr-1;
+		@apply max-w-[6ch] pr-1;
 	}
-	.total {
-		/* padding-left: 0; */
-		@apply max-w-[5ch] p-0 whitespace-nowrap;
+	.has-total .count::after {
+		counter-reset: total var(--total);
+		content: '\200a/\2009' counter(total);
 	}
-	.total::before {
-		content: '/';
-		font-size: 0.75em;
-		display: inline;
-		padding: 0 0.33em 0 0;
+	.total,
+	.count::after {
+		font-size: 0.7em;
 	}
 	.date-col {
 		@apply text-right whitespace-nowrap;
