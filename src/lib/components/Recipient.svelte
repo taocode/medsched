@@ -3,7 +3,7 @@
 	// import { fade } from 'svelte/transition'
 	// import { docStore, getFirebaseContext, userStore, collectionStore } from 'sveltefire'
 	// import { userStore, getFirebaseContext } from "sveltefire"
-	import { readableColor } from 'color2k'
+	import { desaturate, readableColor, transparentize } from 'color2k'
 	import DayTimeLog from './DayTimeLog.svelte'
 	import ChartDispenseLog from './ChartDispenseLog.svelte'
 	import {
@@ -54,6 +54,12 @@
 	)
 	// console.log({lastDaysDate})
 	$: todayTimeLog = timeLog.filter(L => L.dispensed?.toDate() > today)
+	$: daysCounts = todayTimeLog.reduce((p,c) => {
+		const mi = c.medicationIndex
+		if (isNaN(p[mi])) p[mi] = 0
+		p[mi]++
+		return p 
+	},{})
 	$: pastTimeLog = timeLogByDay.filter(
 		DL => DL[0]?.dispensed?.toDate() < today
 	)
@@ -68,6 +74,12 @@
 
 	async function dispense(medicationIndex) {
 		dispenseRecipientMedication($user.uid, recipient.id, medicationIndex)
+	}
+	function daysTotal(medIndex) {
+		return recipient.medications[medIndex].schedule?.length || 0
+	}
+	function hasSchedule(medIndex) {
+		return recipient.medications[medIndex].schedule
 	}
 	function showPTLD(n) {
 		const dayTimeLog = lastDaysTimeLog[n]
@@ -95,12 +107,16 @@
 				<button
 					name="medicationIndex"
 					value={i}
-					class="btn"
+					class="btn btn-dispense"
 					on:click|preventDefault={() => dispense(i)}
-					style={`--bg: ${colors[i]}; --color: ${readableColor(
-						colors[i]
-					)};`}
-					type="button">{m.displayName}</button>
+					style="--bg: {colors[i]}; 
+					--bgbg: {transparentize(colors[i],0.45)}; 
+					--color: {readableColor(colors[i])}; 
+					--fill-percent: {hasSchedule(i) ?
+						 daysCounts[i] / daysTotal(i) * 100
+						 : daysCounts[i] > 0 ? 100 : 0}%;"
+					type="button"><span class="label-dispense">{m.displayName}
+						</span></button>
 			{/each}
 		</div>
 	</div>
@@ -109,7 +125,8 @@
 			{recipient}
 			dayTimeLog={todayTimeLog}
 			{medications}
-			allowEdit />
+			allowEdit
+			brief />
 	{/if}
 
 	<div class="display-area">
@@ -138,8 +155,25 @@
 		text-align: center;
 	}
 	button {
-		background-color: var(--bg);
+		background-color: var(--bgbg);
 		color: var(--color);
+		border: 2px solid var(--bg);
+		padding: 0.2em 0.75em;
+	}
+	.label-dispense {
+		@apply z-20 relative;
+	}
+	.btn-dispense {
+		@apply relative overflow-hidden z-10;
+	}
+	.btn-dispense::before {
+		@apply content-[''] absolute inset-0 right-auto;
+		width: var(--fill-percent);
+		background-color: var(--bg);
+	}
+	.btn-dispense::after {
+		content: var(--fill-percent);
+		@apply absolute z-20 inset-0;
 	}
 	.days-summary {
 		display: flex;
