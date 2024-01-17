@@ -114,7 +114,7 @@ $: timeLogByDay = timeLog
 					--bgbg: {transparentize(colors[i],0.42)}; 
 					--color: {readableColor(colors[i])}; 
 					--fill-percent: {hasSchedule(i) ?
-						 daysCounts[i] / daysTotal(i) * 100
+						 (daysCounts[i] / daysTotal(i) || 0) * 100
 						 : daysCounts[i] > 0 ? 100 : 0}%;"
 					type="button"><span class="label-dispense">{m.displayName}
 						</span></button>
@@ -176,7 +176,7 @@ $: timeLogByDay = timeLog
 	}
 	.btn-dispense::before {
 		@apply content-[''] absolute inset-0 right-auto block;
-		transition: width 0.5s ease-out;
+		transition: width 0.45s ease;
 		width: var(--fill-percent);
 		background-color: var(--bg);
 	}
