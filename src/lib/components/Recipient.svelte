@@ -175,7 +175,8 @@ $: timeLogByDay = timeLog
 		@apply relative overflow-hidden z-10;
 	}
 	.btn-dispense::before {
-		@apply content-[''] absolute inset-0 right-auto transition-all duration-[0.4s] ease-in-out;
+		@apply content-[''] absolute inset-0 right-auto block;
+		transition: width 0.5s ease-out;
 		width: var(--fill-percent);
 		background-color: var(--bg);
 	}
