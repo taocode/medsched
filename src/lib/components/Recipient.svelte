@@ -161,12 +161,9 @@ $: timeLogByDay = timeLog
 		border: 2px solid var(--bg);
 		padding: 0.2em 0.75em;
 	}
-	:global(body) {
-		overflow: hidden;
-	}
 	.fetti {
-		display: flex;
-		justify-content: center;
+		@apply flex justify-center absolute inset-0 top-24 z-20;
+		pointer-events: none;
 	}
 	.label-dispense {
 		@apply z-20 relative;
@@ -175,8 +172,8 @@ $: timeLogByDay = timeLog
 		@apply relative overflow-hidden z-10;
 	}
 	.btn-dispense::before {
-		@apply content-[''] absolute inset-0 right-auto block;
-		transition: width 0.45s ease;
+		@apply content-[''] absolute inset-0 right-auto;
+		transition: width 0.75s ease;
 		width: var(--fill-percent);
 		background-color: var(--bg);
 	}
