@@ -6,6 +6,7 @@
 	import { desaturate, readableColor, transparentize } from 'color2k'
 	import DayTimeLog from './DayTimeLog.svelte'
 	import ChartDispenseLog from './ChartDispenseLog.svelte'
+	import { confetti } from '@neoconfetti/svelte'
 	import {
 		formatTimestampShortDate,
 		formatTimestampMedDate,
@@ -13,25 +14,25 @@
 	} from '$lib'
 	import { type ModalSettings, getModalStore } from '@skeletonlabs/skeleton'
 	const modalStore = getModalStore()
-
+	
 	import { dispenseRecipientMedication } from '$lib/db'
 	import { user } from '$lib/user'
-
+	
 	export let recipient
 	let { id, displayName, medications, timeLog } = recipient
 	$: {
 		if (recipient) ({ id, displayName, medications, timeLog } = recipient)
 	}
-	const colors = medications.map(m => (m.color ? m.color : randomColor()))
-	// const user = userStore(auth)
-	// console.log({user},$user)
-	const today = new Date()
-	today.setHours(0, 0, 0, 0)
-	// const thing = new Timestamp()
-	$: timeLogByDay = timeLog
-		.reduce(
-			(p, L, i) => {
-				const entryDay = L.dispensed?.toDate()
+const colors = medications.map(m => (m.color ? m.color : randomColor()))
+// const user = userStore(auth)
+// console.log({user},$user)
+const today = new Date()
+today.setHours(0, 0, 0, 0)
+// const thing = new Timestamp()
+$: timeLogByDay = timeLog
+.reduce(
+	(p, L, i) => {
+		const entryDay = L.dispensed?.toDate()
 				entryDay.setHours(0, 0, 0, 0)
 				let lastDay = p[p.length - 1]
 				const lastEntry = lastDay.length ? lastDay[lastDay.length - 1] : L
@@ -64,16 +65,15 @@
 		DL => DL[0]?.dispensed?.toDate() < today
 	)
 	$: lastDaysTimeLog = timeLogByDay.filter(
-		DL =>
-			DL[0].dispensed?.toDate() < today &&
-			DL[0]?.dispensed?.toDate() > lastDaysDate
+		DL => DL[0]?.dispensed?.toDate() > lastDaysDate
 	)
-	// .reverse()
-	$: chartTimeLog = [todayTimeLog, ...lastDaysTimeLog]
-	
 
-	async function dispense(medicationIndex) {
-		dispenseRecipientMedication($user.uid, recipient.id, medicationIndex)
+	$: showFetti = recipient.medications
+				.reduce((p,c,i) => p && c.schedule?.length === daysCounts[i]
+				,true)
+
+	async function dispense(medIndex) {
+		dispenseRecipientMedication($user.uid, recipient.id, medIndex)
 	}
 	function daysTotal(medIndex) {
 		return recipient.medications[medIndex].schedule?.length || 0
@@ -101,6 +101,7 @@
 
 <div class="show-recipient">
 	<h2>{displayName}</h2>
+	{#if showFetti}<div class="fetti"><div use:confetti></div></div>{/if}
 	<div class="my-3">
 		<div class="flex flex-wrap justify-center gap-2">
 			{#each medications as m, i}
@@ -110,7 +111,7 @@
 					class="btn btn-dispense"
 					on:click|preventDefault={() => dispense(i)}
 					style="--bg: {colors[i]}; 
-					--bgbg: {transparentize(colors[i],0.45)}; 
+					--bgbg: {transparentize(colors[i],0.42)}; 
 					--color: {readableColor(colors[i])}; 
 					--fill-percent: {hasSchedule(i) ?
 						 daysCounts[i] / daysTotal(i) * 100
@@ -131,7 +132,7 @@
 
 	<div class="display-area">
 		<div class="display chart">
-			<ChartDispenseLog log={chartTimeLog} {colors} {medications} />	
+			<ChartDispenseLog log={lastDaysTimeLog} {colors} {medications} />	
 		</div>
 </div>
 
@@ -160,6 +161,13 @@
 		border: 2px solid var(--bg);
 		padding: 0.2em 0.75em;
 	}
+	:global(body) {
+		overflow: hidden;
+	}
+	.fetti {
+		display: flex;
+		justify-content: center;
+	}
 	.label-dispense {
 		@apply z-20 relative;
 	}
@@ -167,7 +175,7 @@
 		@apply relative overflow-hidden z-10;
 	}
 	.btn-dispense::before {
-		@apply content-[''] absolute inset-0 right-auto;
+		@apply content-[''] absolute inset-0 right-auto transition-all duration-[0.4s] ease-in-out;
 		width: var(--fill-percent);
 		background-color: var(--bg);
 	}
