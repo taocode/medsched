@@ -130,7 +130,7 @@
 								{d}
 								title={P.summary}
 								style="--c: {colors[P.medicationIndex]};
-								--c-shadow: {readableColor(colors[P.medicationIndex])};
+								--c-shadow: {readableColor(colors[P.medicationIndex])}5;
             --offset: {P.medicationIndex * 0.15}ch;
             " />
 						</Pancake.SvgPoint>
@@ -229,12 +229,10 @@
     stroke-opacity: 1;
     mix-blend-mode: normal;
 		filter: 
-		drop-shadow(0 0 0.07px var(--c-shadow))
-			/* drop-shadow(0.01px 0.01px 0.01px var(--c-shadow)) */
-			/* drop-shadow(0 -0.01px 0.01px var(--c-shadow)) */
-			/* drop-shadow(-0.01px 0.01px 0.05px var(--c-shadow)) */
-			;
-			/* drop-shadow(0 0 0.01px var(--c-shadow)); */
-
+		drop-shadow(0 0 0.25px var(--c-shadow))
+		drop-shadow(0 1px 0.25px var(--c-shadow))
+		drop-shadow(0 -1px 0.25px var(--c-shadow))
+		;
+		
 	}
 </style>
