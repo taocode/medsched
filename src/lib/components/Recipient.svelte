@@ -162,8 +162,7 @@ $: timeLogByDay = timeLog
 		padding: 0.2em 0.75em;
 	}
 	.fetti {
-		@apply flex justify-center absolute inset-0 top-24 z-20;
-		pointer-events: none;
+		@apply flex justify-center fixed inset-0 pt-[6em] z-20 pointer-events-none;
 	}
 	.label-dispense {
 		@apply z-20 relative;
