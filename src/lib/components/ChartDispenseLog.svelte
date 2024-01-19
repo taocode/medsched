@@ -8,6 +8,8 @@
 		formatTimestampHourFraction,
 	} from '$lib'
 
+	import { readableColor } from 'color2k'
+
 	export let log
 	export let colors
 	export let medications
@@ -115,6 +117,7 @@
 							class="data"
 							{d}
 							style="--c: {colors[DL.split(',')[0]]};
+							--c-shadow: {readableColor(colors[DL.split(',')[0]])};
           --offset: {DL.split(',')[0] * 0.15}ch;
           " />
 					</Pancake.SvgLine>
@@ -127,6 +130,7 @@
 								{d}
 								title={P.summary}
 								style="--c: {colors[P.medicationIndex]};
+								--c-shadow: {readableColor(colors[P.medicationIndex])};
             --offset: {P.medicationIndex * 0.15}ch;
             " />
 						</Pancake.SvgPoint>
@@ -213,9 +217,9 @@
 		fill: none;
 		stroke-width: 0.125rem;
 		transform: translateX(var(--offset, 2px));
-		filter: drop-shadow(0 0 0.1px rgb(var(--c-shadow) / 0.9))
-			drop-shadow(0 0 0.2px rgb(var(--c-shadow) / 0.5))
-			drop-shadow(0 0 0.5px rgb(var(--c-shadow) / 0.2));
+		/* filter: drop-shadow(0 0 0.01px var(--c-shadow)); */
+			/* drop-shadow(0 0 0.1px var(--c-shadow)); */
+			/* drop-shadow(0 0 0.5px var(--c-shadow)); */
 	}
   :global(.dark path.data) {
     mix-blend-mode: screen;
@@ -224,5 +228,13 @@
 		stroke-width: 0.6rem;
     stroke-opacity: 1;
     mix-blend-mode: normal;
+		filter: 
+		drop-shadow(0 0 0.07px var(--c-shadow))
+			/* drop-shadow(0.01px 0.01px 0.01px var(--c-shadow)) */
+			/* drop-shadow(0 -0.01px 0.01px var(--c-shadow)) */
+			/* drop-shadow(-0.01px 0.01px 0.05px var(--c-shadow)) */
+			;
+			/* drop-shadow(0 0 0.01px var(--c-shadow)); */
+
 	}
 </style>
