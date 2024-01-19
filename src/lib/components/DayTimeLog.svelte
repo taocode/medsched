@@ -138,6 +138,10 @@
 	.brief {
 		@apply flex-row flex-wrap;
 	}
+	.brief .date-col {
+		font-size: 0.8em;
+		padding-top: 0.2em;
+	}
 	.entry {
 		@apply flex mx-auto gap-1 relative px-[0.5ch];
 		/* grid-template-columns: 0.5ch 2fr 1fr; */
