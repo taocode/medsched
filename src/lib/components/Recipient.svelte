@@ -142,7 +142,7 @@
 		</div>
 	</div>
 
-	<h3>{lastDaysTimeLog.length} of the Past {lastDaysCount} Days</h3>
+	<h3>{lastDaysTimeLog.length} of the Past {lastDaysCount+1} Days</h3>
 	<div class="days-summary">
 		{#each lastDaysTimeLog as L, n}
 			<button class="day-summary rounded" on:click={() => showPTLD(n)}>
