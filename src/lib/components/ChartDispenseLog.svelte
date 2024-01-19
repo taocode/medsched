@@ -118,7 +118,7 @@
 							class="data"
 							{d}
 							style="--c: {colors[DL.split(',')[0]]};
-							--c-shadow: {readableColor(colors[DL.split(',')[0]])};
+							--c-shadow: {readableColor(colors[DL.split(',')[0]])}5;
           --offset: {DL.split(',')[0] * 0.15}ch;
           " />
 					</Pancake.SvgLine>
@@ -229,8 +229,9 @@
 		stroke-width: 0.6rem;
 		stroke-opacity: 1;
 		mix-blend-mode: normal;
-		filter: drop-shadow(0 0 0.25px var(--c-shadow))
-			drop-shadow(0 1px 0.25px var(--c-shadow))
-			drop-shadow(0 -1px 0.25px var(--c-shadow));
+		filter: 
+			drop-shadow(0 0 0.3px var(--c-shadow))
+			drop-shadow(0 1px 0.3px var(--c-shadow))
+			drop-shadow(0 -1px 0.3px var(--c-shadow));
 	}
 </style>
