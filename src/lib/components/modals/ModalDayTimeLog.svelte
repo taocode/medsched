@@ -11,7 +11,7 @@
 		modalStore.close()
 	}
 	let { dayTimeLog, recipient, medications } = $modalStore[0].meta
-	
+
 	const dateFormatted = formatTimestampMedDate(dayTimeLog[0].dispensed)
 
 	function update(event) {
@@ -28,7 +28,8 @@
 
 {#if $modalStore[0]}
 	<article class="modal px-4 pb-4">
-		<button class="btn variant-glass-surface closer" on:click={cancel}><span class="i-fe-close"></span></button>
+		<button class="btn variant-glass-surface closer" on:click={cancel}
+			><span class="i-fe-close"></span></button>
 		<DayTimeLog
 			dayName={dateFormatted}
 			{recipient}

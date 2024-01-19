@@ -30,7 +30,7 @@
 	}, 0)
 	$: lastHour = maxHour + 2.5
 	$: firstHour = minHour - 1.5
-  $: hoursDiff = maxHour-minHour
+	$: hoursDiff = maxHour - minHour
 	// $: console.log({minHour})
 
 	// console.log({log})
@@ -79,8 +79,9 @@
 
 <h3>{dispensePoints.length} Day Chart</h3>
 <div class="chart-wrap">
-	<div class="chart bg-surface-200 dark:bg-surface-900" 
-    style="--h: {hoursDiff*1.25}em;">
+	<div
+		class="chart bg-surface-200 dark:bg-surface-900"
+		style="--h: {hoursDiff * 1.25}em;">
 		<Pancake.Chart
 			x1={0}
 			x2={dispensePoints.length + 0.3}
@@ -204,35 +205,32 @@
 		:global(.gridx .x.label) {
 			display: none;
 		}
-    :global(.gridx div div:nth-child(odd) .x.label) {
-      display: inline-block;
-    }
+		:global(.gridx div div:nth-child(odd) .x.label) {
+			display: inline-block;
+		}
 	}
 	path.data {
 		stroke: var(--c, red);
-    stroke-opacity: 0.5;
-    mix-blend-mode: multiply;
+		stroke-opacity: 0.5;
+		mix-blend-mode: multiply;
 		stroke-dasharray: 7, 5, 2, 5;
 		stroke-linecap: round;
 		fill: none;
 		stroke-width: 0.125rem;
 		transform: translateX(var(--offset, 2px));
 		/* filter: drop-shadow(0 0 0.01px var(--c-shadow)); */
-			/* drop-shadow(0 0 0.1px var(--c-shadow)); */
-			/* drop-shadow(0 0 0.5px var(--c-shadow)); */
+		/* drop-shadow(0 0 0.1px var(--c-shadow)); */
+		/* drop-shadow(0 0 0.5px var(--c-shadow)); */
 	}
-  :global(.dark path.data) {
-    mix-blend-mode: screen;
-  }
+	:global(.dark path.data) {
+		mix-blend-mode: screen;
+	}
 	path.data.point {
 		stroke-width: 0.6rem;
-    stroke-opacity: 1;
-    mix-blend-mode: normal;
-		filter: 
-		drop-shadow(0 0 0.25px var(--c-shadow))
-		drop-shadow(0 1px 0.25px var(--c-shadow))
-		drop-shadow(0 -1px 0.25px var(--c-shadow))
-		;
-		
+		stroke-opacity: 1;
+		mix-blend-mode: normal;
+		filter: drop-shadow(0 0 0.25px var(--c-shadow))
+			drop-shadow(0 1px 0.25px var(--c-shadow))
+			drop-shadow(0 -1px 0.25px var(--c-shadow));
 	}
 </style>

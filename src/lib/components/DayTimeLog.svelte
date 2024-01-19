@@ -1,6 +1,10 @@
 <script lang="ts">
 	import { dev } from '$app/environment'
-	import { formatTimestampLong, formatTimestampShort, randomColor } from '$lib'
+	import {
+		formatTimestampLong,
+		formatTimestampShort,
+		randomColor,
+	} from '$lib'
 	import { readableColor } from 'color2k'
 
 	import { removeTimeLogEntry } from '$lib/db'
@@ -75,9 +79,7 @@
 		>{/if}
 	{dayName}:
 </h3>
-<div class="day-log"
-	class:brief
-	>
+<div class="day-log" class:brief>
 	{#each dayTimeLog as L, i}
 		<div
 			class="entry"
@@ -88,7 +90,9 @@
 			<div class="count">
 				{findDaysCount(L.medicationIndex, L.dispensed)}
 			</div>
-			{#if !brief}<div class="name">{medications[L.medicationIndex].displayName}</div>{/if}
+			{#if !brief}<div class="name">
+					{medications[L.medicationIndex].displayName}
+				</div>{/if}
 			<div class="date-col">{formatTimestampShort(L.dispensed)}</div>
 			{#if allowEdit}
 				<div class="actions">

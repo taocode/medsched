@@ -1,4 +1,4 @@
-<script lang='ts'>
+<script lang="ts">
 	// import { arrayUnion, Timestamp } from 'firebase/firestore'
 	// import { fade } from 'svelte/transition'
 	// import { docStore, getFirebaseContext, userStore, collectionStore } from 'sveltefire'
@@ -12,27 +12,30 @@
 		formatTimestampMedDate,
 		randomColor,
 	} from '$lib'
-	import { type ModalSettings, getModalStore } from '@skeletonlabs/skeleton'
+	import {
+		type ModalSettings,
+		getModalStore,
+	} from '@skeletonlabs/skeleton'
 	const modalStore = getModalStore()
-	
+
 	import { dispenseRecipientMedication } from '$lib/db'
 	import { user } from '$lib/user'
-	
+
 	export let recipient
 	let { id, displayName, medications, timeLog } = recipient
 	$: {
 		if (recipient) ({ id, displayName, medications, timeLog } = recipient)
 	}
-const colors = medications.map(m => (m.color ? m.color : randomColor()))
-// const user = userStore(auth)
-// console.log({user},$user)
-const today = new Date()
-today.setHours(0, 0, 0, 0)
-// const thing = new Timestamp()
-$: timeLogByDay = timeLog
-.reduce(
-	(p, L, i) => {
-		const entryDay = L.dispensed?.toDate()
+	const colors = medications.map(m => (m.color ? m.color : randomColor()))
+	// const user = userStore(auth)
+	// console.log({user},$user)
+	const today = new Date()
+	today.setHours(0, 0, 0, 0)
+	// const thing = new Timestamp()
+	$: timeLogByDay = timeLog
+		.reduce(
+			(p, L, i) => {
+				const entryDay = L.dispensed?.toDate()
 				entryDay.setHours(0, 0, 0, 0)
 				let lastDay = p[p.length - 1]
 				const lastEntry = lastDay.length ? lastDay[lastDay.length - 1] : L
@@ -55,12 +58,12 @@ $: timeLogByDay = timeLog
 	)
 	// console.log({lastDaysDate})
 	$: todayTimeLog = timeLog.filter(L => L.dispensed?.toDate() > today)
-	$: daysCounts = todayTimeLog.reduce((p,c) => {
+	$: daysCounts = todayTimeLog.reduce((p, c) => {
 		const mi = c.medicationIndex
 		if (isNaN(p[mi])) p[mi] = 0
 		p[mi]++
-		return p 
-	},{})
+		return p
+	}, {})
 	$: pastTimeLog = timeLogByDay.filter(
 		DL => DL[0]?.dispensed?.toDate() < today
 	)
@@ -68,9 +71,10 @@ $: timeLogByDay = timeLog
 		DL => DL[0]?.dispensed?.toDate() > lastDaysDate
 	)
 
-	$: showFetti = recipient.medications
-				.reduce((p,c,i) => p && c.schedule?.length === daysCounts[i]
-				,true)
+	$: showFetti = recipient.medications.reduce(
+		(p, c, i) => p && c.schedule?.length === daysCounts[i],
+		true
+	)
 
 	async function dispense(medIndex) {
 		dispenseRecipientMedication($user.uid, recipient.id, medIndex)
@@ -92,7 +96,7 @@ $: timeLogByDay = timeLog
 			meta: {
 				dayTimeLog,
 				recipient,
-				medications
+				medications,
 			},
 		}
 		modalStore.trigger(modal)
@@ -111,13 +115,15 @@ $: timeLogByDay = timeLog
 					class="btn btn-dispense"
 					on:click|preventDefault={() => dispense(i)}
 					style="--bg: {colors[i]}; 
-					--bgbg: {transparentize(colors[i],0.42)}; 
+					--bgbg: {transparentize(colors[i], 0.42)}; 
 					--color: {readableColor(colors[i])}; 
-					--fill-percent: {hasSchedule(i) ?
-						 (daysCounts[i] / daysTotal(i) || 0) * 100
-						 : daysCounts[i] > 0 ? 100 : 0}%;"
-					type="button"><span class="label-dispense">{m.displayName}
-						</span></button>
+					--fill-percent: {hasSchedule(i)
+						? (daysCounts[i] / daysTotal(i) || 0) * 100
+						: daysCounts[i] > 0
+							? 100
+							: 0}%;"
+					type="button"
+					><span class="label-dispense">{m.displayName} </span></button>
 			{/each}
 		</div>
 	</div>
@@ -132,16 +138,14 @@ $: timeLogByDay = timeLog
 
 	<div class="display-area">
 		<div class="display chart">
-			<ChartDispenseLog log={lastDaysTimeLog} {colors} {medications} />	
+			<ChartDispenseLog log={lastDaysTimeLog} {colors} {medications} />
 		</div>
-</div>
+	</div>
 
 	<h3>{lastDaysTimeLog.length} of the Past {lastDaysCount} Days</h3>
 	<div class="days-summary">
 		{#each lastDaysTimeLog as L, n}
-			<button
-				class="day-summary rounded"
-				on:click={()=>showPTLD(n)}>
+			<button class="day-summary rounded" on:click={() => showPTLD(n)}>
 				<div class="count">{L.length}</div>
 				<div class="date">{formatTimestampShortDate(L[0].dispensed)}</div>
 			</button>
@@ -206,5 +210,4 @@ $: timeLogByDay = timeLog
 	.display-area {
 		@apply relative;
 	}
-
 </style>
