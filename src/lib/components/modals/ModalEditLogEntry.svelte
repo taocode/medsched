@@ -3,7 +3,7 @@
 	import { formatDateValue } from '$lib'
 	import { editTimeLogEntry } from '$lib/db'
 	const modalStore = getModalStore()
-	export let parent
+	// export let parent
 	function dateValue(timeMillis) {
 		return formatDateValue(new Date(timeMillis))
 	}

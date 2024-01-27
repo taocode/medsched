@@ -172,7 +172,7 @@
 	{#each lastDose as {name, dispensed, count},i}
 	<div class="med-color" style="--bg: {colors[i]};
 	--color: {readableColor(colors[i])};"
-	>{name} <span class="count">{count}</span> - {formatTimestampMedDate(dispensed)} {formatTimestampShort(dispensed)}</div>
+	>{name} <span class="count">{count}</span> - {formatTimestampShortDate(dispensed)} {formatTimestampShort(dispensed)}</div>
 	{/each}
 </div>
 

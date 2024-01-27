@@ -3,7 +3,7 @@
 	import { formatDateValue, formatTimestampMedDate } from '$lib'
 	import DayTimeLog from '../DayTimeLog.svelte'
 	const modalStore = getModalStore()
-	export let parent
+	// export let parent
 	function dateValue(timeMillis) {
 		return formatDateValue(new Date(timeMillis))
 	}
