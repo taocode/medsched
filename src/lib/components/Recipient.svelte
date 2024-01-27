@@ -76,8 +76,11 @@
 			p[c.medicationIndex] = {
 				date: c.dispensed.toDate(),
 				dispensed: c.dispensed,
+				count: 1,
 				name: medications[c.medicationIndex].displayName,
 			}
+		} else {
+			p[c.medicationIndex].count++
 		}
 		return p
 	}, new Array(medications.length))
@@ -123,7 +126,7 @@
 				<button
 					name="medicationIndex"
 					value={i}
-					class="btn btn-dispense"
+					class="btn btn-dispense med-color"
 					on:click|preventDefault={() => dispense(i)}
 					style="--bg: {colors[i]}; 
 					--bgbg: {transparentize(colors[i], 0.42)}; 
@@ -165,9 +168,11 @@
 
 	<h3>{pastTimeLog.length} Total Days in Log</h3>
 	<h3>Last Dose</h3>
-<div>
-	{#each lastDose as {name, dispensed, date}}
-	<div>{name} - {formatTimestampMedDate(dispensed)} {formatTimestampShort(dispensed)}</div>
+<div class="last-doses">
+	{#each lastDose as {name, dispensed, count},i}
+	<div class="med-color" style="--bg: {colors[i]};
+	--color: {readableColor(colors[i])};"
+	>{name} <span class="count">{count}</span> - {formatTimestampMedDate(dispensed)} {formatTimestampShort(dispensed)}</div>
 	{/each}
 </div>
 
@@ -177,7 +182,7 @@
 	.show-recipient {
 		text-align: center;
 	}
-	button {
+	.med-color {
 		background-color: var(--bgbg);
 		color: var(--color);
 		border: 2px solid var(--bg);
@@ -191,6 +196,16 @@
 	}
 	.btn-dispense {
 		@apply relative overflow-hidden z-10;
+	}
+	.last-doses {
+		@apply flex gap-1 flex-col w-fit mx-auto;
+	}
+	.count {
+		@apply text-[0.8em];
+	}
+	.last-doses .med-color {
+		@apply rounded;
+		background-color: var(--bg);
 	}
 	.btn-dispense::before {
 		@apply content-[''] absolute inset-0 right-auto;
