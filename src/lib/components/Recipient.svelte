@@ -10,6 +10,7 @@
 	import {
 		formatTimestampShortDate,
 		formatTimestampMedDate,
+		formatTimestampShort,
 		randomColor,
 	} from '$lib'
 	import {
@@ -70,6 +71,16 @@
 	$: lastDaysTimeLog = timeLogByDay.filter(
 		DL => DL[0]?.dispensed?.toDate() > lastDaysDate
 	)
+	$: lastDose = timeLog.reverse().reduce((p,c,i)=> { 
+		if (!p[c.medicationIndex]) {
+			p[c.medicationIndex] = {
+				date: c.dispensed.toDate(),
+				dispensed: c.dispensed,
+				name: medications[c.medicationIndex].displayName,
+			}
+		}
+		return p
+	}, new Array(medications.length))
 
 	$: showFetti = recipient.medications.reduce(
 		(p, c, i) => p && c.schedule?.length === daysCounts[i],
@@ -153,6 +164,13 @@
 	</div>
 
 	<h3>{pastTimeLog.length} Total Days in Log</h3>
+	<h3>Last Dose</h3>
+<div>
+	{#each lastDose as {name, dispensed, date}}
+	<div>{name} - {formatTimestampMedDate(dispensed)} {formatTimestampShort(dispensed)}</div>
+	{/each}
+</div>
+
 </div>
 
 <style lang="postcss">
