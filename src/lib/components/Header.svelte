@@ -5,8 +5,9 @@
 	import SignInOut from '$lib/components/SignInOut.svelte'
 	// export let auth
 
-	import { LightSwitch } from '@skeletonlabs/skeleton'
+	import { LightSwitch, autoModeWatcher } from '@skeletonlabs/skeleton'
 </script>
+<svelte:head>{@html '<script>(' + autoModeWatcher.toString() + ')();</script>'}</svelte:head>
 
 <header>
 	<div class="contents">
