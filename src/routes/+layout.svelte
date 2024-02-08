@@ -10,6 +10,19 @@
 	import 'uno.css'
 	import './styles.css'
 
+	
+import type { AfterNavigate } from '@sveltejs/kit'
+import { afterNavigate } from '$app/navigation'
+
+	afterNavigate((params: AfterNavigate) => {
+    const isNewPage = params.from?.url.pathname !== params.to?.url.pathname;
+    const elemPage = document.querySelector('#page');
+    if (isNewPage && elemPage !== null) {
+      elemPage.scrollTop = 0;
+    }
+	});
+
+
 	// import { page } from '$app/stores'
 	import { authState } from 'sveltefirets'
 	import { user as userStore } from '$lib/user'
@@ -22,6 +35,7 @@
 		Modal,
 		getModalStore,
 		type ModalComponent,
+		AppShell,
 	} from '@skeletonlabs/skeleton'
 	initializeStores()
 
@@ -47,7 +61,10 @@
 <Modal components={modalRegistry} />
 
 <div class="app" class:blur={$modalStore[0]}>
-	<Header />
+<AppShell regionPage="relative" slotPageHeader="sticky top-0 z-10"
+slotDefault="flex flex-col flex-1 justify-between overflow-scroll" 
+slotPageFooter="flex flex-col justify-center items-center">
+	<svelte:fragment slot="pageHeader"><Header /></svelte:fragment>
 	<main>
 		{#if $authState === undefined}
 			<div class="text-center">Loading...</div>
@@ -62,10 +79,11 @@
 			<Why />
 		{/if}
 	</main>
+	<svelte:fragment slot="pageFooter">
+		<div>By <a href="https://taocode.com" target="_blank">TAOCODE</a></div>
+	</svelte:fragment>
+</AppShell>
 
-	<footer>
-		<p>By <a href="https://taocode.com">TAOCODE</a></p>
-	</footer>
 </div>
 
 <style>
