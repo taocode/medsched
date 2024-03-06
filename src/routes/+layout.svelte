@@ -22,6 +22,7 @@
 		Modal,
 		getModalStore,
 		type ModalComponent,
+		autoModeWatcher,
 	} from '@skeletonlabs/skeleton'
 	initializeStores()
 
@@ -43,6 +44,8 @@
 	$: user = $userStore || authNotInited || null
 	// $: user = $userStore || null
 </script>
+
+<svelte:head>{@html '<script>(' + autoModeWatcher.toString() + ')();</script>'}</svelte:head>
 
 <Modal components={modalRegistry} />
 
