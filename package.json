@@ -32,6 +32,7 @@
 		"postcss-nesting": "^12.0.2",
 		"prettier": "^3.2.2",
 		"prettier-plugin-svelte": "^3.1.2",
+		"supabase": "^1.148.6",
 		"svelte": "^3.59.2",
 		"svelte-check": "^3.6.3",
 		"sveltefirets": "^0.0.36",
@@ -43,6 +44,10 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@supabase/auth-helpers-sveltekit": "^0.12.0",
+		"@supabase/auth-ui-shared": "^0.1.8",
+		"@supabase/auth-ui-svelte": "^0.2.9",
+		"@supabase/supabase-js": "^2.39.7",
 		"firebaseui": "^6.1.0"
 	}
 }

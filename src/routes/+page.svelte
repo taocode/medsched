@@ -12,6 +12,9 @@
 		editingRecipient = undefined
 		setTimeout(() => (editingRecipient = r), 1)
 	}
+	import { Auth } from '@supabase/auth-ui-svelte'
+	import { ThemeSupa } from '@supabase/auth-ui-shared'
+
 	export let data
 	let recipients = []
 	$: recipients = data.recipients
@@ -37,8 +40,19 @@
 		{/each}
 	</div>
 </section>
+<div class="row flex-center flex">
+	<div class="col-6 form-widget">
+		<Auth
+			supabaseClient={data.supabase}
+			view="magic_link"
+			redirectTo={`${data.url}/auth/callback`}
+			showLinks={false}
+			appearance={{ theme: ThemeSupa, style: { input: 'color: #fff' } }}
+		/>
+	</div>
+</div>
 
-<style>
+<style lang="postcss">
 	section {
 		display: flex;
 		flex-direction: column;
